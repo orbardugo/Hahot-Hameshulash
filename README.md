@@ -1,6 +1,6 @@
-# project-template
+# Her-Story 
 
-Helping the women of Jerusalem to express their creativity and knowledge to the world.
+Helping the Women of Jerusalem to express their creativity and knowledge to the world.
 
 (See also:rRecommended [checklist](https://github.com/ddbeck/readme-checklist/blob/master/checklist.md) for a README) 
 
