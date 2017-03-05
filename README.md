@@ -1,6 +1,6 @@
 # project-template
 
-A template repository with wiki for a team project at JCE's software engineering course (replace with the mission of your project).
+Helping the women of Jerusalem to express their creativity and knowledge to the world.
 
 (See also:rRecommended [checklist](https://github.com/ddbeck/readme-checklist/blob/master/checklist.md) for a README) 
 
