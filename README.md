@@ -18,7 +18,7 @@ We're trying to use the best tools and practices in order to produce a quality e
 |---|---|
 | Version Control System| git & github |
 | Recommended IDE | [VSCode](https://code.visualstudio.com) |
-| Group Chat | [![Join the chat at https://gitter.im/orbardugo/Hahot-Hameshulash](https://badges.gitter.im/orbardugo/Hahot-Hameshulash.svg)](https://gitter.im/orbardugo/Hahot-Hameshulash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) |
+| Group Chat | [![Join the chat at https://gitter.im/orbardugo/Hahot-Hameshulash](https://badges.gitter.im/orbardugo/Hahot-Hameshulash.svg)](https://gitter.im/jce-il/Hahot-Hameshulash) |
 | Build Status (CI) |  [![Build Status](https://travis-ci.org/orbardugo/Hahot-Hameshulash.svg?branch=master)](https://travis-ci.org/orbardugo/Hahot-Hameshulash) |
 | Dependencies | [![David](https://img.shields.io/david/dev/idleberg/vscode-badges.svg?style=flat-square)](https://david-dm.org/orbardugo/Hahot-Hameshulash?type=dev) |
 | License | [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/) |
