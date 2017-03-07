@@ -1,10 +1,14 @@
-# project-template
+# project-Hahut-Hameshulash
 
-A template repository with wiki for a team project at JCE's software engineering course (replace with the mission of your project).
+* The project build for non-profit organization that helping to 600-700 youthful between ages 14-25.
+* The project is to build a managment tool of DB.
+* If you use Hahut-Hameshulash then you can easily pull person data.
+* Hahut-Hameshulash helps you to manage the information about the youthful.
+ 
 
 (See also:rRecommended [checklist](https://github.com/ddbeck/readme-checklist/blob/master/checklist.md) for a README) 
 
-![project logo (this one for is taken from basecamp - a project management service)](https://www.klipfolio.com/sites/default/files/integrations/basecamp.png)
+![project logo (this one for is taken from basecamp - a project management service)](http://meshulash.org/wp-content/uploads/2016/08/LOGO.png)
 
 ## Tools & Practices
 We're trying to use the best tools and practices in order to produce a quality enginneered product.
