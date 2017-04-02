@@ -9,6 +9,7 @@ public class TestOutil
         for (int i = 0; i < corps.length; i++) {
         	persons[i]=new Person(corps[i],i);
         	persons[i].printPerson();
+        	//check
 		}
         
         //System.out.println(corps[0][0]);
