@@ -10,6 +10,7 @@ public class TestOutil
         	persons[i]=new Person(corps[i],i);
         	persons[i].printPerson();
         	//check
+        	//or
 		}
         
         //System.out.println(corps[0][0]);
