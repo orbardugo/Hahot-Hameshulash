@@ -3,7 +3,7 @@ public class TestOutil
 {
     public static void main(String[] args) throws Exception 
     {
-        Tableau tab = new Tableau("C:/Users/aviv/Desktop/example.xlsx", "sheet1");
+        Tableau tab = new Tableau("C:/Users/or/git/Hahot-Hameshulash/Excel/test.xlsx", "sheet1");
         Object corps[][] = tab.getBody();
         Person[] persons=new Person[corps.length];
         for (int i = 0; i < corps.length; i++) {
