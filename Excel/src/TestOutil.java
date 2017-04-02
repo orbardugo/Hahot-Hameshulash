@@ -8,7 +8,7 @@ public class TestOutil
         Person[] persons=new Person[corps.length];
         for (int i = 0; i < corps.length; i++) {
         	persons[i]=new Person(corps[i],i);
-        	//persons[i].printPerson();
+        	persons[i].printPerson();
 		}
         
         //System.out.println(corps[0][0]);
