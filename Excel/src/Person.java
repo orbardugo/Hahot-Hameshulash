@@ -31,11 +31,11 @@ public String getLastName() {
 	return lastName;
 }
 
-public Double getBirthday() {
-	return birthday;
+public int getYearOfBirth() {
+	return yearOfBirth;
 }
 
 public void printPerson(){
-	System.out.println("Name: " + this.firstName + " " +this.lastName + " Birth Day: " + this.birthday);
+	System.out.println("Name: " + this.firstName + " " +this.lastName + " Birth Day: " + this.yearOfBirth);
 }
 }
