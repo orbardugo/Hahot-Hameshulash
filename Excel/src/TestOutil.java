@@ -3,12 +3,12 @@ public class TestOutil
 {
     public static void main(String[] args) throws Exception 
     {
-        Tableau tab = new Tableau("C:/Users/Ruben/Desktop/a.xlsx", "sheet1");
+        Tableau tab = new Tableau("C:/Users/or/Desktop/test.xlsx", "sheet1");
         Object corps[][] = tab.getBody();
         Person[] persons=new Person[corps.length];
         for (int i = 0; i < corps.length; i++) {
         	persons[i]=new Person(corps[i],i);
-        	persons[i].printPerson();
+        	//persons[i].printPerson();
 		}
         
         //System.out.println(corps[0][0]);
