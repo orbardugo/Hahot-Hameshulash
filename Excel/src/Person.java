@@ -7,14 +7,14 @@ public class Person {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private Double birthday;
+	private int yearOfBirth;
 
 public Person(Object array[],int row)
 {
 	this.id=row;
 	this.firstName=(String) array[0];
 	this.lastName=(String) array[1];
-	this.birthday=(Double) array[2];
+	this.yearOfBirth=(int) array[2];
 	
 	
 }
