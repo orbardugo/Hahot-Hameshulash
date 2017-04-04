@@ -61,7 +61,7 @@ public class Tableau
                             this.body[index][i] = cellule.getBooleanCellValue();
                             break;
                         default :
-                            this.body[index][i] = cellule.getNumericCellValue();
+                            this.body[index][i] = (int)cellule.getNumericCellValue();
                     }
                 }
             }
