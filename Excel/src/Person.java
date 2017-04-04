@@ -30,7 +30,7 @@ public int getYearOfBirth() {
 	return yearOfBirth;
 }
 
-public void printPerson(){
-	System.out.println("Name: " + this.firstName + " " +this.lastName + " Birth Day: " + this.yearOfBirth);
+public String toString(){
+	return "Name: " + this.firstName + " " +this.lastName + " Birth Day: " + this.yearOfBirth;
 }
 }
