@@ -16,9 +16,11 @@ public class TestOutil
 		}
         JFrame f=new JFrame();
         JLabel l1=new JLabel();
+        l1.setSize(100,500);
         l1.setText(persons[0].toString());
         JLabel l2=new JLabel();
-        l1.setText(persons[1].toString());
+        l2.setText(persons[1].toString());
+        l2.setSize(100,500);
        // JLabel l3=new JLabel();
        // l1.setText(persons[2].toString());
         f.add(l1);
