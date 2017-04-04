@@ -8,14 +8,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-public class Tableau 
+public class Table 
 {
     private String header[];
     private Object body[][];
     private String lastFileName = null;
     private String lastSheetName = null;
     
-    public Tableau(String fileName, String sheetName)
+    public Table(String fileName, String sheetName)
     {
         try
         {

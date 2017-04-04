@@ -5,6 +5,7 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private int yearOfBirth;
+	private String gender;
 
 public Person(Object array[],int row)
 {
