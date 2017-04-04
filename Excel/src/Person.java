@@ -1,8 +1,5 @@
 import java.util.Date;
 
-
-
-
 public class Person {
 	private int id;
 	private String firstName;
