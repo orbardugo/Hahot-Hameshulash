@@ -15,8 +15,6 @@ public Person(Object array[],int row)
 	this.firstName=(String) array[0];
 	this.lastName=(String) array[1];
 	this.yearOfBirth=(int) array[2];
-	
-	
 }
 
 public int getId() {
