@@ -61,7 +61,7 @@ public class Form {
 		
 		
 		
-		queryTitle = new JLabel("äô÷ú ãåçåú",SwingConstants.CENTER);
+		queryTitle = new JLabel("×”×¤×§×ª ×“×•×—×•×ª",SwingConstants.CENTER);
 		queryTitle.setFont(new Font("Serif", Font.BOLD, 20));
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -115,7 +115,7 @@ public class Form {
 		
 		queryPanel.add(empty,c);
 		
-		JLabel btnSubmit = new JLabel("äöâ",SwingConstants.CENTER);
+		JLabel btnSubmit = new JLabel("×”×¦×’",SwingConstants.CENTER);
 		btnSubmit.setFont(new Font("Serif", Font.BOLD, 20));
 		btnSubmit.setBorder(BorderFactory.createLineBorder(Color.black));
 		
