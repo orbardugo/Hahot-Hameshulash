@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import com.sun.glass.ui.Window;
+import com.sun.javafx.geom.transform.GeneralTransform3D;
 
 import javafx.scene.layout.BorderWidths;
 
@@ -41,25 +42,34 @@ public class Form {
 	
 	public Form(String[] headers){
 		mainScreen= new JFrame();
-		mainScreen.setSize(600,600);
-		main = new JPanel(new BorderLayout());
+		Dimension DimMax = Toolkit.getDefaultToolkit().getScreenSize();
+		mainScreen.setMaximumSize(DimMax);
+		mainScreen.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		main = new JPanel();
 //		Border blackline = BorderFactory.createLineBorder(Color.black);
 //		main.setBorder(blackline);
 		//this.main.setLayout(new GridLayout(1,5));
 		queryPanel = new JPanel();
-		queryPanel.setLayout(new GridLayout(8,1));
+		queryPanel.setLayout(new GridBagLayout());
+		queryPanel.setPreferredSize(new Dimension((int)(DimMax.width*0.25), (int)(DimMax.height)));
+		GridBagConstraints c = new GridBagConstraints();
+		
 		
 		resultPanel = new JPanel();
 		//this.queryPanel.setMaximumSize(new Dimension(200, 200));
-		
-		resultPanel = new JPanel();
+	
 		
 		
 		
 		queryTitle = new JLabel("הפקת דוחות",SwingConstants.CENTER);
 		queryTitle.setFont(new Font("Serif", Font.BOLD, 20));
-		queryTitle.setPreferredSize(new Dimension(300, 20));
-		queryPanel.add(queryTitle, BorderLayout.WEST);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 0.5;
+		c.gridx = 0;
+		c.gridy = 0;
+		
+		queryPanel.add(queryTitle , c);
 		
 		//Colomns Choose
 		//String[] colomns={"a","b","c","d","e","f","g","h"};
@@ -78,29 +88,51 @@ public class Form {
 		list2.setVisibleRowCount(5);
 		JScrollPane scrollPane_2 = new JScrollPane(list2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		
-
+		scrollPane_1.setPreferredSize(new Dimension(150, 300));
+		scrollPane_2.setPreferredSize(new Dimension(150, 300));
+		scrollPane_1.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(10, 10,0, 10));
+		
 		
 		JPanel twoLists = new JPanel(new GridLayout(1, 2));
 		twoLists.add(scrollPane_1);
 		twoLists.add(scrollPane_2);
-		queryPanel.add(twoLists);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 1;
+		
+		queryPanel.add(twoLists,c);
+		
+		JPanel empty=new JPanel();
+		
+		empty.setPreferredSize(new Dimension((int)(DimMax.width*0.25), (int)(DimMax.height*0.2)));
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 2;
+		
+		queryPanel.add(empty,c);
 		
 		JLabel btnSubmit = new JLabel("הצג",SwingConstants.CENTER);
 		btnSubmit.setFont(new Font("Serif", Font.BOLD, 20));
 		btnSubmit.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		main.add(resultPanel, BorderLayout.WEST);
-		main.add(queryPanel, BorderLayout.EAST);
-		queryPanel.add(new JPanel());
-		queryPanel.add(new JPanel());
-		queryPanel.add(new JPanel());
-		queryPanel.add(new JPanel());
-		queryPanel.add(new JPanel());
-		queryPanel.add(btnSubmit);
+		resultPanel.setPreferredSize(new Dimension((int)(DimMax.width*0.7), (int)(DimMax.height)));
+		resultPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		resultPanel.setBackground(Color.WHITE);
+		
+		main.add(resultPanel);
+		main.add(queryPanel);
+		
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 3;
+		
+		queryPanel.add(btnSubmit,c);
+		
 		
 		mainScreen.add(main);
 		mainScreen.setVisible(true);
