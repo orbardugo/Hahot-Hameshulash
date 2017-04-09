@@ -15,7 +15,6 @@ public class Person {
 	private String commWithOtherInstitution;
 	private String cityOfOrigin;
 	private int yearOfBirth;
-	private String gender;
 
 	public Person(Object array[],int row)
 	{
