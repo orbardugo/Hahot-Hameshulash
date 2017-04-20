@@ -65,7 +65,8 @@ public class Form {
 		queryTitle.setFont(new Font("Serif", Font.BOLD, 20));
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
+		c.weightx = 1;
+		c.weighty = 5;
 		c.gridx = 0;
 		c.gridy = 0;
 		
@@ -96,7 +97,7 @@ public class Form {
 		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(10, 10,0, 10));
 		
 		
-		JPanel twoLists = new JPanel(new GridLayout(1, 2));
+		JPanel twoLists = new JPanel(new GridLayout(2, 1));
 		twoLists.add(scrollPane_1);
 		twoLists.add(scrollPane_2);
 		
@@ -119,7 +120,7 @@ public class Form {
 		btnSubmit.setFont(new Font("Serif", Font.BOLD, 20));
 		btnSubmit.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		resultPanel.setPreferredSize(new Dimension((int)(DimMax.width*0.7), (int)(DimMax.height)));
+		resultPanel.setPreferredSize(new Dimension((int)(DimMax.width*0.7), (int)(DimMax.height*0.8)));
 		resultPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		resultPanel.setBackground(Color.WHITE);
 		
@@ -129,6 +130,7 @@ public class Form {
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
+		c.weighty = 10;
 		c.gridy = 3;
 		
 		queryPanel.add(btnSubmit,c);
