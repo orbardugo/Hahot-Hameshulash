@@ -51,12 +51,14 @@ for new developments:
 - [BSD license](https://github.com/ellerbrock/open-source-badge/) 
 - Libraries in use: [External folder](https://github.com/orbardugo/Hahot-Hameshulash/tree/master/External)
 libs for XLSX reading and converting into the database.
-- Main fails: (all files have documentation)
+- Main files: (all files have documentation)
     1. Person.cs represents all youthful from the XLSX file
     2. Table.cs represents the main table of all youthfuls and thier presence
     3. Query.cs represents the Queries that are made using the main form
     4. Form.cs represents the main form that contain a list of all queries available
-    5. Report.cs represents the output of the queries on the main table of youthfuls
+    5. Report.cs represents the output of the queries on the main table of youthfuls 
+- Class Diagrams:
+![](http://i65.tinypic.com/2qvbdx0.png)
 - How to Compile: 
     1. clone & pull the latest version of the "Hahut-Hameshulash" project in to your eclipse.
     2. compile the entire project (all libraries needed are in External file) and run w\o errors.
