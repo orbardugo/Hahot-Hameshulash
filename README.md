@@ -43,7 +43,26 @@ This project is developed as part of the requirements for a [software engineerin
 
 Please visit our wiki for furthur project info: 
 
-### [User Manual](../../wiki/user-manual) (empty for now)
+## [User Manual](../../wiki/user-manual) 
+
+## Development
+for new developments:
+- The latest version of our product is located in ["Excel" folder](https://github.com/orbardugo/Hahot-Hameshulash/tree/master/Excel)
+- [BSD license](https://github.com/ellerbrock/open-source-badge/) 
+- Libraries in use: [External folder](https://github.com/orbardugo/Hahot-Hameshulash/tree/master/External)
+libs for XLSX reading and converting into the database.
+- Main fails: (all files have documentation)
+    1. Person.cs represents all youthful from the XLSX file
+    2. Table.cs represents the main table of all youthfuls and thier presence
+    3. Query.cs represents the Queries that are made using the main form
+    4. Form.cs represents the main form that contain a list of all queries available
+    5. Report.cs represents the output of the queries on the main table of youthfuls
+- How to Compile: 
+    1. clone & pull the latest version of the "Hahut-Hameshulash" project in to your eclipse.
+    2. compile the entire project (all libraries needed are in External file) and run w\o errors.
+    3. after changing, editing or fixing there is a need to submmit all changes - push all changes. (.classPath file does not need to push)
+- How to run tests: (ToDo)
+- [Bugs list]() you may assign yourself to handle a bug.
 
 ### [Team Page](../../wiki/team)
 
