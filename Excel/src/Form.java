@@ -75,7 +75,7 @@ public class Form {
 		//String[] colomns={"a","b","c","d","e","f","g","h"};
 		list = new JList<String>(headers);
 		list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		list.setVisibleRowCount(5);
+		list.setVisibleRowCount(1);
 		JScrollPane scrollPane_1 = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollBar bar = scrollPane_1.getVerticalScrollBar();
@@ -85,13 +85,13 @@ public class Form {
 		String[] options={"1","2","3","4","5","6","7"};
 		list2 = new JList<Object>(options);
 		list2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		list2.setVisibleRowCount(5);
+		list2.setVisibleRowCount(1);
 		JScrollPane scrollPane_2 = new JScrollPane(list2, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
-		scrollPane_1.setPreferredSize(new Dimension(150, 300));
-		scrollPane_2.setPreferredSize(new Dimension(150, 300));
+		scrollPane_1.setPreferredSize(new Dimension(150, 50));
+		scrollPane_2.setPreferredSize(new Dimension(150, 50));
 		scrollPane_1.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
 		scrollPane_2.setBorder(BorderFactory.createEmptyBorder(10, 10,0, 10));
 		
