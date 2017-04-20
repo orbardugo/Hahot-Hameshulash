@@ -132,6 +132,8 @@ public class Person {
 	}
 
 	public String toString(){
-		return "Name: " + this.firstName + " " +this.lastName + " Birth Day: " + this.yearOfBirth;
+		return "שם: " + this.firstName + " " +this.lastName + " ,שנת לידה: " + this.yearOfBirth + " ,גיל: "  +
+	this.age + " ,מין: " + this.gender + " ,עיסוק נוכחי: " + this.currentOccupation + " ,שימוש בלאכוהול: " + this.useOfAlcohol +
+	" ,שימוש בסמים: " + this.useOfDrugs;
 	}
 }

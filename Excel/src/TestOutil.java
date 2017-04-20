@@ -22,7 +22,7 @@ public class TestOutil
         Person[] persons=new Person[corps.length];
         for (int i = 0; i < corps.length; i++) {
         	persons[i]=new Person(corps[i],i);
-        	
+        	System.out.println(persons[i].toString());
         	//check
         	//jkj
 		}
