@@ -15,6 +15,14 @@ namespace QueryGenerator
         private List<Person> listOPepoles;
         private HashSet<string> hashSetOfCities;
         private IEnumerable<Person> mainQuery;
+        private IEnumerable<Person> listAfterQuery;
+
+        //==================Queries Variables=========================
+        private String genderValue=null;
+        private int fromAge = 0, toAge = 0;
+        private String city = null;
+
+
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities )
         {
             listOPepoles = listOfPepoles;
@@ -79,11 +87,46 @@ namespace QueryGenerator
             }
         }
 
+        private void createListFromQuery_Click(object sender, EventArgs e)
+        {
+            if(genderValue!=null)
+            {
+                listAfterQuery = from person in mainQuery
+                                 where person.gender == genderValue
+                                 orderby person.firstName ascending
+                                 select person;
+            }
+            if(fromAge!=0 && toAge!=0)
+            {
+                listAfterQuery = from person in mainQuery
+                                 where person.age >= fromAge && person.age<=toAge
+                                 orderby person.firstName ascending
+                                 select person;
+            }
+            if(city!=null)
+            {
+                listAfterQuery = from person in mainQuery
+                                 where person.city == city
+                                 orderby person.firstName ascending
+                                 select person;
+            }
+            
+                int sum = 0;
+                StringBuilder str = new StringBuilder();
+                foreach (Person p in listAfterQuery)
+                {
+                    str.Append(p.firstName+" "+p.lastName+ " " +p.age + " " + p.city +  "\r\n");
+                    sum++;
+                }
+                listBox.Text="סה\"כ: " + sum + ":\r\n" + str.ToString();
+                //MessageBox.Show("Total of: "+ sum +":"+ str.ToString());
+        }
+
         private void addQueryBtn_Click(object sender, EventArgs e)
-        {          
+        {
             if (panelGender.Visible)
             {
-                string genderValue;
+                //string genderValue;
                 if (Radio_men.Checked)
                 {
                     genderValue = "זכר";
@@ -96,20 +139,21 @@ namespace QueryGenerator
                 {
                     genderValue = "";
                 }
-                var genderQuery =
-                from person in mainQuery 
-                where person.gender == genderValue
-                orderby person.firstName ascending
-                select person;
-                int sum = 0;
-                StringBuilder str = new StringBuilder();
-                foreach (Person p in genderQuery)
-                {
-                    str.Append(p.firstName+" "+p.lastName+"\t");
-                    sum++;
-                }
-                MessageBox.Show("Total of: "+ sum +":"+ str.ToString());
+                queryList.AppendText(" :לפי מין" + genderValue + "\r\n");
+            }
+            if (panelAge.Visible)
+            {
+                fromAge = (int)ageFromNumeric.Value;
+                toAge = (int)ageToNumeric.Value;
+                queryList.AppendText("טווח גילאים: " + fromAge + " - " + toAge + "\r\n");
+            }
+            if(panelCity.Visible)
+            {
+                city = cityCB.SelectedItem.ToString();
+                queryList.AppendText("לפי עיר: " + city + "\r\n");
+            }
+                
             }
         }       
     }
-}
+

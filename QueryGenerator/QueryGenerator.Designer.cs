@@ -32,43 +32,51 @@
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.addQueryBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.createListFromQuery = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panelCity = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.cityCB = new System.Windows.Forms.ComboBox();
             this.panelAge = new System.Windows.Forms.Panel();
-            this.panelGender = new System.Windows.Forms.Panel();
-            this.Radio_unknowGender = new System.Windows.Forms.RadioButton();
-            this.Radio_woman = new System.Windows.Forms.RadioButton();
-            this.Radio_men = new System.Windows.Forms.RadioButton();
             this.ageToNumeric = new System.Windows.Forms.NumericUpDown();
             this.ageFromNumeric = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panelGender = new System.Windows.Forms.Panel();
+            this.Radio_unknowGender = new System.Windows.Forms.RadioButton();
+            this.Radio_woman = new System.Windows.Forms.RadioButton();
+            this.Radio_men = new System.Windows.Forms.RadioButton();
+            this.queryList = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panelQuery = new System.Windows.Forms.Panel();
             this.cb_city = new System.Windows.Forms.CheckBox();
             this.cb_age = new System.Windows.Forms.CheckBox();
             this.cb_gender = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.listGraphPanel = new System.Windows.Forms.Panel();
+            this.listBox = new System.Windows.Forms.TextBox();
             this.panelResults.SuspendLayout();
             this.panelCity.SuspendLayout();
             this.panelAge.SuspendLayout();
-            this.panelGender.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ageFromNumeric)).BeginInit();
+            this.panelGender.SuspendLayout();
             this.panelQuery.SuspendLayout();
+            this.listGraphPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelResults
             // 
             this.panelResults.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelResults.Controls.Add(this.listGraphPanel);
+            this.panelResults.Controls.Add(this.button3);
+            this.panelResults.Controls.Add(this.button1);
             this.panelResults.Controls.Add(this.label1);
             this.panelResults.Controls.Add(this.progressBar1);
-            this.panelResults.Location = new System.Drawing.Point(6, 9);
+            this.panelResults.Location = new System.Drawing.Point(6, 12);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(501, 396);
+            this.panelResults.Size = new System.Drawing.Size(501, 393);
             this.panelResults.TabIndex = 0;
             // 
             // label1
@@ -91,22 +99,23 @@
             // 
             // addQueryBtn
             // 
-            this.addQueryBtn.Location = new System.Drawing.Point(536, 178);
+            this.addQueryBtn.Location = new System.Drawing.Point(766, 358);
             this.addQueryBtn.Name = "addQueryBtn";
             this.addQueryBtn.Size = new System.Drawing.Size(55, 26);
             this.addQueryBtn.TabIndex = 1;
-            this.addQueryBtn.Text = "Add";
+            this.addQueryBtn.Text = "הוסף";
             this.addQueryBtn.UseVisualStyleBackColor = true;
             this.addQueryBtn.Click += new System.EventHandler(this.addQueryBtn_Click);
             // 
-            // button2
+            // createListFromQuery
             // 
-            this.button2.Location = new System.Drawing.Point(633, 360);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Search";
-            this.button2.UseVisualStyleBackColor = true;
+            this.createListFromQuery.Location = new System.Drawing.Point(524, 361);
+            this.createListFromQuery.Name = "createListFromQuery";
+            this.createListFromQuery.Size = new System.Drawing.Size(63, 23);
+            this.createListFromQuery.TabIndex = 2;
+            this.createListFromQuery.Text = "חיפוש";
+            this.createListFromQuery.UseVisualStyleBackColor = true;
+            this.createListFromQuery.Click += new System.EventHandler(this.createListFromQuery_Click);
             // 
             // label2
             // 
@@ -123,9 +132,9 @@
             // 
             this.panelCity.Controls.Add(this.label6);
             this.panelCity.Controls.Add(this.cityCB);
-            this.panelCity.Location = new System.Drawing.Point(536, 250);
+            this.panelCity.Location = new System.Drawing.Point(523, 150);
             this.panelCity.Name = "panelCity";
-            this.panelCity.Size = new System.Drawing.Size(144, 70);
+            this.panelCity.Size = new System.Drawing.Size(156, 70);
             this.panelCity.TabIndex = 4;
             this.panelCity.Visible = false;
             // 
@@ -133,7 +142,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(54, 11);
+            this.label6.Location = new System.Drawing.Point(32, 14);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label6.Size = new System.Drawing.Size(72, 18);
@@ -156,9 +165,41 @@
             this.panelAge.Controls.Add(this.label4);
             this.panelAge.Location = new System.Drawing.Point(523, 39);
             this.panelAge.Name = "panelAge";
-            this.panelAge.Size = new System.Drawing.Size(153, 38);
+            this.panelAge.Size = new System.Drawing.Size(156, 53);
             this.panelAge.TabIndex = 0;
             this.panelAge.Visible = false;
+            // 
+            // ageToNumeric
+            // 
+            this.ageToNumeric.Location = new System.Drawing.Point(3, 14);
+            this.ageToNumeric.Name = "ageToNumeric";
+            this.ageToNumeric.Size = new System.Drawing.Size(49, 20);
+            this.ageToNumeric.TabIndex = 7;
+            // 
+            // ageFromNumeric
+            // 
+            this.ageFromNumeric.Location = new System.Drawing.Point(84, 13);
+            this.ageFromNumeric.Name = "ageFromNumeric";
+            this.ageFromNumeric.Size = new System.Drawing.Size(49, 20);
+            this.ageFromNumeric.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(54, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "עד:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(133, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "מ:";
             // 
             // panelGender
             // 
@@ -168,7 +209,7 @@
             this.panelGender.Location = new System.Drawing.Point(524, 79);
             this.panelGender.Name = "panelGender";
             this.panelGender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelGender.Size = new System.Drawing.Size(155, 94);
+            this.panelGender.Size = new System.Drawing.Size(155, 71);
             this.panelGender.TabIndex = 3;
             this.panelGender.Visible = false;
             // 
@@ -205,47 +246,17 @@
             this.Radio_men.Text = "זכר";
             this.Radio_men.UseVisualStyleBackColor = true;
             // 
-            // ageToNumeric
+            // queryList
             // 
-            this.ageToNumeric.Location = new System.Drawing.Point(3, 14);
-            this.ageToNumeric.Name = "ageToNumeric";
-            this.ageToNumeric.Size = new System.Drawing.Size(49, 20);
-            this.ageToNumeric.TabIndex = 7;
-            // 
-            // ageFromNumeric
-            // 
-            this.ageFromNumeric.Location = new System.Drawing.Point(84, 13);
-            this.ageFromNumeric.Name = "ageFromNumeric";
-            this.ageFromNumeric.Size = new System.Drawing.Size(49, 20);
-            this.ageFromNumeric.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "עד:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(133, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "מ:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Location = new System.Drawing.Point(524, 224);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBox1.Size = new System.Drawing.Size(303, 20);
-            this.textBox1.TabIndex = 8;
+            this.queryList.BackColor = System.Drawing.SystemColors.Window;
+            this.queryList.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.queryList.Location = new System.Drawing.Point(524, 224);
+            this.queryList.Multiline = true;
+            this.queryList.Name = "queryList";
+            this.queryList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.queryList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.queryList.Size = new System.Drawing.Size(303, 119);
+            this.queryList.TabIndex = 8;
             // 
             // label3
             // 
@@ -304,6 +315,42 @@
             this.cb_gender.UseVisualStyleBackColor = true;
             this.cb_gender.CheckedChanged += new System.EventHandler(this.cb_gender_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(460, 193);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(38, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "->";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(7, 193);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(27, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "<-";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // listGraphPanel
+            // 
+            this.listGraphPanel.Controls.Add(this.listBox);
+            this.listGraphPanel.Location = new System.Drawing.Point(40, 30);
+            this.listGraphPanel.Name = "listGraphPanel";
+            this.listGraphPanel.Size = new System.Drawing.Size(414, 360);
+            this.listGraphPanel.TabIndex = 8;
+            // 
+            // listBox
+            // 
+            this.listBox.Location = new System.Drawing.Point(3, 3);
+            this.listBox.Multiline = true;
+            this.listBox.Name = "listBox";
+            this.listBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.listBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.listBox.Size = new System.Drawing.Size(408, 350);
+            this.listBox.TabIndex = 1;
+            // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,9 +361,9 @@
             this.Controls.Add(this.panelCity);
             this.Controls.Add(this.panelQuery);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.queryList);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.createListFromQuery);
             this.Controls.Add(this.addQueryBtn);
             this.Controls.Add(this.panelResults);
             this.Name = "QueryGenerator";
@@ -328,12 +375,14 @@
             this.panelCity.PerformLayout();
             this.panelAge.ResumeLayout(false);
             this.panelAge.PerformLayout();
-            this.panelGender.ResumeLayout(false);
-            this.panelGender.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ageFromNumeric)).EndInit();
+            this.panelGender.ResumeLayout(false);
+            this.panelGender.PerformLayout();
             this.panelQuery.ResumeLayout(false);
             this.panelQuery.PerformLayout();
+            this.listGraphPanel.ResumeLayout(false);
+            this.listGraphPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,9 +394,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button addQueryBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button createListFromQuery;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox queryList;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panelAge;
         private System.Windows.Forms.RadioButton Radio_woman;
@@ -365,6 +414,10 @@
         private System.Windows.Forms.Panel panelCity;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cityCB;
+        private System.Windows.Forms.Panel listGraphPanel;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox listBox;
     }
 }
 
