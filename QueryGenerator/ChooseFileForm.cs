@@ -28,6 +28,7 @@ namespace QueryGenerator
 
         private void chooseFileBtn_Click(object sender, EventArgs e)
         {
+            openFileDialog1.Filter = "Excel Files (*.xls, *.xlsx)|*.xlsx;*.xls;";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 try
@@ -62,12 +63,13 @@ namespace QueryGenerator
                 string lastName = a["משפחה"];
                 string gender = a["מין"];
                 string city = a["עיר מוצא"];
+                string meetDate = a["תאריך היכרות"];
 
                 if (String.IsNullOrEmpty(year))
                 {
                     year = UNKNOWN;
                 }
-                Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city);
+                Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate);
                 listOfPersons.Add(p);
                 listOfCities.Add(city);
             }

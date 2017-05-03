@@ -28,6 +28,7 @@ namespace QueryGenerator
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
             mainQuery = from p in listOPepoles select p;
+            listAfterQuery = mainQuery;
             InitializeComponent();
         }
 
@@ -91,35 +92,76 @@ namespace QueryGenerator
         {
             if(genderValue!=null)
             {
-                listAfterQuery = from person in mainQuery
+                listAfterQuery = from person in listAfterQuery
                                  where person.gender == genderValue
                                  orderby person.firstName ascending
                                  select person;
             }
             if(fromAge!=0 && toAge!=0)
             {
-                listAfterQuery = from person in mainQuery
+                listAfterQuery = from person in listAfterQuery
                                  where person.age >= fromAge && person.age<=toAge
                                  orderby person.firstName ascending
                                  select person;
             }
             if(city!=null)
             {
-                listAfterQuery = from person in mainQuery
+                listAfterQuery = from person in listAfterQuery
                                  where person.city == city
                                  orderby person.firstName ascending
                                  select person;
             }
-            
-                int sum = 0;
-                StringBuilder str = new StringBuilder();
-                foreach (Person p in listAfterQuery)
-                {
-                    str.Append(p.firstName+" "+p.lastName+ " " +p.age + " " + p.city +  "\r\n");
-                    sum++;
-                }
-                listBox.Text="סה\"כ: " + sum + ":\r\n" + str.ToString();
-                //MessageBox.Show("Total of: "+ sum +":"+ str.ToString());
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("שם פרטי", typeof(string));
+            dt.Columns.Add("שם משפחה", typeof(string));
+            dt.Columns.Add("גיל", typeof(int));
+            dt.Columns.Add("מין", typeof(string));
+            dt.Columns.Add("עיר", typeof(string));
+            int sum = 0;
+
+
+            StringBuilder str = new StringBuilder();
+            foreach (Person p in listAfterQuery)
+            {
+                dt.Rows.Add(p.firstName, p.lastName, p.age,p.gender,p.city);
+                sum++;
+            }
+
+
+            dataListGrid.DataSource = dt;
+          
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            //ClearGenderPanel
+            genderValue = null;
+            if(Radio_men.Checked)
+                Radio_men.Checked = !Radio_men.Checked;
+            if (Radio_woman.Checked)
+                Radio_woman.Checked = !Radio_woman.Checked;
+            if (Radio_unknowGender.Checked)
+                Radio_unknowGender.Checked = !Radio_unknowGender.Checked;
+            //ClearAgePanel
+            fromAge = 15;
+            ageFromNumeric.Value = 15;
+            toAge = 24;
+            ageToNumeric.Value = 24;
+            //ClearCityPanel
+            city = null;
+            cityCB.SelectedIndex = 0;
+            //ClearQueryPanel
+            listAfterQuery = mainQuery;
+            queryList.Text = "";
+            //ClearTable
+            dataListGrid.DataSource = null;
+            if(cb_age.Checked)
+                cb_age.Checked = !cb_age.Checked;
+            if (cb_city.Checked)
+                cb_city.Checked = !cb_city.Checked;
+            if (cb_gender.Checked)
+                cb_gender.Checked = !cb_gender.Checked;
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
@@ -139,7 +181,7 @@ namespace QueryGenerator
                 {
                     genderValue = "";
                 }
-                queryList.AppendText(" :לפי מין" + genderValue + "\r\n");
+                queryList.AppendText("לפי מין: " + genderValue + "\r\n");
             }
             if (panelAge.Visible)
             {
