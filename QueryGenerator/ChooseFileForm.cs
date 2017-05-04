@@ -14,7 +14,7 @@ namespace QueryGenerator
     public partial class ChooseFileForm : Form
     {
         private string XLSX_PATH;
-        private const string SHEET_NAME = "ארכיון";
+        private const string SHEET_NAME = "עדכון נתונים";
         private Boolean isSucceded;
         private List<Person> listOfPersons;
         private const string UNKNOWN = "-1";
@@ -84,9 +84,6 @@ namespace QueryGenerator
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
