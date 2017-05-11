@@ -14,7 +14,7 @@ namespace QueryGenerator
     public partial class ChooseFileForm : Form
     {
         private string XLSX_PATH;
-        private const string SHEET_NAME = "ארכיון";
+        private const string SHEET_NAME = "עדכון נתונים";
         private Boolean isSucceded;
         private List<Person> listOfPersons;
         private const string UNKNOWN = "-1";
@@ -64,6 +64,8 @@ namespace QueryGenerator
                 string gender = a["מין"];
                 string city = a["עיר מוצא"];
                 string meetDate = a["תאריך היכרות"];
+                Boolean[] attendance = new Boolean[366];
+                getAttendance(a, attendance);
 
                 if (String.IsNullOrEmpty(year))
                 {
@@ -87,6 +89,85 @@ namespace QueryGenerator
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+         private void getAttendance(Row a, Boolean[] attendance)
+        {
+            String month = "ינו-";
+            int daysOfMonth = 31,k=0;
+            for(int i=1;i<=12;i++)
+            {
+                switch (i) {
+                    case 1:
+                        daysOfMonth = 31;
+                        month = "ינו-";
+                        break;
+                    case 2:
+                        daysOfMonth = 28;
+                        month = "פבר-";
+                        break;
+                    case 3:
+                        daysOfMonth = 31;
+                        month = "מרץ-";
+                        break;
+                    case 4:
+                        daysOfMonth = 30;
+                        month = "אפר-";
+                        break;
+                    case 5:
+                        daysOfMonth = 31;
+                        month = "מאי-";
+                        break;
+                    case 6:
+                        daysOfMonth = 30;
+                        month = "יונ-";
+                        break;
+                    case 7:
+                        daysOfMonth = 31;
+                        month = "יול-";
+                        break;
+                    case 8:
+                        daysOfMonth = 31;
+                        month = "אוג-";
+                        break;
+                    case 9:
+                        daysOfMonth = 30;
+                        month = "ספט-";
+                        break;
+                    case 10:
+                        daysOfMonth = 31;
+                        month = "אוק-";
+                        break;
+                    case 11:
+                        daysOfMonth = 30;
+                        month = "נוב-";
+                        break;
+                    case 12:
+                        daysOfMonth = 31;
+                        month = "דצמ-";
+                        break;
+
+                }
+                for(int j=1;j<= daysOfMonth; j++)
+                {
+                    if(j<10)
+                    {
+                        if(a[month + "0" + j]=="1")
+                            attendance[k] = true;
+                        else
+                            attendance[k] = false;
+                    }
+                    else
+                    {
+                        if (a[month + j] == "1")
+                            attendance[k] = true;
+                        else
+                            attendance[k] = false;
+                    }
+
+                    k++;
+                }
+            }
         }
     }
 }
