@@ -65,7 +65,7 @@ namespace QueryGenerator
                 string city = a["עיר מוצא"];
                 string meetDate = a["תאריך היכרות"];
                 Boolean[] attendance = new Boolean[366];
-                getAttendance(a, attendance);
+                //getAttendance(a, attendance);
 
                 if (String.IsNullOrEmpty(year))
                 {
@@ -85,25 +85,26 @@ namespace QueryGenerator
         {
 
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-         private void getAttendance(Row a, Boolean[] attendance)
+        private void getAttendance(Row a, Boolean[] attendance)
         {
             String month = "ינו-";
-            int daysOfMonth = 31,k=0;
-            for(int i=1;i<=12;i++)
+            int daysOfMonth = 31, k = 0;
+            Boolean leafYear = false;
+            for (int i = 1; i <= 12; i++)
             {
-                switch (i) {
+                switch (i)
+                {
                     case 1:
                         daysOfMonth = 31;
                         month = "ינו-";
                         break;
                     case 2:
                         daysOfMonth = 28;
+                        if ((DateTime.Today.Year % 4 == 0 && DateTime.Today.Year % 100 != 0) || DateTime.Today.Year % 400 == 0)
+                        {
+                            daysOfMonth++;
+                            leafYear = true;
+                        }
                         month = "פבר-";
                         break;
                     case 3:
@@ -148,11 +149,13 @@ namespace QueryGenerator
                         break;
 
                 }
-                for(int j=1;j<= daysOfMonth; j++)
+                for (int j = 1; j <= daysOfMonth; j++)
                 {
-                    if(j<10)
+                    if (i == 2 && j == 28 && !leafYear)
+                        continue;
+                    if (j < 10)
                     {
-                        if(a[month + "0" + j]=="1")
+                        if (a[month + "0" + j] == "1")
                             attendance[k] = true;
                         else
                             attendance[k] = false;
@@ -169,5 +172,6 @@ namespace QueryGenerator
                 }
             }
         }
+
     }
 }
