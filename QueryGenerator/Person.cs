@@ -25,7 +25,7 @@ namespace QueryGenerator
             this.city = city;
             this.gender = gender;
             if(meetDate!="")
-                this.meetDate = meetDate.Substring(0,1);
+                this.meetDate = meetDate.Substring(0,8);
         }
     }
 }

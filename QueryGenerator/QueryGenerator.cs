@@ -18,13 +18,12 @@ namespace QueryGenerator
         private IEnumerable<Person> listAfterQuery;
 
         //==================Queries Variables=========================
-        private String genderValue = null;
-
+        private String genderValue=null;
         private int fromAge = 0, toAge = 0;
         private String city = null;
 
 
-        public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities)
+        public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities )
         {
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
@@ -44,13 +43,13 @@ namespace QueryGenerator
             {
                 disableVisabilityPanels();
                 panelGender.Visible = true;
-
+                
             }
             else
             {
                 panelGender.Visible = false;
             }
-
+            
         }
 
         private void cb_age_CheckedChanged(object sender, EventArgs e)
@@ -64,7 +63,7 @@ namespace QueryGenerator
             {
                 panelAge.Visible = false;
             }
-
+           
         }
 
         private void disableVisabilityPanels()
@@ -91,26 +90,26 @@ namespace QueryGenerator
 
         private void createListFromQuery_Click(object sender, EventArgs e)
         {
-            if (genderValue != null)
+            if(genderValue!=null)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.gender == genderValue
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.gender == genderValue
+                                 orderby person.firstName ascending
+                                 select person;
             }
-            if (fromAge != 0 && toAge != 0)
+            if(fromAge!=0 && toAge!=0)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.age >= fromAge && person.age <= toAge
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.age >= fromAge && person.age<=toAge
+                                 orderby person.firstName ascending
+                                 select person;
             }
-            if (city != null)
+            if(city!=null)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.city == city
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.city == city
+                                 orderby person.firstName ascending
+                                 select person;
             }
 
             DataTable dt = new DataTable();
@@ -125,20 +124,20 @@ namespace QueryGenerator
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
-                dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender, p.city);
+                dt.Rows.Add(p.firstName, p.lastName, p.age,p.gender,p.city);
                 sum++;
             }
 
 
             dataListGrid.DataSource = dt;
-
+          
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             //ClearGenderPanel
             genderValue = null;
-            if (Radio_men.Checked)
+            if(Radio_men.Checked)
                 Radio_men.Checked = !Radio_men.Checked;
             if (Radio_woman.Checked)
                 Radio_woman.Checked = !Radio_woman.Checked;
@@ -157,21 +156,12 @@ namespace QueryGenerator
             queryList.Text = "";
             //ClearTable
             dataListGrid.DataSource = null;
-            if (cb_age.Checked)
+            if(cb_age.Checked)
                 cb_age.Checked = !cb_age.Checked;
             if (cb_city.Checked)
                 cb_city.Checked = !cb_city.Checked;
             if (cb_gender.Checked)
                 cb_gender.Checked = !cb_gender.Checked;
-        }
-
-
-        private void removeBtn_Click(object sender, EventArgs e)
-        {
-            if (queryList.SelectedIndex >= 0)
-            {
-                queryList.Items.RemoveAt(queryList.SelectedIndex);
-            }
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
@@ -191,22 +181,21 @@ namespace QueryGenerator
                 {
                     genderValue = "";
                 }
-
-                queryList.Items.Add("לפי מין: " + genderValue);
+                queryList.AppendText("לפי מין: " + genderValue + "\r\n");
             }
             if (panelAge.Visible)
             {
-                fromAge = (int) ageFromNumeric.Value;
-                toAge = (int) ageToNumeric.Value;
-                queryList.Items.Add("טווח גילאים: " + fromAge + " - " + toAge);
+                fromAge = (int)ageFromNumeric.Value;
+                toAge = (int)ageToNumeric.Value;
+                queryList.AppendText("טווח גילאים: " + fromAge + " - " + toAge + "\r\n");
             }
-            if (panelCity.Visible)
+            if(panelCity.Visible)
             {
                 city = cityCB.SelectedItem.ToString();
-                queryList.Items.Add("לפי עיר: " + city);
+                queryList.AppendText("לפי עיר: " + city + "\r\n");
             }
-
-        }
+                
+            }
+        }       
     }
-}
 
