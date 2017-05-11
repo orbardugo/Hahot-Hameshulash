@@ -26,6 +26,16 @@ namespace QueryGenerator
 
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities)
         {
+            try
+            {
+                panelResults.Width = (int)(Console.WindowWidth * 0.7);
+                panelResults.Height = (int)(Console.WindowHeight * 0.9);
+                QueryBox.Width = (int)(Console.WindowWidth * 0.3);
+                QueryBox.Height = (int)(Console.WindowHeight * 0.4);
+                QueryListBox.Width = (int)(Console.WindowWidth * 0.3);
+                QueryListBox.Height = (int)(Console.WindowHeight * 0.4);
+            }
+            catch (Exception e) { }
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
             mainQuery = from p in listOPepoles select p;
@@ -44,7 +54,6 @@ namespace QueryGenerator
             {
                 disableVisabilityPanels();
                 panelGender.Visible = true;
-
             }
             else
             {

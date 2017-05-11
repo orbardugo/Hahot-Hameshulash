@@ -90,7 +90,7 @@ namespace QueryGenerator
             String month = "ינו-";
             int daysOfMonth = 31, k = 0;
             Boolean leafYear = false;
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 7; i++)
             {
                 switch (i)
                 {
