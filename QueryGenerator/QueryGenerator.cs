@@ -33,6 +33,16 @@ namespace QueryGenerator
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
             , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion,HashSet<string> hashSetlistOfCriminalrecord)
         {
+            try
+            {
+                panelResults.Width = (int)(Console.WindowWidth * 0.7);
+                panelResults.Height = (int)(Console.WindowHeight * 0.9);
+                QueryBox.Width = (int)(Console.WindowWidth * 0.3);
+                QueryBox.Height = (int)(Console.WindowHeight * 0.4);
+                QueryListBox.Width = (int)(Console.WindowWidth * 0.3);
+                QueryListBox.Height = (int)(Console.WindowHeight * 0.4);
+            }
+            catch (Exception e) { }
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
             hashSetCurrentOccupation = hashSetCurrentoccupation;
@@ -57,7 +67,6 @@ namespace QueryGenerator
             {
                 disableVisabilityPanels();
                 panelGender.Visible = true;
-
             }
             else
             {
