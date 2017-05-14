@@ -56,13 +56,13 @@
             this.cb_age = new System.Windows.Forms.CheckBox();
             this.cb_gender = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
-            this.queryList = new System.Windows.Forms.ListBox();
+            this.QueryListBox = new System.Windows.Forms.ListBox();
             this.remove = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panelAlcohol = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.AlcoholCB = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.AlcoholCB = new System.Windows.Forms.ComboBox();
+            this.queryBox = new System.Windows.Forms.GroupBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelCity.SuspendLayout();
@@ -73,7 +73,7 @@
             this.panelQuery.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panelAlcohol.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.queryBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelResults
@@ -84,34 +84,38 @@
             this.panelResults.Controls.Add(this.button1);
             this.panelResults.Controls.Add(this.label1);
             this.panelResults.Controls.Add(this.progressBar1);
-            this.panelResults.Location = new System.Drawing.Point(17, 9);
+            this.panelResults.Location = new System.Drawing.Point(26, 14);
+            this.panelResults.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(796, 668);
+            this.panelResults.Size = new System.Drawing.Size(1194, 1028);
             this.panelResults.TabIndex = 0;
             // 
             // dataListGrid
             // 
             this.dataListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListGrid.Location = new System.Drawing.Point(209, 40);
+            this.dataListGrid.Location = new System.Drawing.Point(314, 62);
+            this.dataListGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataListGrid.Name = "dataListGrid";
             this.dataListGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataListGrid.Size = new System.Drawing.Size(444, 578);
+            this.dataListGrid.Size = new System.Drawing.Size(666, 889);
             this.dataListGrid.TabIndex = 2;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(3, 308);
+            this.button3.Location = new System.Drawing.Point(4, 474);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 23);
+            this.button3.Size = new System.Drawing.Size(46, 35);
             this.button3.TabIndex = 7;
             this.button3.Text = "<-";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(875, 308);
+            this.button1.Location = new System.Drawing.Point(1312, 474);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 23);
+            this.button1.Size = new System.Drawing.Size(57, 35);
             this.button1.TabIndex = 6;
             this.button1.Text = "->";
             this.button1.UseVisualStyleBackColor = true;
@@ -120,25 +124,28 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(725, 4);
+            this.label1.Location = new System.Drawing.Point(1088, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(64, 18);
+            this.label1.Size = new System.Drawing.Size(97, 29);
             this.label1.TabIndex = 5;
             this.label1.Text = ":תוצאות";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(103, 10);
+            this.progressBar1.Location = new System.Drawing.Point(154, 15);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(613, 10);
+            this.progressBar1.Size = new System.Drawing.Size(920, 15);
             this.progressBar1.TabIndex = 4;
             // 
             // addQueryBtn
             // 
-            this.addQueryBtn.Location = new System.Drawing.Point(17, 51);
+            this.addQueryBtn.Location = new System.Drawing.Point(26, 78);
+            this.addQueryBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addQueryBtn.Name = "addQueryBtn";
-            this.addQueryBtn.Size = new System.Drawing.Size(55, 26);
+            this.addQueryBtn.Size = new System.Drawing.Size(82, 40);
             this.addQueryBtn.TabIndex = 1;
             this.addQueryBtn.Text = "הוסף";
             this.addQueryBtn.UseVisualStyleBackColor = true;
@@ -146,9 +153,10 @@
             // 
             // createListFromQuery
             // 
-            this.createListFromQuery.Location = new System.Drawing.Point(935, 541);
+            this.createListFromQuery.Location = new System.Drawing.Point(1402, 832);
+            this.createListFromQuery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.createListFromQuery.Name = "createListFromQuery";
-            this.createListFromQuery.Size = new System.Drawing.Size(63, 23);
+            this.createListFromQuery.Size = new System.Drawing.Size(94, 35);
             this.createListFromQuery.TabIndex = 2;
             this.createListFromQuery.Text = "חיפוש";
             this.createListFromQuery.UseVisualStyleBackColor = true;
@@ -158,10 +166,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(253, 18);
+            this.label2.Location = new System.Drawing.Point(380, 28);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(110, 18);
+            this.label2.Size = new System.Drawing.Size(163, 29);
             this.label2.TabIndex = 6;
             this.label2.Text = ":בחר שאילתות";
             // 
@@ -169,10 +178,11 @@
             // 
             this.panelCity.Controls.Add(this.label6);
             this.panelCity.Controls.Add(this.cityCB);
-            this.panelCity.Location = new System.Drawing.Point(25, 183);
+            this.panelCity.Location = new System.Drawing.Point(38, 282);
+            this.panelCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelCity.Name = "panelCity";
             this.panelCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelCity.Size = new System.Drawing.Size(156, 70);
+            this.panelCity.Size = new System.Drawing.Size(234, 108);
             this.panelCity.TabIndex = 4;
             this.panelCity.Visible = false;
             // 
@@ -180,19 +190,21 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 9);
+            this.label6.Location = new System.Drawing.Point(26, 14);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(72, 18);
+            this.label6.Size = new System.Drawing.Size(104, 29);
             this.label6.TabIndex = 10;
             this.label6.Text = ":בחר עיר";
             // 
             // cityCB
             // 
             this.cityCB.FormattingEnabled = true;
-            this.cityCB.Location = new System.Drawing.Point(14, 35);
+            this.cityCB.Location = new System.Drawing.Point(21, 54);
+            this.cityCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cityCB.Name = "cityCB";
-            this.cityCB.Size = new System.Drawing.Size(112, 21);
+            this.cityCB.Size = new System.Drawing.Size(166, 28);
             this.cityCB.TabIndex = 0;
             // 
             // panelAge
@@ -201,15 +213,17 @@
             this.panelAge.Controls.Add(this.ageFromNumeric);
             this.panelAge.Controls.Add(this.label5);
             this.panelAge.Controls.Add(this.label4);
-            this.panelAge.Location = new System.Drawing.Point(26, 123);
+            this.panelAge.Location = new System.Drawing.Point(39, 189);
+            this.panelAge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelAge.Name = "panelAge";
-            this.panelAge.Size = new System.Drawing.Size(156, 53);
+            this.panelAge.Size = new System.Drawing.Size(234, 82);
             this.panelAge.TabIndex = 0;
             this.panelAge.Visible = false;
             // 
             // ageToNumeric
             // 
-            this.ageToNumeric.Location = new System.Drawing.Point(3, 14);
+            this.ageToNumeric.Location = new System.Drawing.Point(4, 22);
+            this.ageToNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ageToNumeric.Maximum = new decimal(new int[] {
             24,
             0,
@@ -221,7 +235,7 @@
             0,
             0});
             this.ageToNumeric.Name = "ageToNumeric";
-            this.ageToNumeric.Size = new System.Drawing.Size(49, 20);
+            this.ageToNumeric.Size = new System.Drawing.Size(74, 26);
             this.ageToNumeric.TabIndex = 7;
             this.ageToNumeric.Value = new decimal(new int[] {
             24,
@@ -231,7 +245,8 @@
             // 
             // ageFromNumeric
             // 
-            this.ageFromNumeric.Location = new System.Drawing.Point(84, 13);
+            this.ageFromNumeric.Location = new System.Drawing.Point(126, 20);
+            this.ageFromNumeric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ageFromNumeric.Maximum = new decimal(new int[] {
             24,
             0,
@@ -243,7 +258,7 @@
             0,
             0});
             this.ageFromNumeric.Name = "ageFromNumeric";
-            this.ageFromNumeric.Size = new System.Drawing.Size(49, 20);
+            this.ageFromNumeric.Size = new System.Drawing.Size(74, 26);
             this.ageFromNumeric.TabIndex = 6;
             this.ageFromNumeric.Value = new decimal(new int[] {
             15,
@@ -254,18 +269,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 14);
+            this.label5.Location = new System.Drawing.Point(81, 22);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(24, 13);
+            this.label5.Size = new System.Drawing.Size(32, 20);
             this.label5.TabIndex = 5;
             this.label5.Text = "עד:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(133, 14);
+            this.label4.Location = new System.Drawing.Point(200, 22);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 13);
+            this.label4.Size = new System.Drawing.Size(23, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "מ:";
             // 
@@ -274,19 +291,21 @@
             this.panelGender.Controls.Add(this.Radio_unknowGender);
             this.panelGender.Controls.Add(this.Radio_woman);
             this.panelGender.Controls.Add(this.Radio_men);
-            this.panelGender.Location = new System.Drawing.Point(26, 46);
+            this.panelGender.Location = new System.Drawing.Point(39, 71);
+            this.panelGender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelGender.Name = "panelGender";
             this.panelGender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelGender.Size = new System.Drawing.Size(155, 71);
+            this.panelGender.Size = new System.Drawing.Size(232, 109);
             this.panelGender.TabIndex = 3;
             this.panelGender.Visible = false;
             // 
             // Radio_unknowGender
             // 
             this.Radio_unknowGender.AutoSize = true;
-            this.Radio_unknowGender.Location = new System.Drawing.Point(51, 48);
+            this.Radio_unknowGender.Location = new System.Drawing.Point(76, 74);
+            this.Radio_unknowGender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Radio_unknowGender.Name = "Radio_unknowGender";
-            this.Radio_unknowGender.Size = new System.Drawing.Size(67, 17);
+            this.Radio_unknowGender.Size = new System.Drawing.Size(86, 24);
             this.Radio_unknowGender.TabIndex = 2;
             this.Radio_unknowGender.TabStop = true;
             this.Radio_unknowGender.Text = "לא ידוע";
@@ -295,9 +314,10 @@
             // Radio_woman
             // 
             this.Radio_woman.AutoSize = true;
-            this.Radio_woman.Location = new System.Drawing.Point(67, 25);
+            this.Radio_woman.Location = new System.Drawing.Point(100, 38);
+            this.Radio_woman.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Radio_woman.Name = "Radio_woman";
-            this.Radio_woman.Size = new System.Drawing.Size(51, 17);
+            this.Radio_woman.Size = new System.Drawing.Size(67, 24);
             this.Radio_woman.TabIndex = 1;
             this.Radio_woman.TabStop = true;
             this.Radio_woman.Text = "נקבה";
@@ -306,9 +326,10 @@
             // Radio_men
             // 
             this.Radio_men.AutoSize = true;
-            this.Radio_men.Location = new System.Drawing.Point(75, 2);
+            this.Radio_men.Location = new System.Drawing.Point(112, 3);
+            this.Radio_men.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Radio_men.Name = "Radio_men";
-            this.Radio_men.Size = new System.Drawing.Size(43, 17);
+            this.Radio_men.Size = new System.Drawing.Size(57, 24);
             this.Radio_men.TabIndex = 0;
             this.Radio_men.TabStop = true;
             this.Radio_men.Text = "זכר";
@@ -318,10 +339,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1147, 253);
+            this.label3.Location = new System.Drawing.Point(1720, 389);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(70, 18);
+            this.label3.Size = new System.Drawing.Size(103, 29);
             this.label3.TabIndex = 9;
             this.label3.Text = ":שאילתה";
             // 
@@ -331,9 +353,10 @@
             this.panelQuery.Controls.Add(this.cb_city);
             this.panelQuery.Controls.Add(this.cb_age);
             this.panelQuery.Controls.Add(this.cb_gender);
-            this.panelQuery.Location = new System.Drawing.Point(223, 53);
+            this.panelQuery.Location = new System.Drawing.Point(334, 82);
+            this.panelQuery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelQuery.Name = "panelQuery";
-            this.panelQuery.Size = new System.Drawing.Size(139, 123);
+            this.panelQuery.Size = new System.Drawing.Size(208, 189);
             this.panelQuery.TabIndex = 10;
             this.panelQuery.Paint += new System.Windows.Forms.PaintEventHandler(this.panelQuery_Paint);
             // 
@@ -341,9 +364,10 @@
             // 
             this.cb_alcohol.AutoSize = true;
             this.cb_alcohol.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_alcohol.Location = new System.Drawing.Point(19, 84);
+            this.cb_alcohol.Location = new System.Drawing.Point(28, 129);
+            this.cb_alcohol.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_alcohol.Name = "cb_alcohol";
-            this.cb_alcohol.Size = new System.Drawing.Size(117, 17);
+            this.cb_alcohol.Size = new System.Drawing.Size(145, 24);
             this.cb_alcohol.TabIndex = 3;
             this.cb_alcohol.Text = "שימוש באלכוהול";
             this.cb_alcohol.UseVisualStyleBackColor = true;
@@ -352,10 +376,11 @@
             // cb_city
             // 
             this.cb_city.AutoSize = true;
-            this.cb_city.Location = new System.Drawing.Point(60, 59);
+            this.cb_city.Location = new System.Drawing.Point(90, 91);
+            this.cb_city.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_city.Name = "cb_city";
             this.cb_city.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_city.Size = new System.Drawing.Size(74, 17);
+            this.cb_city.Size = new System.Drawing.Size(97, 24);
             this.cb_city.TabIndex = 2;
             this.cb_city.Text = "עיר מוצא";
             this.cb_city.UseVisualStyleBackColor = true;
@@ -364,10 +389,11 @@
             // cb_age
             // 
             this.cb_age.AutoSize = true;
-            this.cb_age.Location = new System.Drawing.Point(90, 36);
+            this.cb_age.Location = new System.Drawing.Point(135, 55);
+            this.cb_age.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_age.Name = "cb_age";
             this.cb_age.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_age.Size = new System.Drawing.Size(44, 17);
+            this.cb_age.Size = new System.Drawing.Size(56, 24);
             this.cb_age.TabIndex = 1;
             this.cb_age.Text = "גיל";
             this.cb_age.UseVisualStyleBackColor = true;
@@ -376,10 +402,11 @@
             // cb_gender
             // 
             this.cb_gender.AutoSize = true;
-            this.cb_gender.Location = new System.Drawing.Point(91, 13);
+            this.cb_gender.Location = new System.Drawing.Point(136, 20);
+            this.cb_gender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cb_gender.Name = "cb_gender";
             this.cb_gender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_gender.Size = new System.Drawing.Size(43, 17);
+            this.cb_gender.Size = new System.Drawing.Size(57, 24);
             this.cb_gender.TabIndex = 0;
             this.cb_gender.Text = "מין";
             this.cb_gender.UseVisualStyleBackColor = true;
@@ -387,30 +414,30 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(1089, 541);
+            this.btnClear.Location = new System.Drawing.Point(1634, 832);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(82, 23);
+            this.btnClear.Size = new System.Drawing.Size(123, 35);
             this.btnClear.TabIndex = 11;
             this.btnClear.Text = "אפס";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // queryList
+            // QueryListBox
             // 
-            this.queryList.FormattingEnabled = true;
-            this.queryList.Location = new System.Drawing.Point(169, 23);
-            this.queryList.Margin = new System.Windows.Forms.Padding(2);
-            this.queryList.Name = "queryList";
-            this.queryList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.queryList.Size = new System.Drawing.Size(193, 173);
-            this.queryList.TabIndex = 12;
+            this.QueryListBox.FormattingEnabled = true;
+            this.QueryListBox.ItemHeight = 20;
+            this.QueryListBox.Location = new System.Drawing.Point(254, 35);
+            this.QueryListBox.Name = "QueryListBox";
+            this.QueryListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.QueryListBox.Size = new System.Drawing.Size(288, 264);
+            this.QueryListBox.TabIndex = 12;
             // 
             // remove
             // 
-            this.remove.Location = new System.Drawing.Point(79, 51);
-            this.remove.Margin = new System.Windows.Forms.Padding(2);
+            this.remove.Location = new System.Drawing.Point(118, 78);
             this.remove.Name = "remove";
-            this.remove.Size = new System.Drawing.Size(65, 26);
+            this.remove.Size = new System.Drawing.Size(98, 40);
             this.remove.TabIndex = 13;
             this.remove.Text = "Remove";
             this.remove.UseVisualStyleBackColor = true;
@@ -424,11 +451,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.panelQuery);
             this.groupBox1.Controls.Add(this.panelGender);
-            this.groupBox1.Location = new System.Drawing.Point(833, 19);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(1250, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(395, 259);
+            this.groupBox1.Size = new System.Drawing.Size(592, 398);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
@@ -437,56 +462,58 @@
             this.panelAlcohol.BackColor = System.Drawing.SystemColors.Control;
             this.panelAlcohol.Controls.Add(this.label7);
             this.panelAlcohol.Controls.Add(this.AlcoholCB);
-            this.panelAlcohol.Location = new System.Drawing.Point(225, 192);
+            this.panelAlcohol.Location = new System.Drawing.Point(338, 295);
+            this.panelAlcohol.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelAlcohol.Name = "panelAlcohol";
-            this.panelAlcohol.Size = new System.Drawing.Size(137, 59);
+            this.panelAlcohol.Size = new System.Drawing.Size(206, 91);
             this.panelAlcohol.TabIndex = 11;
             this.panelAlcohol.Visible = false;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.queryList);
-            this.groupBox2.Controls.Add(this.remove);
-            this.groupBox2.Controls.Add(this.addQueryBtn);
-            this.groupBox2.Location = new System.Drawing.Point(833, 294);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(395, 214);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
-            // 
-            // AlcoholCB
-            // 
-            this.AlcoholCB.FormattingEnabled = true;
-            this.AlcoholCB.Location = new System.Drawing.Point(3, 26);
-            this.AlcoholCB.Name = "AlcoholCB";
-            this.AlcoholCB.Size = new System.Drawing.Size(115, 21);
-            this.AlcoholCB.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 10);
+            this.label7.Location = new System.Drawing.Point(128, 15);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(30, 13);
+            this.label7.Size = new System.Drawing.Size(41, 20);
             this.label7.TabIndex = 1;
             this.label7.Text = "בחר:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // AlcoholCB
+            // 
+            this.AlcoholCB.FormattingEnabled = true;
+            this.AlcoholCB.Location = new System.Drawing.Point(4, 40);
+            this.AlcoholCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AlcoholCB.Name = "AlcoholCB";
+            this.AlcoholCB.Size = new System.Drawing.Size(170, 28);
+            this.AlcoholCB.TabIndex = 0;
+            // 
+            // queryBox
+            // 
+            this.queryBox.Controls.Add(this.QueryListBox);
+            this.queryBox.Controls.Add(this.remove);
+            this.queryBox.Controls.Add(this.addQueryBtn);
+            this.queryBox.Location = new System.Drawing.Point(1250, 452);
+            this.queryBox.Name = "queryBox";
+            this.queryBox.Size = new System.Drawing.Size(592, 329);
+            this.queryBox.TabIndex = 15;
+            this.queryBox.TabStop = false;
+            this.queryBox.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
             // QueryGenerator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1271, 500);
+            this.ClientSize = new System.Drawing.Size(1906, 769);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.createListFromQuery);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.queryBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panelResults);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "QueryGenerator";
             this.Text = "הפקת דוחות החוט המשולש";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -508,7 +535,7 @@
             this.groupBox1.PerformLayout();
             this.panelAlcohol.ResumeLayout(false);
             this.panelAlcohol.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.queryBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,10 +570,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dataListGrid;
-        private System.Windows.Forms.ListBox queryList;
+        private System.Windows.Forms.ListBox QueryListBox;
         private System.Windows.Forms.Button remove;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox queryBox;
         private System.Windows.Forms.CheckBox cb_alcohol;
         private System.Windows.Forms.Panel panelAlcohol;
         private System.Windows.Forms.Label label7;

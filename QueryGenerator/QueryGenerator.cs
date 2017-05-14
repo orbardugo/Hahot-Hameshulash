@@ -37,12 +37,12 @@ namespace QueryGenerator
             {
                 panelResults.Width = (int)(Console.WindowWidth * 0.7);
                 panelResults.Height = (int)(Console.WindowHeight * 0.9);
-                QueryBox.Width = (int)(Console.WindowWidth * 0.3);
-                QueryBox.Height = (int)(Console.WindowHeight * 0.4);
+                queryBox.Width = (int)(Console.WindowWidth * 0.3);
+                queryBox.Height = (int)(Console.WindowHeight * 0.4);
                 QueryListBox.Width = (int)(Console.WindowWidth * 0.3);
                 QueryListBox.Height = (int)(Console.WindowHeight * 0.4);
             }
-            catch (Exception e) { }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
             hashSetCurrentOccupation = hashSetCurrentoccupation;
@@ -95,6 +95,8 @@ namespace QueryGenerator
             panelGender.Visible = false;
             panelAge.Visible = false;
             panelAlcohol.Visible = false;
+            this.panelCity.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            this.panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
 
         }
 
@@ -177,7 +179,7 @@ namespace QueryGenerator
             cityCB.SelectedIndex = 0;
             //ClearQueryPanel
             listAfterQuery = mainQuery;
-            queryList.Text = "";
+            QueryListBox.Text = "";
             //ClearTable
             dataListGrid.DataSource = null;
             if (cb_age.Checked)
@@ -191,9 +193,9 @@ namespace QueryGenerator
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            if (queryList.SelectedIndex >= 0)
+            if (QueryListBox.SelectedIndex >= 0)
             {
-                queryList.Items.RemoveAt(queryList.SelectedIndex);
+                QueryListBox.Items.RemoveAt(QueryListBox.SelectedIndex);
             }
         }
 
@@ -244,18 +246,18 @@ namespace QueryGenerator
                     genderValue = "";
                 }
 
-                queryList.Items.Add("לפי מין: " + genderValue);
+                QueryListBox.Items.Add("לפי מין: " + genderValue);
             }
             if (panelAge.Visible)
             {
                 fromAge = (int) ageFromNumeric.Value;
                 toAge = (int) ageToNumeric.Value;
-                queryList.Items.Add("טווח גילאים: " + fromAge + " - " + toAge);
+                QueryListBox.Items.Add("טווח גילאים: " + fromAge + " - " + toAge);
             }
             if (panelCity.Visible)
             {
                 city = cityCB.SelectedItem.ToString();
-                queryList.Items.Add("לפי עיר: " + city);
+                QueryListBox.Items.Add("לפי עיר: " + city);
             }
 
         }
