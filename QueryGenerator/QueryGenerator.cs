@@ -14,6 +14,12 @@ namespace QueryGenerator
     {
         private List<Person> listOPepoles;
         private HashSet<string> hashSetOfCities;
+        private HashSet<string> hashSetCurrentOccupation;
+        private HashSet<string> hashSetExternalContact;
+        private HashSet<string> hashSetUseAlcohol;
+        private HashSet<string> hashSetUseDrug;
+        private HashSet<string> hashSetReligion;
+        private HashSet<string> hashSetlistOfCriminalRecord;
         private IEnumerable<Person> mainQuery;
         private IEnumerable<Person> listAfterQuery;
 
@@ -24,10 +30,17 @@ namespace QueryGenerator
         private String city = null;
 
 
-        public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities)
+        public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
+            , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion,HashSet<string> hashSetlistOfCriminalrecord)
         {
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
+            hashSetCurrentOccupation = hashSetCurrentoccupation;
+            hashSetExternalContact = hashSetExternalcontact;
+            hashSetUseAlcohol = hashSetUsealcohol;
+            hashSetUseDrug = hashSetUsedrug;
+            hashSetReligion = hashSetreligion;
+            hashSetlistOfCriminalRecord = hashSetlistOfCriminalrecord;
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
             InitializeComponent();
@@ -72,6 +85,7 @@ namespace QueryGenerator
             panelCity.Visible = false;
             panelGender.Visible = false;
             panelAge.Visible = false;
+            panelAlcohol.Visible = false;
 
         }
 
@@ -172,6 +186,35 @@ namespace QueryGenerator
             {
                 queryList.Items.RemoveAt(queryList.SelectedIndex);
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_alcohol.Checked)
+            {
+                disableVisabilityPanels();
+                AlcoholCB.Items.AddRange(hashSetUseAlcohol.ToArray());
+                panelAlcohol.Visible = true;
+            }
+            else
+            {
+                panelAlcohol.Visible = false;
+            }
+        }
+
+        private void panel_alcohol_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelQuery_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)

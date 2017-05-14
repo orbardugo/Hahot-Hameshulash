@@ -55,6 +55,16 @@ namespace QueryGenerator
             var excelFile = new ExcelQueryFactory(XLSX_PATH);
             var dataBase = from name in excelFile.Worksheet(SHEET_NAME) select name;
             HashSet<string> listOfCities = new HashSet<string>();
+            HashSet<string> listOfCurrentOccupation = new HashSet<string>();
+            HashSet<string> listOfExternalContact = new HashSet<string>();
+            HashSet<string> listOfUseAlcohol = new HashSet<string>();
+            HashSet<string> listOfuseDrug = new HashSet<string>();
+            HashSet<string> listOfReligion = new HashSet<string>();
+            HashSet<string> listOfCriminalRecord = new HashSet<string>();
+
+
+
+
 
             foreach (var a in dataBase)
             {
@@ -64,19 +74,33 @@ namespace QueryGenerator
                 string gender = a["מין"];
                 string city = a["עיר מוצא"];
                 string meetDate = a["תאריך היכרות"];
+                string currentOccupation = a["עיסוק נוכחי"];
+                string externalContact = a["קשר עם גורם נוסף"];
+                string useAlcohol = a["שימוש באלכוהול"];
+                string useDrug = a["שימוש בסמים"];
+                string religion = a["רקע"];
+                string criminalRecord = a["רישום פלילי"];
                 Boolean[] attendance = new Boolean[366];
-                //getAttendance(a, attendance);
+                getAttendance(a, attendance);
 
                 if (String.IsNullOrEmpty(year))
                 {
                     year = UNKNOWN;
                 }
-                Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate);
+                Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate,
+                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, attendance);
                 listOfPersons.Add(p);
                 listOfCities.Add(city);
+                listOfCurrentOccupation.Add(currentOccupation);
+                listOfExternalContact.Add(externalContact);
+                listOfUseAlcohol.Add(useAlcohol);
+                listOfuseDrug.Add(useDrug);
+                listOfReligion.Add(religion);
+                listOfCriminalRecord.Add(criminalRecord);
             }
         
-            QueryGenerator f2 = new QueryGenerator(listOfPersons,listOfCities);
+            QueryGenerator f2 = new QueryGenerator(listOfPersons,listOfCities, listOfCurrentOccupation, listOfExternalContact,
+                listOfUseAlcohol,listOfuseDrug, listOfReligion, listOfCriminalRecord);
             f2.Show();
             this.Hide();
         }
@@ -90,7 +114,7 @@ namespace QueryGenerator
             String month = "ינו-";
             int daysOfMonth = 31, k = 0;
             Boolean leafYear = false;
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 7; i++)
             {
                 switch (i)
                 {
