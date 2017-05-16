@@ -21,13 +21,12 @@ namespace QueryGenerator
         public string UseDrug { get; set; }
         public string Religion { get; set; }
         public string CriminalRecord { get; set; }
-        Boolean[] Presence = new Boolean[366];
+        public Dictionary<DateTime, bool> Presence { get; set; }
 
 
-
-        public Person(int yearofbirth, string firstname, string lastname, string gender, string city,
+    public Person(int yearofbirth, string firstname, string lastname, string gender, string city,
          string meetDate, string currentOccupation, string externalContact, string useAlcohol, string useDrug,
-         string religion, string criminalRecord, Boolean[] presence)
+         string religion, string criminalRecord, Dictionary<DateTime,bool> presence)
         {
             yearOfBirth = yearofbirth;
             age = DateTime.Today.Year - yearofbirth;

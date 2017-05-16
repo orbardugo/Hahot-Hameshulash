@@ -28,10 +28,12 @@ namespace QueryGenerator
 
         private int fromAge = 0, toAge = 0;
         private String city = null;
-
+        private bool FindAppearance;
+        private DateTime appStartDate, appEndDate;
+        private string alcohol = null;
 
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
-            , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion,HashSet<string> hashSetlistOfCriminalrecord)
+            , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion, HashSet<string> hashSetlistOfCriminalrecord)
         {
             try
             {
@@ -56,29 +58,29 @@ namespace QueryGenerator
             InitializeComponent();
         }
 
-        private void QueryGenerator_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void cb_gender_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_gender.Checked)
             {
+                unCheckedAllBut(cb_gender);
+                cb_gender.Checked = true;
                 disableVisabilityPanels();
                 panelGender.Visible = true;
+
             }
             else
             {
                 panelGender.Visible = false;
-            }
 
+            }
         }
 
         private void cb_age_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_age.Checked)
             {
+                unCheckedAllBut(cb_age);
+                cb_age.Checked = true;
                 disableVisabilityPanels();
                 panelAge.Visible = true;
             }
@@ -95,16 +97,19 @@ namespace QueryGenerator
             panelGender.Visible = false;
             panelAge.Visible = false;
             panelAlcohol.Visible = false;
-            this.panelCity.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelDate.Visible = false;
+            panelCity.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             this.panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-
+            this.panelAlcohol.Location= new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
         }
 
         private void cb_city_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_city.Checked)
             {
+                unCheckedAllBut(cb_city);
                 disableVisabilityPanels();
+                cityCB.Items.Clear();
                 cityCB.Items.AddRange(hashSetOfCities.ToArray());
                 panelCity.Visible = true;
             }
@@ -119,25 +124,34 @@ namespace QueryGenerator
             if (genderValue != null)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.gender == genderValue
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.gender == genderValue
+                                 orderby person.firstName ascending
+                                 select person;
             }
             if (fromAge != 0 && toAge != 0)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.age >= fromAge && person.age <= toAge
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.age >= fromAge && person.age <= toAge
+                                 orderby person.firstName ascending
+                                 select person;
             }
             if (city != null)
             {
                 listAfterQuery = from person in listAfterQuery
-                    where person.city == city
-                    orderby person.firstName ascending
-                    select person;
+                                 where person.city == city
+                                 orderby person.firstName ascending
+                                 select person;
             }
-
+            if (FindAppearance)
+            {
+                foreach (DateTime day in EachDay(appStartDate, appEndDate))
+                {
+                    listAfterQuery = from person in listAfterQuery
+                                     where person.Presence[day] == true
+                                     orderby person.firstName ascending
+                                     select person;
+                }
+            }
             DataTable dt = new DataTable();
             dt.Columns.Add("שם פרטי", typeof(string));
             dt.Columns.Add("שם משפחה", typeof(string));
@@ -146,17 +160,13 @@ namespace QueryGenerator
             dt.Columns.Add("עיר", typeof(string));
             int sum = 0;
 
-
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
                 dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender, p.city);
                 sum++;
             }
-
-
             dataListGrid.DataSource = dt;
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -175,11 +185,16 @@ namespace QueryGenerator
             toAge = 24;
             ageToNumeric.Value = 24;
             //ClearCityPanel
+            if(city!=null)
+                cityCB.SelectedIndex = 0;
             city = null;
-            cityCB.SelectedIndex = 0;
+            //ClearAlcohol
+            if (alcohol != null)
+                AlcoholCB.SelectedIndex = 0;
+            alcohol = null;
             //ClearQueryPanel
             listAfterQuery = mainQuery;
-            QueryListBox.Text = "";
+            QueryListBox.Items.Clear();
             //ClearTable
             dataListGrid.DataSource = null;
             if (cb_age.Checked)
@@ -199,16 +214,13 @@ namespace QueryGenerator
             }
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void cb_alcohol_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_alcohol.Checked)
             {
+                unCheckedAllBut(cb_alcohol);
                 disableVisabilityPanels();
+                AlcoholCB.Items.Clear();
                 AlcoholCB.Items.AddRange(hashSetUseAlcohol.ToArray());
                 panelAlcohol.Visible = true;
             }
@@ -218,14 +230,32 @@ namespace QueryGenerator
             }
         }
 
-        private void panel_alcohol_Paint(object sender, PaintEventArgs e)
+        private void appearanceCB_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (cb_appearance.Checked)
+            {
+                unCheckedAllBut(cb_appearance);
+                disableVisabilityPanels();
+                panelDate.Visible = true;
+            }
+            else
+            {
+                panelDate.Visible = false;
+            }
         }
 
-        private void panelQuery_Paint(object sender, PaintEventArgs e)
+        private void unCheckedAllBut(CheckBox cb)
         {
-
+            if (cb != cb_alcohol)
+                cb_alcohol.Checked = false;
+            if (cb != cb_appearance)
+                cb_appearance.Checked = false;
+            if (cb != cb_city)
+                cb_city.Checked = false;
+            if (cb != cb_gender)
+                cb_gender.Checked = false;
+            if (cb != cb_age)
+                cb_age.Checked = false;
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
@@ -250,8 +280,8 @@ namespace QueryGenerator
             }
             if (panelAge.Visible)
             {
-                fromAge = (int) ageFromNumeric.Value;
-                toAge = (int) ageToNumeric.Value;
+                fromAge = (int)ageFromNumeric.Value;
+                toAge = (int)ageToNumeric.Value;
                 QueryListBox.Items.Add("טווח גילאים: " + fromAge + " - " + toAge);
             }
             if (panelCity.Visible)
@@ -259,7 +289,23 @@ namespace QueryGenerator
                 city = cityCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("לפי עיר: " + city);
             }
-
+            if (panelAlcohol.Visible)
+            {
+                alcohol = AlcoholCB.SelectedItem.ToString();
+                QueryListBox.Items.Add("שימוש באלכוהול: " + alcohol);
+            }
+            if (panelDate.Visible)
+            {
+                appStartDate = dateStart.Value.Date;
+                appEndDate = dateEnd.Value.Date;
+                FindAppearance = true;
+                QueryListBox.Items.Add(string.Format("From: {0} To: {1}", appStartDate.ToString("d"), appEndDate.ToString("d")));
+            }
+        }
+        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
         }
     }
 }

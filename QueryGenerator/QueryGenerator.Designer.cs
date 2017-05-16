@@ -40,6 +40,9 @@
             this.panelCity = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.cityCB = new System.Windows.Forms.ComboBox();
+            this.panelAlcohol = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.AlcoholCB = new System.Windows.Forms.ComboBox();
             this.panelAge = new System.Windows.Forms.Panel();
             this.ageToNumeric = new System.Windows.Forms.NumericUpDown();
             this.ageFromNumeric = new System.Windows.Forms.NumericUpDown();
@@ -51,6 +54,7 @@
             this.Radio_men = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.panelQuery = new System.Windows.Forms.Panel();
+            this.cb_appearance = new System.Windows.Forms.CheckBox();
             this.cb_alcohol = new System.Windows.Forms.CheckBox();
             this.cb_city = new System.Windows.Forms.CheckBox();
             this.cb_age = new System.Windows.Forms.CheckBox();
@@ -59,20 +63,23 @@
             this.QueryListBox = new System.Windows.Forms.ListBox();
             this.remove = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panelAlcohol = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.AlcoholCB = new System.Windows.Forms.ComboBox();
+            this.panelDate = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.queryBox = new System.Windows.Forms.GroupBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelCity.SuspendLayout();
+            this.panelAlcohol.SuspendLayout();
             this.panelAge.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ageFromNumeric)).BeginInit();
             this.panelGender.SuspendLayout();
             this.panelQuery.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panelAlcohol.SuspendLayout();
+            this.panelDate.SuspendLayout();
             this.queryBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,7 +185,7 @@
             // 
             this.panelCity.Controls.Add(this.label6);
             this.panelCity.Controls.Add(this.cityCB);
-            this.panelCity.Location = new System.Drawing.Point(38, 282);
+            this.panelCity.Location = new System.Drawing.Point(12, 18);
             this.panelCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelCity.Name = "panelCity";
             this.panelCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -190,7 +197,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(26, 14);
+            this.label6.Location = new System.Drawing.Point(85, 10);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -206,6 +213,39 @@
             this.cityCB.Name = "cityCB";
             this.cityCB.Size = new System.Drawing.Size(166, 28);
             this.cityCB.TabIndex = 0;
+            // 
+            // panelAlcohol
+            // 
+            this.panelAlcohol.BackColor = System.Drawing.SystemColors.Control;
+            this.panelAlcohol.Controls.Add(this.label7);
+            this.panelAlcohol.Controls.Add(this.AlcoholCB);
+            this.panelAlcohol.Location = new System.Drawing.Point(26, 336);
+            this.panelAlcohol.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelAlcohol.Name = "panelAlcohol";
+            this.panelAlcohol.Size = new System.Drawing.Size(206, 91);
+            this.panelAlcohol.TabIndex = 11;
+            this.panelAlcohol.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(105, 6);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label7.Size = new System.Drawing.Size(69, 29);
+            this.label7.TabIndex = 11;
+            this.label7.Text = ":בחר ";
+            // 
+            // AlcoholCB
+            // 
+            this.AlcoholCB.FormattingEnabled = true;
+            this.AlcoholCB.Location = new System.Drawing.Point(4, 40);
+            this.AlcoholCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AlcoholCB.Name = "AlcoholCB";
+            this.AlcoholCB.Size = new System.Drawing.Size(170, 28);
+            this.AlcoholCB.TabIndex = 0;
             // 
             // panelAge
             // 
@@ -349,35 +389,46 @@
             // 
             // panelQuery
             // 
+            this.panelQuery.Controls.Add(this.cb_appearance);
             this.panelQuery.Controls.Add(this.cb_alcohol);
             this.panelQuery.Controls.Add(this.cb_city);
             this.panelQuery.Controls.Add(this.cb_age);
             this.panelQuery.Controls.Add(this.cb_gender);
-            this.panelQuery.Location = new System.Drawing.Point(334, 82);
+            this.panelQuery.Location = new System.Drawing.Point(365, 62);
             this.panelQuery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelQuery.Name = "panelQuery";
-            this.panelQuery.Size = new System.Drawing.Size(208, 189);
+            this.panelQuery.Size = new System.Drawing.Size(178, 189);
             this.panelQuery.TabIndex = 10;
-            this.panelQuery.Paint += new System.Windows.Forms.PaintEventHandler(this.panelQuery_Paint);
+            // 
+            // cb_appearance
+            // 
+            this.cb_appearance.AutoSize = true;
+            this.cb_appearance.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_appearance.Location = new System.Drawing.Point(79, 145);
+            this.cb_appearance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_appearance.Name = "cb_appearance";
+            this.cb_appearance.Size = new System.Drawing.Size(79, 24);
+            this.cb_appearance.TabIndex = 4;
+            this.cb_appearance.Text = "נוכחות";
+            this.cb_appearance.UseVisualStyleBackColor = true;
+            this.cb_appearance.CheckedChanged += new System.EventHandler(this.appearanceCB_CheckedChanged);
             // 
             // cb_alcohol
             // 
             this.cb_alcohol.AutoSize = true;
             this.cb_alcohol.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_alcohol.Location = new System.Drawing.Point(28, 129);
-            this.cb_alcohol.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_alcohol.Location = new System.Drawing.Point(-1, 113);
             this.cb_alcohol.Name = "cb_alcohol";
             this.cb_alcohol.Size = new System.Drawing.Size(145, 24);
             this.cb_alcohol.TabIndex = 3;
             this.cb_alcohol.Text = "שימוש באלכוהול";
             this.cb_alcohol.UseVisualStyleBackColor = true;
-            this.cb_alcohol.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cb_alcohol.CheckedChanged += new System.EventHandler(this.cb_alcohol_CheckedChanged);
             // 
             // cb_city
             // 
             this.cb_city.AutoSize = true;
-            this.cb_city.Location = new System.Drawing.Point(90, 91);
-            this.cb_city.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_city.Location = new System.Drawing.Point(62, 82);
             this.cb_city.Name = "cb_city";
             this.cb_city.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_city.Size = new System.Drawing.Size(97, 24);
@@ -389,8 +440,7 @@
             // cb_age
             // 
             this.cb_age.AutoSize = true;
-            this.cb_age.Location = new System.Drawing.Point(135, 55);
-            this.cb_age.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_age.Location = new System.Drawing.Point(104, 44);
             this.cb_age.Name = "cb_age";
             this.cb_age.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_age.Size = new System.Drawing.Size(56, 24);
@@ -402,8 +452,7 @@
             // cb_gender
             // 
             this.cb_gender.AutoSize = true;
-            this.cb_gender.Location = new System.Drawing.Point(136, 20);
-            this.cb_gender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cb_gender.Location = new System.Drawing.Point(103, 10);
             this.cb_gender.Name = "cb_gender";
             this.cb_gender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cb_gender.Size = new System.Drawing.Size(57, 24);
@@ -446,6 +495,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panelAlcohol);
+            this.groupBox1.Controls.Add(this.panelDate);
             this.groupBox1.Controls.Add(this.panelAge);
             this.groupBox1.Controls.Add(this.panelCity);
             this.groupBox1.Controls.Add(this.label2);
@@ -457,37 +507,49 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
-            // panelAlcohol
+            // panelDate
             // 
-            this.panelAlcohol.BackColor = System.Drawing.SystemColors.Control;
-            this.panelAlcohol.Controls.Add(this.label7);
-            this.panelAlcohol.Controls.Add(this.AlcoholCB);
-            this.panelAlcohol.Location = new System.Drawing.Point(338, 295);
-            this.panelAlcohol.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panelAlcohol.Name = "panelAlcohol";
-            this.panelAlcohol.Size = new System.Drawing.Size(206, 91);
-            this.panelAlcohol.TabIndex = 11;
-            this.panelAlcohol.Visible = false;
+            this.panelDate.Controls.Add(this.label9);
+            this.panelDate.Controls.Add(this.label8);
+            this.panelDate.Controls.Add(this.dateEnd);
+            this.panelDate.Controls.Add(this.dateStart);
+            this.panelDate.Location = new System.Drawing.Point(33, 279);
+            this.panelDate.Name = "panelDate";
+            this.panelDate.Size = new System.Drawing.Size(492, 119);
+            this.panelDate.TabIndex = 11;
+            this.panelDate.Visible = false;
             // 
-            // label7
+            // label9
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(128, 15);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 20);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "בחר:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(216, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 20);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "-עד";
             // 
-            // AlcoholCB
+            // label8
             // 
-            this.AlcoholCB.FormattingEnabled = true;
-            this.AlcoholCB.Location = new System.Drawing.Point(4, 40);
-            this.AlcoholCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AlcoholCB.Name = "AlcoholCB";
-            this.AlcoholCB.Size = new System.Drawing.Size(170, 28);
-            this.AlcoholCB.TabIndex = 0;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(455, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 20);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "-מ";
+            // 
+            // dateEnd
+            // 
+            this.dateEnd.Location = new System.Drawing.Point(13, 23);
+            this.dateEnd.Name = "dateEnd";
+            this.dateEnd.Size = new System.Drawing.Size(200, 26);
+            this.dateEnd.TabIndex = 1;
+            // 
+            // dateStart
+            // 
+            this.dateStart.Location = new System.Drawing.Point(249, 23);
+            this.dateStart.Name = "dateStart";
+            this.dateStart.Size = new System.Drawing.Size(200, 26);
+            this.dateStart.TabIndex = 0;
             // 
             // queryBox
             // 
@@ -499,14 +561,13 @@
             this.queryBox.Size = new System.Drawing.Size(592, 329);
             this.queryBox.TabIndex = 15;
             this.queryBox.TabStop = false;
-            this.queryBox.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1906, 769);
+            this.ClientSize = new System.Drawing.Size(1912, 1038);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.createListFromQuery);
             this.Controls.Add(this.queryBox);
@@ -517,12 +578,13 @@
             this.Name = "QueryGenerator";
             this.Text = "הפקת דוחות החוט המשולש";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.QueryGenerator_Load);
             this.panelResults.ResumeLayout(false);
             this.panelResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).EndInit();
             this.panelCity.ResumeLayout(false);
             this.panelCity.PerformLayout();
+            this.panelAlcohol.ResumeLayout(false);
+            this.panelAlcohol.PerformLayout();
             this.panelAge.ResumeLayout(false);
             this.panelAge.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).EndInit();
@@ -533,8 +595,8 @@
             this.panelQuery.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panelAlcohol.ResumeLayout(false);
-            this.panelAlcohol.PerformLayout();
+            this.panelDate.ResumeLayout(false);
+            this.panelDate.PerformLayout();
             this.queryBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -576,8 +638,14 @@
         private System.Windows.Forms.GroupBox queryBox;
         private System.Windows.Forms.CheckBox cb_alcohol;
         private System.Windows.Forms.Panel panelAlcohol;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox AlcoholCB;
+        private System.Windows.Forms.Panel panelDate;
+        private System.Windows.Forms.DateTimePicker dateStart;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateEnd;
+        private System.Windows.Forms.CheckBox cb_appearance;
+        private System.Windows.Forms.Label label7;
     }
 }
 

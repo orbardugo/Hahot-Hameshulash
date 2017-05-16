@@ -53,20 +53,21 @@ namespace QueryGenerator
 
 
             var excelFile = new ExcelQueryFactory(XLSX_PATH);
-            var dataBase = from name in excelFile.Worksheet(SHEET_NAME) select name;
-            HashSet<string> listOfCities = new HashSet<string>();
+            List<Row> dataBase1 = excelFile.WorksheetRange("A1", "IU100000", SHEET_NAME).ToList();
+            List<Row> dataBase2 = excelFile.WorksheetRange("IV1", "ZZ100000", SHEET_NAME).ToList();
+            //List<Row> mainData = new List<Row>(700);
+            //CombineRows(dataBase1, dataBase2, mainData);
+            
+            // var dataBase = from name in excelFile.Worksheet(SHEET_NAME) select name;
+            HashSet< string > listOfCities = new HashSet<string>();
             HashSet<string> listOfCurrentOccupation = new HashSet<string>();
             HashSet<string> listOfExternalContact = new HashSet<string>();
             HashSet<string> listOfUseAlcohol = new HashSet<string>();
             HashSet<string> listOfuseDrug = new HashSet<string>();
             HashSet<string> listOfReligion = new HashSet<string>();
-            HashSet<string> listOfCriminalRecord = new HashSet<string>();
-
-
-
-
-
-            foreach (var a in dataBase)
+            HashSet<string> listOfCriminalRecord = new HashSet<string>();             
+        
+            foreach (var a in dataBase1)
             {
                 string year = a["שנת לידה"];
                 string privateName = a["שם "];
@@ -80,8 +81,8 @@ namespace QueryGenerator
                 string useDrug = a["שימוש בסמים"];
                 string religion = a["רקע"];
                 string criminalRecord = a["רישום פלילי"];
-                Boolean[] attendance = new Boolean[366];
-                getAttendance(a, attendance);
+                Dictionary<DateTime, bool> attendance = new Dictionary<DateTime, bool>(366);
+                getAttendance(a, attendance); // get Attendance until Aug-02
 
                 if (String.IsNullOrEmpty(year))
                 {
@@ -98,7 +99,13 @@ namespace QueryGenerator
                 listOfReligion.Add(religion);
                 listOfCriminalRecord.Add(criminalRecord);
             }
-        
+            int i = 0;
+            foreach (var a in dataBase2)
+            {
+                getAttendance(a,listOfPersons[i].Presence,8,12);
+                i++;
+            }
+           
             QueryGenerator f2 = new QueryGenerator(listOfPersons,listOfCities, listOfCurrentOccupation, listOfExternalContact,
                 listOfUseAlcohol,listOfuseDrug, listOfReligion, listOfCriminalRecord);
             f2.Show();
@@ -109,12 +116,12 @@ namespace QueryGenerator
         {
 
         }
-        private void getAttendance(Row a, Boolean[] attendance)
+        private void getAttendance(Row a, Dictionary<DateTime, bool> attendance, int startMonth=1, int endMonth =8)
         {
             String month = "ינו-";
-            int daysOfMonth = 31, k = 0;
+            int daysOfMonth = 31;
             Boolean leafYear = false;
-            for (int i = 1; i <= 7; i++)
+            for (int i = startMonth; i <= endMonth; i++)
             {
                 switch (i)
                 {
@@ -171,28 +178,34 @@ namespace QueryGenerator
                         daysOfMonth = 31;
                         month = "דצמ-";
                         break;
-
                 }
                 for (int j = 1; j <= daysOfMonth; j++)
                 {
-                    if (i == 2 && j == 28 && !leafYear)
-                        continue;
+                    string s_date;
+                    DateTime D_date;
+                   // if (i == 2 && j == 28 && !leafYear)
+                     //   continue; we're assuming the excel file is correct
+                    if (startMonth == 8 && i == 8 && j==1)
+                        j = 2; // reading dataBase2 from Aug 02
+                    D_date = new DateTime(DateTime.Today.Year, i, j);
                     if (j < 10)
                     {
-                        if (a[month + "0" + j] == "1")
-                            attendance[k] = true;
+                        if (startMonth == 1 && i == 8 && j == 2)
+                            return; // end of reading dataBase1 - until Aug 02 (not included)
+                        s_date = month + "0" + j;
+                        if (a[s_date] == "1")
+                            attendance.Add(D_date, true);
                         else
-                            attendance[k] = false;
+                            attendance.Add(D_date, false);
                     }
                     else
                     {
-                        if (a[month + j] == "1")
-                            attendance[k] = true;
+                        s_date = month + j;
+                        if (a[s_date] == "1")
+                            attendance.Add(D_date, true);
                         else
-                            attendance[k] = false;
+                            attendance.Add(D_date, false);
                     }
-
-                    k++;
                 }
             }
         }
