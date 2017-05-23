@@ -30,19 +30,24 @@
         {
             this.panelResults = new System.Windows.Forms.Panel();
             this.dataListGrid = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panelAlcohol = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.AlcoholCB = new System.Windows.Forms.ComboBox();
             this.panelOccupation = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.occupationCB = new System.Windows.Forms.ComboBox();
-            this.panelCriminalRecord = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.criminalRecordCB = new System.Windows.Forms.ComboBox();
             this.panelReligion = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.religionCB = new System.Windows.Forms.ComboBox();
+            this.panelCity = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cityCB = new System.Windows.Forms.ComboBox();
+            this.panelCriminalRecord = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.criminalRecordCB = new System.Windows.Forms.ComboBox();
             this.panelExternalContact = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.externalContactCB = new System.Windows.Forms.ComboBox();
@@ -57,15 +62,9 @@
             this.cb_city = new System.Windows.Forms.CheckBox();
             this.cb_age = new System.Windows.Forms.CheckBox();
             this.cb_gender = new System.Windows.Forms.CheckBox();
-            this.panelCity = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cityCB = new System.Windows.Forms.ComboBox();
             this.panelDrug = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.drugsCB = new System.Windows.Forms.ComboBox();
-            this.panelAlcohol = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.AlcoholCB = new System.Windows.Forms.ComboBox();
             this.addQueryBtn = new System.Windows.Forms.Button();
             this.createListFromQuery = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -89,16 +88,20 @@
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
             this.dateStart = new System.Windows.Forms.DateTimePicker();
             this.queryBox = new System.Windows.Forms.GroupBox();
+            this.generateChart = new System.Windows.Forms.Button();
+            this.chartList = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cb_chartType = new System.Windows.Forms.ComboBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
+            this.panelAlcohol.SuspendLayout();
             this.panelOccupation.SuspendLayout();
-            this.panelCriminalRecord.SuspendLayout();
             this.panelReligion.SuspendLayout();
+            this.panelCity.SuspendLayout();
+            this.panelCriminalRecord.SuspendLayout();
             this.panelExternalContact.SuspendLayout();
             this.panelQuery.SuspendLayout();
-            this.panelCity.SuspendLayout();
             this.panelDrug.SuspendLayout();
-            this.panelAlcohol.SuspendLayout();
             this.panelAge.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ageFromNumeric)).BeginInit();
@@ -111,37 +114,23 @@
             // panelResults
             // 
             this.panelResults.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panelResults.Controls.Add(this.panelAlcohol);
-            this.panelResults.Controls.Add(this.panelOccupation);
-            this.panelResults.Controls.Add(this.panelReligion);
-            this.panelResults.Controls.Add(this.panelCity);
             this.panelResults.Controls.Add(this.dataListGrid);
-            this.panelResults.Controls.Add(this.button3);
             this.panelResults.Controls.Add(this.button1);
             this.panelResults.Controls.Add(this.label1);
             this.panelResults.Controls.Add(this.progressBar1);
             this.panelResults.Location = new System.Drawing.Point(17, 9);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(796, 668);
+            this.panelResults.Size = new System.Drawing.Size(796, 588);
             this.panelResults.TabIndex = 0;
             // 
             // dataListGrid
             // 
             this.dataListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListGrid.Location = new System.Drawing.Point(209, 40);
+            this.dataListGrid.Location = new System.Drawing.Point(3, 40);
             this.dataListGrid.Name = "dataListGrid";
             this.dataListGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataListGrid.Size = new System.Drawing.Size(444, 578);
+            this.dataListGrid.Size = new System.Drawing.Size(786, 530);
             this.dataListGrid.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(3, 308);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "<-";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -170,11 +159,42 @@
             this.progressBar1.Size = new System.Drawing.Size(613, 10);
             this.progressBar1.TabIndex = 4;
             // 
+            // panelAlcohol
+            // 
+            this.panelAlcohol.BackColor = System.Drawing.SystemColors.Control;
+            this.panelAlcohol.Controls.Add(this.label7);
+            this.panelAlcohol.Controls.Add(this.AlcoholCB);
+            this.panelAlcohol.Location = new System.Drawing.Point(15, 17);
+            this.panelAlcohol.Name = "panelAlcohol";
+            this.panelAlcohol.Size = new System.Drawing.Size(137, 59);
+            this.panelAlcohol.TabIndex = 11;
+            this.panelAlcohol.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(69, 5);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label7.Size = new System.Drawing.Size(47, 18);
+            this.label7.TabIndex = 11;
+            this.label7.Text = ":בחר ";
+            // 
+            // AlcoholCB
+            // 
+            this.AlcoholCB.FormattingEnabled = true;
+            this.AlcoholCB.Location = new System.Drawing.Point(3, 26);
+            this.AlcoholCB.Name = "AlcoholCB";
+            this.AlcoholCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.AlcoholCB.Size = new System.Drawing.Size(115, 21);
+            this.AlcoholCB.TabIndex = 0;
+            // 
             // panelOccupation
             // 
             this.panelOccupation.Controls.Add(this.label12);
             this.panelOccupation.Controls.Add(this.occupationCB);
-            this.panelOccupation.Location = new System.Drawing.Point(23, 361);
+            this.panelOccupation.Location = new System.Drawing.Point(12, 35);
             this.panelOccupation.Name = "panelOccupation";
             this.panelOccupation.Size = new System.Drawing.Size(142, 64);
             this.panelOccupation.TabIndex = 14;
@@ -199,6 +219,66 @@
             this.occupationCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.occupationCB.Size = new System.Drawing.Size(136, 21);
             this.occupationCB.TabIndex = 11;
+            // 
+            // panelReligion
+            // 
+            this.panelReligion.Controls.Add(this.label11);
+            this.panelReligion.Controls.Add(this.religionCB);
+            this.panelReligion.Location = new System.Drawing.Point(876, 12);
+            this.panelReligion.Name = "panelReligion";
+            this.panelReligion.Size = new System.Drawing.Size(142, 64);
+            this.panelReligion.TabIndex = 13;
+            this.panelReligion.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(36, 12);
+            this.label11.Name = "label11";
+            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label11.Size = new System.Drawing.Size(66, 18);
+            this.label11.TabIndex = 12;
+            this.label11.Text = ":בחר דת";
+            // 
+            // religionCB
+            // 
+            this.religionCB.FormattingEnabled = true;
+            this.religionCB.Location = new System.Drawing.Point(3, 35);
+            this.religionCB.Name = "religionCB";
+            this.religionCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.religionCB.Size = new System.Drawing.Size(126, 21);
+            this.religionCB.TabIndex = 11;
+            // 
+            // panelCity
+            // 
+            this.panelCity.Controls.Add(this.label6);
+            this.panelCity.Controls.Add(this.cityCB);
+            this.panelCity.Location = new System.Drawing.Point(18, 58);
+            this.panelCity.Name = "panelCity";
+            this.panelCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.panelCity.Size = new System.Drawing.Size(156, 70);
+            this.panelCity.TabIndex = 4;
+            this.panelCity.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(43, 14);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label6.Size = new System.Drawing.Size(72, 18);
+            this.label6.TabIndex = 10;
+            this.label6.Text = ":בחר עיר";
+            // 
+            // cityCB
+            // 
+            this.cityCB.FormattingEnabled = true;
+            this.cityCB.Location = new System.Drawing.Point(14, 35);
+            this.cityCB.Name = "cityCB";
+            this.cityCB.Size = new System.Drawing.Size(112, 21);
+            this.cityCB.TabIndex = 0;
             // 
             // panelCriminalRecord
             // 
@@ -230,39 +310,11 @@
             this.criminalRecordCB.Size = new System.Drawing.Size(126, 21);
             this.criminalRecordCB.TabIndex = 11;
             // 
-            // panelReligion
-            // 
-            this.panelReligion.Controls.Add(this.label11);
-            this.panelReligion.Controls.Add(this.religionCB);
-            this.panelReligion.Location = new System.Drawing.Point(694, 28);
-            this.panelReligion.Name = "panelReligion";
-            this.panelReligion.Size = new System.Drawing.Size(142, 64);
-            this.panelReligion.TabIndex = 13;
-            this.panelReligion.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(49, 15);
-            this.label11.Name = "label11";
-            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label11.Size = new System.Drawing.Size(66, 18);
-            this.label11.TabIndex = 12;
-            this.label11.Text = ":בחר דת";
-            // 
-            // religionCB
-            // 
-            this.religionCB.FormattingEnabled = true;
-            this.religionCB.Location = new System.Drawing.Point(3, 35);
-            this.religionCB.Name = "religionCB";
-            this.religionCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.religionCB.Size = new System.Drawing.Size(126, 21);
-            this.religionCB.TabIndex = 11;
-            // 
             // panelExternalContact
             // 
+            this.panelExternalContact.Controls.Add(this.panelOccupation);
             this.panelExternalContact.Controls.Add(this.label14);
+            this.panelExternalContact.Controls.Add(this.panelCity);
             this.panelExternalContact.Controls.Add(this.externalContactCB);
             this.panelExternalContact.Location = new System.Drawing.Point(5, 1);
             this.panelExternalContact.Name = "panelExternalContact";
@@ -433,36 +485,6 @@
             this.cb_gender.UseVisualStyleBackColor = true;
             this.cb_gender.CheckedChanged += new System.EventHandler(this.cb_gender_CheckedChanged);
             // 
-            // panelCity
-            // 
-            this.panelCity.Controls.Add(this.label6);
-            this.panelCity.Controls.Add(this.cityCB);
-            this.panelCity.Location = new System.Drawing.Point(39, 252);
-            this.panelCity.Name = "panelCity";
-            this.panelCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.panelCity.Size = new System.Drawing.Size(156, 70);
-            this.panelCity.TabIndex = 4;
-            this.panelCity.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(43, 14);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(72, 18);
-            this.label6.TabIndex = 10;
-            this.label6.Text = ":בחר עיר";
-            // 
-            // cityCB
-            // 
-            this.cityCB.FormattingEnabled = true;
-            this.cityCB.Location = new System.Drawing.Point(14, 35);
-            this.cityCB.Name = "cityCB";
-            this.cityCB.Size = new System.Drawing.Size(112, 21);
-            this.cityCB.TabIndex = 0;
-            // 
             // panelDrug
             // 
             this.panelDrug.Controls.Add(this.label10);
@@ -491,37 +513,6 @@
             this.drugsCB.Name = "drugsCB";
             this.drugsCB.Size = new System.Drawing.Size(126, 21);
             this.drugsCB.TabIndex = 11;
-            // 
-            // panelAlcohol
-            // 
-            this.panelAlcohol.BackColor = System.Drawing.SystemColors.Control;
-            this.panelAlcohol.Controls.Add(this.label7);
-            this.panelAlcohol.Controls.Add(this.AlcoholCB);
-            this.panelAlcohol.Location = new System.Drawing.Point(656, 191);
-            this.panelAlcohol.Name = "panelAlcohol";
-            this.panelAlcohol.Size = new System.Drawing.Size(137, 59);
-            this.panelAlcohol.TabIndex = 11;
-            this.panelAlcohol.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(69, 5);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label7.Size = new System.Drawing.Size(47, 18);
-            this.label7.TabIndex = 11;
-            this.label7.Text = ":בחר ";
-            // 
-            // AlcoholCB
-            // 
-            this.AlcoholCB.FormattingEnabled = true;
-            this.AlcoholCB.Location = new System.Drawing.Point(3, 26);
-            this.AlcoholCB.Name = "AlcoholCB";
-            this.AlcoholCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.AlcoholCB.Size = new System.Drawing.Size(115, 21);
-            this.AlcoholCB.TabIndex = 0;
             // 
             // addQueryBtn
             // 
@@ -630,6 +621,7 @@
             // 
             // panelGender
             // 
+            this.panelGender.Controls.Add(this.panelAlcohol);
             this.panelGender.Controls.Add(this.Radio_unknowGender);
             this.panelGender.Controls.Add(this.Radio_woman);
             this.panelGender.Controls.Add(this.Radio_men);
@@ -794,14 +786,75 @@
             this.queryBox.TabIndex = 15;
             this.queryBox.TabStop = false;
             // 
+            // generateChart
+            // 
+            this.generateChart.Location = new System.Drawing.Point(164, 625);
+            this.generateChart.Name = "generateChart";
+            this.generateChart.Size = new System.Drawing.Size(83, 33);
+            this.generateChart.TabIndex = 16;
+            this.generateChart.Text = "הצג";
+            this.generateChart.UseVisualStyleBackColor = true;
+            this.generateChart.Click += new System.EventHandler(this.generateChart_Click);
+            // 
+            // chartList
+            // 
+            this.chartList.AutoCompleteCustomSource.AddRange(new string[] {
+            "מין",
+            "עיר",
+            "רקע",
+            "שימוש בסמים",
+            "שימוש באלכוהול",
+            "גיל"});
+            this.chartList.FormattingEnabled = true;
+            this.chartList.Items.AddRange(new object[] {
+            "מין",
+            "עיר",
+            "רקע",
+            "גיל",
+            "שימוש באלכוהול",
+            "שימוש בסמים"});
+            this.chartList.Location = new System.Drawing.Point(497, 632);
+            this.chartList.Name = "chartList";
+            this.chartList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chartList.Size = new System.Drawing.Size(140, 21);
+            this.chartList.TabIndex = 17;
+            this.chartList.Text = "הצג לפי";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(656, 635);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 13);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "הצג שאילתא בגרף";
+            // 
+            // cb_chartType
+            // 
+            this.cb_chartType.FormattingEnabled = true;
+            this.cb_chartType.Items.AddRange(new object[] {
+            "עוגה",
+            "עמודות"});
+            this.cb_chartType.Location = new System.Drawing.Point(280, 632);
+            this.cb_chartType.Name = "cb_chartType";
+            this.cb_chartType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cb_chartType.Size = new System.Drawing.Size(174, 21);
+            this.cb_chartType.TabIndex = 19;
+            this.cb_chartType.Text = "סוג גרף";
+            // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1253, 510);
+            this.ClientSize = new System.Drawing.Size(1253, 689);
+            this.Controls.Add(this.cb_chartType);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.chartList);
+            this.Controls.Add(this.generateChart);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.createListFromQuery);
+            this.Controls.Add(this.panelReligion);
             this.Controls.Add(this.queryBox);
             this.Controls.Add(this.panelDrug);
             this.Controls.Add(this.groupBox1);
@@ -813,22 +866,22 @@
             this.panelResults.ResumeLayout(false);
             this.panelResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).EndInit();
+            this.panelAlcohol.ResumeLayout(false);
+            this.panelAlcohol.PerformLayout();
             this.panelOccupation.ResumeLayout(false);
             this.panelOccupation.PerformLayout();
-            this.panelCriminalRecord.ResumeLayout(false);
-            this.panelCriminalRecord.PerformLayout();
             this.panelReligion.ResumeLayout(false);
             this.panelReligion.PerformLayout();
+            this.panelCity.ResumeLayout(false);
+            this.panelCity.PerformLayout();
+            this.panelCriminalRecord.ResumeLayout(false);
+            this.panelCriminalRecord.PerformLayout();
             this.panelExternalContact.ResumeLayout(false);
             this.panelExternalContact.PerformLayout();
             this.panelQuery.ResumeLayout(false);
             this.panelQuery.PerformLayout();
-            this.panelCity.ResumeLayout(false);
-            this.panelCity.PerformLayout();
             this.panelDrug.ResumeLayout(false);
             this.panelDrug.PerformLayout();
-            this.panelAlcohol.ResumeLayout(false);
-            this.panelAlcohol.PerformLayout();
             this.panelAge.ResumeLayout(false);
             this.panelAge.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ageToNumeric)).EndInit();
@@ -870,7 +923,6 @@
         private System.Windows.Forms.Panel panelCity;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cityCB;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dataListGrid;
@@ -908,6 +960,10 @@
         private System.Windows.Forms.Panel panelExternalContact;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox externalContactCB;
+        private System.Windows.Forms.Button generateChart;
+        private System.Windows.Forms.ComboBox chartList;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cb_chartType;
     }
 }
 

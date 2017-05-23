@@ -208,7 +208,7 @@ namespace QueryGenerator
             panelExternalContact.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelOccupation.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelCriminalRecord.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-           this.panelReligion.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            this.panelReligion.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             this.panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             this.panelAlcohol.Location= new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
         }
@@ -425,7 +425,68 @@ namespace QueryGenerator
 
         }
 
-
+        private void generateChart_Click(object sender, EventArgs e)
+        {
+            String query = chartList.SelectedItem.ToString();
+            String graphType = cb_chartType.SelectedItem.ToString();
+            String[] titles = new String[0];
+            String[] genderArray = { "זכר", "נקבה", "אחר" };
+            String[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
+            switch (query){
+                case "מין":
+                    titles = genderArray;
+                    break;
+                case "עיר":
+                    titles = hashSetOfCities.ToArray();
+                    break;
+                case "רקע":
+                    titles = hashSetReligion.ToArray();
+                    break;
+                case "גיל":
+                    titles = ageArray;
+                    break;
+                case "שימוש באלכוהול":
+                    titles = hashSetUseAlcohol.ToArray();
+                    break;
+                case "שימוש בסמים":
+                    titles = hashSetUseDrug.ToArray();
+                    break;
+            }
+            int[] counter = new int[titles.Length];
+            foreach(var person in listAfterQuery)
+            {
+                for(int i=0;i<titles.Length;i++)
+                {
+                    if (query == "מין")
+                    {
+                        if (person.gender != "זכר" && person.gender != "נקבה")
+                        {
+                            counter[2]++;
+                            break;
+                        }
+                        else if (person.gender == titles[i])
+                            counter[i]++;
+                    }
+                    if (query == "עיר")
+                        if (person.city == titles[i])
+                            counter[i]++;
+                    if (query == "רקע")
+                        if (person.Religion == titles[i])
+                            counter[i]++;
+                    if (query == "גיל")
+                        if (person.age == int.Parse(titles[i]))
+                            counter[i]++;
+                    if (query == "שימוש באלכוהול")
+                        if (person.UseAlcohol == titles[i])
+                            counter[i]++;
+                    if (query == "שימוש בסמים")
+                        if (person.UseDrug == titles[i])
+                            counter[i]++;
+                }
+            }
+            QueryGraph g = new QueryGraph(titles,counter,graphType);
+            g.Visible = true;
+        }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
         {
