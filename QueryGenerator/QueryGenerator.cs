@@ -62,12 +62,14 @@ namespace QueryGenerator
             listAfterQuery = mainQuery;
             InitializeComponent();
         }
-
+        //==========================checked change=====================================
+        //========================choose query=========================================
         private void cb_gender_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_gender.Checked)
             {
                 unCheckedAllBut(cb_gender);
+                panelGender.BringToFront();
                 cb_gender.Checked = true;
                 disableVisabilityPanels();
                 panelGender.Visible = true;
@@ -84,6 +86,7 @@ namespace QueryGenerator
             if (cb_age.Checked)
             {
                 unCheckedAllBut(cb_age);
+                panelAge.BringToFront();
                 cb_age.Checked = true;
                 disableVisabilityPanels();
                 panelAge.Visible = true;
@@ -99,6 +102,7 @@ namespace QueryGenerator
             if (cb_alcohol.Checked)
             {
                 unCheckedAllBut(cb_alcohol);
+                panelAlcohol.BringToFront();
                 disableVisabilityPanels();
                 AlcoholCB.Items.Clear();
                 AlcoholCB.Items.AddRange(hashSetUseAlcohol.ToArray());
@@ -114,6 +118,7 @@ namespace QueryGenerator
             if (cb_useDrug.Checked)
             {
                 unCheckedAllBut(cb_useDrug);
+                panelDrug.BringToFront();
                 disableVisabilityPanels();
                 drugsCB.Items.Clear();
                 drugsCB.Items.AddRange(hashSetUseDrug.ToArray());
@@ -131,6 +136,7 @@ namespace QueryGenerator
             if (cb_religion.Checked)
             {
                 unCheckedAllBut(cb_religion);
+                panelReligion.BringToFront();
                 disableVisabilityPanels();
                 religionCB.Items.Clear();
                 religionCB.Items.AddRange(hashSetReligion.ToArray());
@@ -148,6 +154,7 @@ namespace QueryGenerator
             if (cb_occupation.Checked)
             {
                 unCheckedAllBut(cb_occupation);
+                panelOccupation.BringToFront();
                 disableVisabilityPanels();
                 occupationCB.Items.Clear();
                 occupationCB.Items.AddRange(hashSetCurrentOccupation.ToArray());
@@ -165,6 +172,7 @@ namespace QueryGenerator
             if (cb_criminalRecord.Checked)
             {
                 unCheckedAllBut(cb_criminalRecord);
+                panelCriminalRecord.BringToFront();
                 disableVisabilityPanels();
                 criminalRecordCB.Items.Clear();
                 criminalRecordCB.Items.AddRange(hashSetlistOfCriminalRecord.ToArray());
@@ -175,11 +183,30 @@ namespace QueryGenerator
                 panelCriminalRecord.Visible = false;
             }
         }
+
+        private void cb_city_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_city.Checked)
+            {
+                unCheckedAllBut(cb_city);
+                disableVisabilityPanels();
+                panelCity.BringToFront();
+                cityCB.Items.Clear();
+                cityCB.Items.AddRange(hashSetOfCities.ToArray());
+                panelCity.Visible = true;
+            }
+            else
+            {
+                panelCity.Visible = false;
+            }
+        }
+
         private void cb_externalContact_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_externalContact.Checked)
             {
                 unCheckedAllBut(cb_externalContact);
+                panelExternalContact.BringToFront();
                 disableVisabilityPanels();
                 externalContactCB.Items.Clear();
                 externalContactCB.Items.AddRange(hashSetExternalContact.ToArray());
@@ -191,6 +218,19 @@ namespace QueryGenerator
             }
         }
 
+        private void unCheckAllCB()
+        {
+            cb_externalContact.Checked = false;
+            cb_city.Checked = false;
+            cb_criminalRecord.Checked = false;
+            cb_occupation.Checked = false;
+            cb_religion.Checked = false;
+            cb_useDrug.Checked = false;
+            cb_drug.Checked = false;
+            cb_alcohol.Checked = false;
+            cb_age.Checked = false;
+            cb_gender.Checked = false;
+        }
         private void disableVisabilityPanels()
         {
             panelCity.Visible = false;
@@ -200,34 +240,22 @@ namespace QueryGenerator
             panelDate.Visible = false;
             panelDrug.Visible = false;
             panelReligion.Visible = false;
-            panelOccupation.Visible = false;
+            panelOccupation.Visible = false;          
             panelCriminalRecord.Visible = false;
             panelExternalContact.Visible = false;
+
             panelCity.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelDrug.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelExternalContact.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelOccupation.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
             panelCriminalRecord.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            this.panelReligion.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            this.panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            this.panelAlcohol.Location= new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelReligion.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelAlcohol.Location= new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelDate.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
         }
 
-        private void cb_city_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cb_city.Checked)
-            {
-                unCheckedAllBut(cb_city);
-                disableVisabilityPanels();
-                cityCB.Items.Clear();
-                cityCB.Items.AddRange(hashSetOfCities.ToArray());
-                panelCity.Visible = true;
-            }
-            else
-            {
-                panelCity.Visible = false;
-            }
-        }
+        
 
 
         private void createListFromQuery_Click(object sender, EventArgs e)
@@ -338,40 +366,55 @@ namespace QueryGenerator
             toAge = 24;
             ageToNumeric.Value = 24;
             //ClearCityPanel
-            if(city!=null)
+            if (city != null)
+            {
                 cityCB.SelectedIndex = 0;
- 
-            city = null;
+                city = null;
+            }
             //ClearAlcohol
             if (alcohol != null)
+            {
                 AlcoholCB.SelectedIndex = 0;
-            alcohol = null;
+                alcohol = null;
+            }
             //clear drug
             if (drug != null)
+            {
                 drugsCB.SelectedIndex = 0;
+                drug = null;
+            }
             //ClearReligion
             if (religion != null)
+            {
                 religionCB.SelectedIndex = 0;
+                religion = null;
+            }
             //ClearOccupation
             if (occupation != null)
+            {
                 occupationCB.SelectedIndex = 0;
+                occupation = null;
+            }
             //ClearCrimialRecord
             if (criminalRecord != null)
+            {
                 criminalRecordCB.SelectedIndex = 0;
+                criminalRecord = null;
+            }
             if (externalContact != null)
+            {
                 externalContactCB.SelectedIndex = 0;
+                externalContact = null;
+            }
 
             //ClearQueryPanel
             listAfterQuery = mainQuery;
             QueryListBox.Items.Clear();
             //ClearTable
             dataListGrid.DataSource = null;
-       /*     if (cb_age.Checked)
-                cb_age.Checked = !cb_age.Checked;
-            if (cb_city.Checked)
-                cb_city.Checked = !cb_city.Checked;
-            if (cb_gender.Checked)
-                cb_gender.Checked = !cb_gender.Checked;*/
+
+            disableVisabilityPanels();
+            unCheckAllCB();
         }
 
 
