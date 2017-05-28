@@ -44,15 +44,30 @@ namespace QueryGenerator
             try
             {
                 panelResults.Width = (int)(this.Width * 0.7);
-                panelResults.Height = (int)(this.Height * 0.8);
+                panelResults.Height = (int)(this.Height - panelGraph.Height);
+                panelResults.Location = new Point((int)(this.Width * 0.02), 0);
+                dataListGrid.Height = (int)(this.panelResults.Height - label1.Height- (int)(this.Height * 0.02));
+                panelGraph.Location = new Point(panelResults.Width/2-panelGraph.Width/2, this.Height-panelGraph.Height-(int)(this.Height*0.02));
                 panelChooseQuery.Width = (int)(this.Width * 0.3);
-                panelChooseQuery.Height = (int)(this.Height * 0.52);
+                panelChooseQuery.Height = (int)(label2.Height+panelQuery.Height+addQueryBtn.Height+ (int)(this.Height * 0.02));
+                panelChooseQuery.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), 0);
                 panelChooseQuery.Paint += delegate (object o, PaintEventArgs p)
                 {
                     p.Graphics.Clear(Color.FromArgb(255, 192, 128));
                 };
+
+
                 queryBox.Width = (int)(this.Width * 0.3);
+                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), panelChooseQuery.Location.Y+panelChooseQuery.Height);
                 queryBox.Height = (int)(this.Height * 0.3);
+                QueryListBox.Size = new Size(queryBox.Width-(int)(queryBox.Width*0.01), queryBox.Height - btnClear.Height);
+                QueryListBox.Location = new Point(0, 0);
+                remove.Location = new Point(QueryListBox.Width - remove.Width, QueryListBox.Height);
+                btnClear.Location = new Point(0, QueryListBox.Height);
+                label2.Location = new Point(queryBox.Width / 2 - label2.Width / 2, (int)(this.Height * 0.01));
+                addQueryBtn.Location = new Point(queryBox.Width / 2 - addQueryBtn.Width / 2, panelQuery.Height+label2.Height+(int)(this.Height * 0.01));
+                panelQuery.Location = new Point(panelChooseQuery.Width-panelQuery.Width, label2.Height);
+                createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             listOPepoles = listOfPepoles;
@@ -249,15 +264,72 @@ namespace QueryGenerator
             panelCriminalRecord.Visible = false;
             panelExternalContact.Visible = false;
 
-            panelCity.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelDrug.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelExternalContact.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelOccupation.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelCriminalRecord.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelReligion.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelAge.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelAlcohol.Location= new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
-            panelDate.Location = new Point(this.panelGender.Location.X, this.panelGender.Location.Y);
+            panelCity.Location = new Point(0,label2.Height+(int)(this.Height * 0.06));
+            panelDrug.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelExternalContact.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelOccupation.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelCriminalRecord.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelReligion.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelAge.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelAlcohol.Location= new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelDate.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+
+            panelCity.Size = new Size((int)(this.Height*0.2), (int)(this.Width * 0.3));
+            panelDrug.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelExternalContact.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelOccupation.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelCriminalRecord.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelReligion.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelAge.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelAlcohol.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            panelDate.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+
+            externalContactCB.Size = new Size( (int)(panelAge.Width), (int)(this.Height * 0.5));
+            cityCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+            criminalRecordCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+            occupationCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+            religionCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+            drugsCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+            AlcoholCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+
+            externalContactCB.Location = new Point(panelExternalContact.Width / 2 - externalContactCB.Width / 2, label12.Height);
+            cityCB.Location = new Point(panelCity.Width / 2 - cityCB.Width / 2, label12.Height);
+            criminalRecordCB.Location = new Point(panelCity.Width / 2 - criminalRecordCB.Width / 2, label12.Height);
+            occupationCB.Location = new Point(panelCity.Width / 2 - occupationCB.Width / 2, label12.Height);
+            religionCB.Location = new Point(panelCity.Width / 2 - religionCB.Width / 2, label12.Height);
+            drugsCB.Location = new Point(panelCity.Width / 2 - drugsCB.Width / 2, label12.Height);
+            AlcoholCB.Location = new Point(panelCity.Width / 2 - AlcoholCB.Width / 2, label12.Height);
+
+            label4.Font = new Font("Arial", 12, FontStyle.Bold);
+            label5.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label12.Size = new Size(panelCity.Width, panelCity.Height/2);
+            label12.Location = new Point(panelCity.Width / 2 - label12.Width / 2, 0);
+            label12.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label7.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label7.Location = new Point(panelCity.Width / 2 - label7.Width / 2, 0);
+            label7.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label13.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label13.Location = new Point(panelCity.Width / 2 - label13.Width / 2, 0);
+            label13.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label10.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label10.Location = new Point(panelCity.Width / 2 - label10.Width / 2, 0);
+            label10.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label6.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label6.Location = new Point(panelCity.Width / 2 - label6.Width / 2, 0);
+            label6.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label11.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label11.Location = new Point(panelCity.Width / 2 - label11.Width / 2, 0);
+            label11.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label14.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label14.Location = new Point(panelCity.Width / 2 - label14.Width / 2, 0);
+            label14.Font = new Font("Arial", 12, FontStyle.Bold);
         }
 
         
@@ -541,6 +613,16 @@ namespace QueryGenerator
 
         }
 
+        private void ageToNumeric_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void addQueryBtn_Click(object sender, EventArgs e)
         {
             if (panelGender.Visible)
@@ -586,7 +668,7 @@ namespace QueryGenerator
             if (panelReligion.Visible && religionCB.SelectedItem != null)
             {
                 religion = religionCB.SelectedItem.ToString();
-                QueryListBox.Items.Add("דת: " + religion);
+                QueryListBox.Items.Add("רקע: " + religion);
             }
             if (panelOccupation.Visible && occupationCB.SelectedItem != null)
             {
