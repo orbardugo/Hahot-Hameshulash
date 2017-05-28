@@ -40,14 +40,19 @@ namespace QueryGenerator
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
             , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion, HashSet<string> hashSetlistOfCriminalrecord)
         {
+            InitializeComponent();
             try
             {
-                panelResults.Width = (int)(Console.WindowWidth * 0.7);
-                panelResults.Height = (int)(Console.WindowHeight * 0.9);
-                queryBox.Width = (int)(Console.WindowWidth * 0.3);
-                queryBox.Height = (int)(Console.WindowHeight * 0.4);
-                QueryListBox.Width = (int)(Console.WindowWidth * 0.3);
-                QueryListBox.Height = (int)(Console.WindowHeight * 0.4);
+                panelResults.Width = (int)(this.Width * 0.7);
+                panelResults.Height = (int)(this.Height * 0.8);
+                panelChooseQuery.Width = (int)(this.Width * 0.3);
+                panelChooseQuery.Height = (int)(this.Height * 0.52);
+                panelChooseQuery.Paint += delegate (object o, PaintEventArgs p)
+                {
+                    p.Graphics.Clear(Color.FromArgb(255, 192, 128));
+                };
+                queryBox.Width = (int)(this.Width * 0.3);
+                queryBox.Height = (int)(this.Height * 0.3);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             listOPepoles = listOfPepoles;
@@ -60,7 +65,7 @@ namespace QueryGenerator
             hashSetlistOfCriminalRecord = hashSetlistOfCriminalrecord;
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
-            InitializeComponent();
+           
         }
         //==========================checked change=====================================
         //========================choose query=========================================
@@ -529,6 +534,11 @@ namespace QueryGenerator
             }
             QueryGraph g = new QueryGraph(titles,counter,graphType);
             g.Visible = true;
+        }
+
+        private void QueryGenerator_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
