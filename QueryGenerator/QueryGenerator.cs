@@ -43,11 +43,11 @@ namespace QueryGenerator
             InitializeComponent();
             try
             {
-                panelResults.Width = (int)(this.Width * 0.7);
-                panelResults.Height = (int)(this.Height - panelGraph.Height);
+                panelResults.Width = (int)(this.Width * 0.65);
+                panelResults.Height = (int)(this.Height * 0.85 - panelGraph.Height);
                 panelResults.Location = new Point((int)(this.Width * 0.02), 0);
                 dataListGrid.Height = (int)(this.panelResults.Height - label1.Height- (int)(this.Height * 0.02));
-                panelGraph.Location = new Point(panelResults.Width/2-panelGraph.Width/2, this.Height-panelGraph.Height-(int)(this.Height*0.02));
+                panelGraph.Location = new Point(panelResults.Width/2-panelGraph.Width/2, this.Height-panelGraph.Height-(int)(this.Height*0.1));
                 panelChooseQuery.Width = (int)(this.Width * 0.3);
                 panelChooseQuery.Height = (int)(label2.Height+panelQuery.Height+addQueryBtn.Height+ (int)(this.Height * 0.02));
                 panelChooseQuery.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), 0);
@@ -57,8 +57,8 @@ namespace QueryGenerator
                 };
 
 
-                queryBox.Width = (int)(this.Width * 0.3);
-                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), panelChooseQuery.Location.Y+panelChooseQuery.Height);
+                queryBox.Width = (int)(this.Width * 0.28);
+                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.025), panelChooseQuery.Location.Y+panelChooseQuery.Height);
                 queryBox.Height = (int)(this.Height * 0.3);
                 QueryListBox.Size = new Size(queryBox.Width-(int)(queryBox.Width*0.01), queryBox.Height - btnClear.Height);
                 QueryListBox.Location = new Point(0, 0);
