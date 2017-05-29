@@ -43,6 +43,7 @@
             this.queryBox = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panelChooseQuery = new System.Windows.Forms.GroupBox();
+            this.addQueryBtn = new System.Windows.Forms.Button();
             this.panelAge = new System.Windows.Forms.Panel();
             this.ageToNumeric = new System.Windows.Forms.NumericUpDown();
             this.ageFromNumeric = new System.Windows.Forms.NumericUpDown();
@@ -71,7 +72,6 @@
             this.panelExternalContact = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.externalContactCB = new System.Windows.Forms.ComboBox();
-            this.addQueryBtn = new System.Windows.Forms.Button();
             this.panelDate = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.panelResults.Location = new System.Drawing.Point(14, 12);
             this.panelResults.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(945, 569);
+            this.panelResults.Size = new System.Drawing.Size(733, 569);
             this.panelResults.TabIndex = 0;
             // 
             // dataListGrid
@@ -130,7 +130,7 @@
             this.dataListGrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataListGrid.Name = "dataListGrid";
             this.dataListGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataListGrid.Size = new System.Drawing.Size(916, 478);
+            this.dataListGrid.Size = new System.Drawing.Size(717, 478);
             this.dataListGrid.TabIndex = 2;
             // 
             // label1
@@ -148,10 +148,10 @@
             // createListFromQuery
             // 
             this.createListFromQuery.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createListFromQuery.Location = new System.Drawing.Point(1075, 599);
+            this.createListFromQuery.Location = new System.Drawing.Point(855, 602);
             this.createListFromQuery.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.createListFromQuery.Name = "createListFromQuery";
-            this.createListFromQuery.Size = new System.Drawing.Size(111, 30);
+            this.createListFromQuery.Size = new System.Drawing.Size(111, 34);
             this.createListFromQuery.TabIndex = 2;
             this.createListFromQuery.Text = "חיפוש";
             this.createListFromQuery.UseVisualStyleBackColor = true;
@@ -173,7 +173,7 @@
             // 
             this.QueryListBox.FormattingEnabled = true;
             this.QueryListBox.ItemHeight = 22;
-            this.QueryListBox.Location = new System.Drawing.Point(2, 12);
+            this.QueryListBox.Location = new System.Drawing.Point(8, 12);
             this.QueryListBox.Margin = new System.Windows.Forms.Padding(2);
             this.QueryListBox.Name = "QueryListBox";
             this.QueryListBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -260,7 +260,7 @@
             this.panelGraph.Controls.Add(this.generateChart);
             this.panelGraph.Controls.Add(this.label15);
             this.panelGraph.Controls.Add(this.chartList);
-            this.panelGraph.Location = new System.Drawing.Point(92, 602);
+            this.panelGraph.Location = new System.Drawing.Point(12, 602);
             this.panelGraph.Name = "panelGraph";
             this.panelGraph.Size = new System.Drawing.Size(786, 30);
             this.panelGraph.TabIndex = 20;
@@ -270,7 +270,8 @@
             this.queryBox.Controls.Add(this.QueryListBox);
             this.queryBox.Controls.Add(this.remove);
             this.queryBox.Controls.Add(this.btnClear);
-            this.queryBox.Location = new System.Drawing.Point(963, 385);
+            this.queryBox.Controls.Add(this.label3);
+            this.queryBox.Location = new System.Drawing.Point(751, 384);
             this.queryBox.Name = "queryBox";
             this.queryBox.Size = new System.Drawing.Size(329, 196);
             this.queryBox.TabIndex = 21;
@@ -279,7 +280,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1225, 280);
+            this.label3.Location = new System.Drawing.Point(269, -12);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -289,6 +290,7 @@
             // 
             // panelChooseQuery
             // 
+            this.panelChooseQuery.Controls.Add(this.addQueryBtn);
             this.panelChooseQuery.Controls.Add(this.panelAge);
             this.panelChooseQuery.Controls.Add(this.panelAlcohol);
             this.panelChooseQuery.Controls.Add(this.panelReligion);
@@ -298,12 +300,11 @@
             this.panelChooseQuery.Controls.Add(this.panelGender);
             this.panelChooseQuery.Controls.Add(this.panelOccupation);
             this.panelChooseQuery.Controls.Add(this.panelExternalContact);
-            this.panelChooseQuery.Controls.Add(this.addQueryBtn);
             this.panelChooseQuery.Controls.Add(this.panelDate);
             this.panelChooseQuery.Controls.Add(this.panelDrug);
             this.panelChooseQuery.Controls.Add(this.panelQuery);
             this.panelChooseQuery.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelChooseQuery.Location = new System.Drawing.Point(963, 10);
+            this.panelChooseQuery.Location = new System.Drawing.Point(751, 12);
             this.panelChooseQuery.Margin = new System.Windows.Forms.Padding(2);
             this.panelChooseQuery.Name = "panelChooseQuery";
             this.panelChooseQuery.Padding = new System.Windows.Forms.Padding(2);
@@ -311,6 +312,18 @@
             this.panelChooseQuery.Size = new System.Drawing.Size(329, 370);
             this.panelChooseQuery.TabIndex = 14;
             this.panelChooseQuery.TabStop = false;
+            // 
+            // addQueryBtn
+            // 
+            this.addQueryBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addQueryBtn.Location = new System.Drawing.Point(112, 320);
+            this.addQueryBtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.addQueryBtn.Name = "addQueryBtn";
+            this.addQueryBtn.Size = new System.Drawing.Size(111, 30);
+            this.addQueryBtn.TabIndex = 1;
+            this.addQueryBtn.Text = "הוסף";
+            this.addQueryBtn.UseVisualStyleBackColor = true;
+            this.addQueryBtn.Click += new System.EventHandler(this.addQueryBtn_Click);
             // 
             // panelAge
             // 
@@ -347,7 +360,6 @@
             0,
             0,
             0});
-            this.ageToNumeric.ValueChanged += new System.EventHandler(this.ageToNumeric_ValueChanged);
             // 
             // ageFromNumeric
             // 
@@ -450,7 +462,6 @@
             this.label11.Size = new System.Drawing.Size(95, 27);
             this.label11.TabIndex = 12;
             this.label11.Text = ":בחר רקע";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // religionCB
             // 
@@ -655,18 +666,6 @@
             this.externalContactCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.externalContactCB.Size = new System.Drawing.Size(109, 30);
             this.externalContactCB.TabIndex = 11;
-            // 
-            // addQueryBtn
-            // 
-            this.addQueryBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQueryBtn.Location = new System.Drawing.Point(112, 320);
-            this.addQueryBtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.addQueryBtn.Name = "addQueryBtn";
-            this.addQueryBtn.Size = new System.Drawing.Size(111, 30);
-            this.addQueryBtn.TabIndex = 1;
-            this.addQueryBtn.Text = "הוסף";
-            this.addQueryBtn.UseVisualStyleBackColor = true;
-            this.addQueryBtn.Click += new System.EventHandler(this.addQueryBtn_Click);
             // 
             // panelDate
             // 
@@ -912,26 +911,24 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1303, 643);
+            this.ClientSize = new System.Drawing.Size(1175, 626);
             this.Controls.Add(this.queryBox);
             this.Controls.Add(this.panelGraph);
             this.Controls.Add(this.createListFromQuery);
             this.Controls.Add(this.panelChooseQuery);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.panelResults);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "QueryGenerator";
             this.Text = "הפקת דוחות החוט המשולש";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.QueryGenerator_Load);
             this.panelResults.ResumeLayout(false);
             this.panelResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).EndInit();
             this.panelGraph.ResumeLayout(false);
             this.panelGraph.PerformLayout();
             this.queryBox.ResumeLayout(false);
+            this.queryBox.PerformLayout();
             this.panelChooseQuery.ResumeLayout(false);
             this.panelChooseQuery.PerformLayout();
             this.panelAge.ResumeLayout(false);
@@ -959,7 +956,6 @@
             this.panelQuery.ResumeLayout(false);
             this.panelQuery.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

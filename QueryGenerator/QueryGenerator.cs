@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace QueryGenerator
 {
+    /// <summary>
+    /// Query Generator Form
+    /// </summary>
     public partial class QueryGenerator : Form
     {
         private List<Person> listOPepoles;
@@ -24,18 +27,18 @@ namespace QueryGenerator
         private IEnumerable<Person> listAfterQuery;
 
         //==================Queries Variables=========================
-        private String genderValue = null;
+        private string genderValue = null;
 
         private int fromAge = 0, toAge = 0;
-        private String city = null;
-        private String drug = null;
+        private string city = null;
+        private string drug = null;
         private bool FindAppearance;
         private DateTime appStartDate, appEndDate;
-        private String alcohol = null;
-        private String religion = null;
-        private String occupation = null;
-        private String criminalRecord = null;
-        private String externalContact = null;
+        private string alcohol = null;
+        private string religion = null;
+        private string occupation = null;
+        private string criminalRecord = null;
+        private string externalContact = null;
 
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
             , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion, HashSet<string> hashSetlistOfCriminalrecord)
@@ -43,30 +46,33 @@ namespace QueryGenerator
             InitializeComponent();
             try
             {
-                panelResults.Width = (int)(this.Width * 0.65);
-                panelResults.Height = (int)(this.Height * 0.85 - panelGraph.Height);
+                Rectangle rect = Screen.FromHandle(this.Handle).WorkingArea;
+                rect.Location = new Point(0, 0);
+                this.MaximizedBounds = rect;
+                this.WindowState = FormWindowState.Maximized;
+                panelResults.Width = (int)(this.Width * 0.7);
+                panelResults.Height = (int)(this.Height - panelGraph.Height);
                 panelResults.Location = new Point((int)(this.Width * 0.02), 0);
-                dataListGrid.Height = (int)(this.panelResults.Height - label1.Height- (int)(this.Height * 0.02));
-                panelGraph.Location = new Point(panelResults.Width/2-panelGraph.Width/2, this.Height-panelGraph.Height-(int)(this.Height*0.1));
+                dataListGrid.Size = new Size(panelResults.Width - (int)(this.Width * 0.02), (int)(this.panelResults.Height - label1.Height - (int)(this.Height * 0.04)));
+                panelGraph.Location = new Point(panelResults.Width / 2 - panelGraph.Width / 2, this.Height - panelGraph.Height - (int)(this.Height * 0.02));
                 panelChooseQuery.Width = (int)(this.Width * 0.3);
-                panelChooseQuery.Height = (int)(label2.Height+panelQuery.Height+addQueryBtn.Height+ (int)(this.Height * 0.02));
+                panelChooseQuery.Height = (int)(label2.Height + panelQuery.Height + addQueryBtn.Height + (int)(this.Height * 0.02));
                 panelChooseQuery.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), 0);
                 panelChooseQuery.Paint += delegate (object o, PaintEventArgs p)
                 {
                     p.Graphics.Clear(Color.FromArgb(255, 192, 128));
                 };
 
-
-                queryBox.Width = (int)(this.Width * 0.28);
-                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.025), panelChooseQuery.Location.Y+panelChooseQuery.Height);
+                queryBox.Width = (int)(this.Width * 0.3);
+                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), panelChooseQuery.Location.Y + panelChooseQuery.Height);
                 queryBox.Height = (int)(this.Height * 0.3);
-                QueryListBox.Size = new Size(queryBox.Width-(int)(queryBox.Width*0.01), queryBox.Height - btnClear.Height);
+                QueryListBox.Size = new Size(queryBox.Width - (int)(queryBox.Width * 0.01), queryBox.Height - btnClear.Height);
                 QueryListBox.Location = new Point(0, 0);
                 remove.Location = new Point(QueryListBox.Width - remove.Width, QueryListBox.Height);
                 btnClear.Location = new Point(0, QueryListBox.Height);
                 label2.Location = new Point(queryBox.Width / 2 - label2.Width / 2, (int)(this.Height * 0.01));
-                addQueryBtn.Location = new Point(queryBox.Width / 2 - addQueryBtn.Width / 2, panelQuery.Height+label2.Height+(int)(this.Height * 0.01));
-                panelQuery.Location = new Point(panelChooseQuery.Width-panelQuery.Width, label2.Height);
+                addQueryBtn.Location = new Point(queryBox.Width / 2 - addQueryBtn.Width / 2, panelQuery.Height + label2.Height + (int)(this.Height * 0.01));
+                panelQuery.Location = new Point(panelChooseQuery.Width - panelQuery.Width, label2.Height);
                 createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -80,8 +86,8 @@ namespace QueryGenerator
             hashSetlistOfCriminalRecord = hashSetlistOfCriminalrecord;
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
-           
         }
+
         //==========================checked change=====================================
         //========================choose query=========================================
         private void cb_gender_CheckedChanged(object sender, EventArgs e)
@@ -115,7 +121,6 @@ namespace QueryGenerator
             {
                 panelAge.Visible = false;
             }
-
         }
         private void cb_alcohol_CheckedChanged(object sender, EventArgs e)
         {
@@ -148,7 +153,7 @@ namespace QueryGenerator
             {
                 panelDrug.Visible = false;
             }
-            
+
         }
 
         private void cb_religion_CheckedChanged(object sender, EventArgs e)
@@ -260,21 +265,21 @@ namespace QueryGenerator
             panelDate.Visible = false;
             panelDrug.Visible = false;
             panelReligion.Visible = false;
-            panelOccupation.Visible = false;          
+            panelOccupation.Visible = false;
             panelCriminalRecord.Visible = false;
             panelExternalContact.Visible = false;
 
-            panelCity.Location = new Point(0,label2.Height+(int)(this.Height * 0.06));
+            panelCity.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelDrug.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelExternalContact.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelOccupation.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelCriminalRecord.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelReligion.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelAge.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelAlcohol.Location= new Point(0, label2.Height + (int)(this.Height * 0.06));
+            panelAlcohol.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
             panelDate.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
 
-            panelCity.Size = new Size((int)(this.Height*0.2), (int)(this.Width * 0.3));
+            panelCity.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
             panelDrug.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
             panelExternalContact.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
             panelOccupation.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
@@ -284,7 +289,7 @@ namespace QueryGenerator
             panelAlcohol.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
             panelDate.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
 
-            externalContactCB.Size = new Size( (int)(panelAge.Width), (int)(this.Height * 0.5));
+            externalContactCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
             cityCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
             criminalRecordCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
             occupationCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
@@ -303,7 +308,7 @@ namespace QueryGenerator
             label4.Font = new Font("Arial", 12, FontStyle.Bold);
             label5.Font = new Font("Arial", 12, FontStyle.Bold);
 
-            label12.Size = new Size(panelCity.Width, panelCity.Height/2);
+            label12.Size = new Size(panelCity.Width, panelCity.Height / 2);
             label12.Location = new Point(panelCity.Width / 2 - label12.Width / 2, 0);
             label12.Font = new Font("Arial", 12, FontStyle.Bold);
 
@@ -332,9 +337,6 @@ namespace QueryGenerator
             label14.Font = new Font("Arial", 12, FontStyle.Bold);
         }
 
-        
-
-
         private void createListFromQuery_Click(object sender, EventArgs e)
         {
             if (genderValue != null)
@@ -358,21 +360,21 @@ namespace QueryGenerator
                                  orderby person.firstName ascending
                                  select person;
             }
-            if(drug!=null)
+            if (drug != null)
             {
                 listAfterQuery = from person in listAfterQuery
                                  where person.UseDrug == drug
                                  orderby person.firstName ascending
                                  select person;
             }
-            if(alcohol!=null)
+            if (alcohol != null)
             {
                 listAfterQuery = from person in listAfterQuery
                                  where person.UseAlcohol == alcohol
                                  orderby person.firstName ascending
                                  select person;
             }
-            if(religion!=null)
+            if (religion != null)
             {
                 listAfterQuery = from person in listAfterQuery
                                  where person.Religion == religion
@@ -386,14 +388,14 @@ namespace QueryGenerator
                                  orderby person.firstName ascending
                                  select person;
             }
-            if(criminalRecord!=null)
+            if (criminalRecord != null)
             {
                 listAfterQuery = from person in listAfterQuery
                                  where person.CriminalRecord == criminalRecord
                                  orderby person.firstName ascending
                                  select person;
             }
-            if(externalContact!=null)
+            if (externalContact != null)
             {
                 listAfterQuery = from person in listAfterQuery
                                  where person.ExternalContact == externalContact
@@ -429,6 +431,8 @@ namespace QueryGenerator
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            //Clear Query
+            listAfterQuery = mainQuery;
             //ClearGenderPanel
             genderValue = null;
             if (Radio_men.Checked)
@@ -483,7 +487,12 @@ namespace QueryGenerator
                 externalContactCB.SelectedIndex = 0;
                 externalContact = null;
             }
-
+            //clear Apperance
+            dateStart.Refresh();
+            dateEnd.Refresh();
+            appStartDate = dateStart.Value.Date;
+            appEndDate = dateEnd.Value.Date;
+            FindAppearance = false;
             //ClearQueryPanel
             listAfterQuery = mainQuery;
             QueryListBox.Items.Clear();
@@ -493,17 +502,77 @@ namespace QueryGenerator
             disableVisabilityPanels();
             unCheckAllCB();
         }
-
-
         private void removeBtn_Click(object sender, EventArgs e)
         {
             if (QueryListBox.SelectedIndex >= 0)
             {
+                listAfterQuery = mainQuery;
+                string queryToRemove = QueryListBox.SelectedItem.ToString();
+                if(queryToRemove.Contains("מין"))
+                {
+                    genderValue = null;
+                    if (Radio_men.Checked)
+                        Radio_men.Checked = !Radio_men.Checked;
+                    if (Radio_woman.Checked)
+                        Radio_woman.Checked = !Radio_woman.Checked;
+                    if (Radio_unknowGender.Checked)
+                        Radio_unknowGender.Checked = !Radio_unknowGender.Checked;
+
+                }
+                else if (queryToRemove.Contains("גיל"))
+                {
+                    fromAge = 15;
+                    ageFromNumeric.Value = 15;
+                    toAge = 24;
+                    ageToNumeric.Value = 24;
+                }
+                else if (queryToRemove.Contains("אלכוהול"))
+                {
+                    AlcoholCB.SelectedIndex = 0;
+                    alcohol = null;
+                }
+                else if (queryToRemove.Contains("סמים"))
+                {
+                    drugsCB.SelectedIndex = 0;
+                    drug = null;
+                }
+                else if (queryToRemove.Contains("רקע"))
+                {
+                    religionCB.SelectedIndex = 0;
+                    religion = null;
+                }
+                else if (queryToRemove.Contains("עיסוק"))
+                {
+                    occupationCB.SelectedIndex = 0;
+                    occupation = null;
+                }
+                else if (queryToRemove.Contains("רישום"))
+                {
+                    criminalRecordCB.SelectedIndex = 0;
+                    criminalRecord = null;
+                }
+                else if (queryToRemove.Contains("נוכחות"))
+                {
+                    dateStart.Refresh();
+                    dateEnd.Refresh();
+                    appStartDate = dateStart.Value.Date;
+                    appEndDate = dateEnd.Value.Date;
+                    FindAppearance = false;
+                }
+                else if (queryToRemove.Contains("עיר"))
+                {
+                    cityCB.SelectedIndex = 0;
+                    city = null;
+                }
+                else if (queryToRemove.Contains("נוסף"))
+                {
+                    externalContactCB.SelectedIndex = 0;
+                    externalContact = null;
+                }
+                MessageBox.Show(queryToRemove);
                 QueryListBox.Items.RemoveAt(QueryListBox.SelectedIndex);
             }
         }
-
-
 
         private void appearanceCB_CheckedChanged(object sender, EventArgs e)
         {
@@ -541,18 +610,17 @@ namespace QueryGenerator
                 cb_criminalRecord.Checked = false;
             if (cb != cb_externalContact)
                 cb_externalContact.Checked = false;
-
-
         }
 
         private void generateChart_Click(object sender, EventArgs e)
         {
-            String query = chartList.SelectedItem.ToString();
-            String graphType = cb_chartType.SelectedItem.ToString();
-            String[] titles = new String[0];
-            String[] genderArray = { "זכר", "נקבה", "אחר" };
-            String[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
-            switch (query){
+            string query = chartList.SelectedItem.ToString();
+            string graphType = cb_chartType.SelectedItem.ToString();
+            string[] titles = new string[0];
+            string[] genderArray = { "זכר", "נקבה", "אחר" };
+            string[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
+            switch (query)
+            {
                 case "מין":
                     titles = genderArray;
                     break;
@@ -573,9 +641,9 @@ namespace QueryGenerator
                     break;
             }
             int[] counter = new int[titles.Length];
-            foreach(var person in listAfterQuery)
+            foreach (var person in listAfterQuery)
             {
-                for(int i=0;i<titles.Length;i++)
+                for (int i = 0; i < titles.Length; i++)
                 {
                     if (query == "מין")
                     {
@@ -604,23 +672,8 @@ namespace QueryGenerator
                             counter[i]++;
                 }
             }
-            QueryGraph g = new QueryGraph(titles,counter,graphType);
+            QueryGraph g = new QueryGraph(titles, counter, graphType);
             g.Visible = true;
-        }
-
-        private void QueryGenerator_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ageToNumeric_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void addQueryBtn_Click(object sender, EventArgs e)
@@ -649,9 +702,8 @@ namespace QueryGenerator
                 toAge = (int)ageToNumeric.Value;
                 QueryListBox.Items.Add("טווח גילאים: " + fromAge + " - " + toAge);
             }
-            if (panelCity.Visible && cityCB.SelectedItem!=null)
+            if (panelCity.Visible && cityCB.SelectedItem != null)
             {
-              
                 city = cityCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("לפי עיר: " + city);
             }
@@ -660,7 +712,7 @@ namespace QueryGenerator
                 alcohol = AlcoholCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("שימוש באלכוהול: " + alcohol);
             }
-            if(panelDrug.Visible && drugsCB.SelectedItem != null)
+            if (panelDrug.Visible && drugsCB.SelectedItem != null)
             {
                 drug = drugsCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("שימוש בסמים: " + drug);

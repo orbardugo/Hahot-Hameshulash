@@ -61,7 +61,6 @@
             this.Text = "QueryGraph";
             ((System.ComponentModel.ISupportInitialize)(this.testChart)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

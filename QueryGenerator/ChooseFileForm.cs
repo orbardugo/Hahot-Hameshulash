@@ -17,14 +17,13 @@ namespace QueryGenerator
         private const string SHEET_NAME = "עדכון נתונים";
         private Boolean isSucceded;
         private List<Person> listOfPersons;
-        private const string UNKNOWN = "-1";
+        private const string UNKNOWN = "0";
 
         public ChooseFileForm()
         {
             InitializeComponent();
             listOfPersons = new List<Person>();
         }
-
 
         private void chooseFileBtn_Click(object sender, EventArgs e)
         {
@@ -57,16 +56,16 @@ namespace QueryGenerator
             List<Row> dataBase2 = excelFile.WorksheetRange("IV1", "ZZ100000", SHEET_NAME).ToList();
             //List<Row> mainData = new List<Row>(700);
             //CombineRows(dataBase1, dataBase2, mainData);
-            
+
             // var dataBase = from name in excelFile.Worksheet(SHEET_NAME) select name;
-            HashSet< string > listOfCities = new HashSet<string>();
+            HashSet<string> listOfCities = new HashSet<string>();
             HashSet<string> listOfCurrentOccupation = new HashSet<string>();
             HashSet<string> listOfExternalContact = new HashSet<string>();
             HashSet<string> listOfUseAlcohol = new HashSet<string>();
             HashSet<string> listOfuseDrug = new HashSet<string>();
             HashSet<string> listOfReligion = new HashSet<string>();
-            HashSet<string> listOfCriminalRecord = new HashSet<string>();             
-        
+            HashSet<string> listOfCriminalRecord = new HashSet<string>();
+
             foreach (var a in dataBase1)
             {
                 string year = a["שנת לידה"];
@@ -102,25 +101,20 @@ namespace QueryGenerator
             int i = 0;
             foreach (var a in dataBase2)
             {
-                getAttendance(a,listOfPersons[i].Presence,8,12);
+                getAttendance(a, listOfPersons[i].Presence, 8, 12);
                 i++;
             }
-           
-            QueryGenerator f2 = new QueryGenerator(listOfPersons,listOfCities, listOfCurrentOccupation, listOfExternalContact,
-                listOfUseAlcohol,listOfuseDrug, listOfReligion, listOfCriminalRecord);
+
+            QueryGenerator f2 = new QueryGenerator(listOfPersons, listOfCities, listOfCurrentOccupation, listOfExternalContact,
+                listOfUseAlcohol, listOfuseDrug, listOfReligion, listOfCriminalRecord);
             f2.Show();
             this.Hide();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void getAttendance(Row a, Dictionary<DateTime, bool> attendance, int startMonth = 1, int endMonth = 8)
         {
-
-        }
-        private void getAttendance(Row a, Dictionary<DateTime, bool> attendance, int startMonth=1, int endMonth =8)
-        {
-            String month = "ינו-";
+            string month = "ינו-";
             int daysOfMonth = 31;
-            Boolean leafYear = false;
             for (int i = startMonth; i <= endMonth; i++)
             {
                 switch (i)
@@ -132,9 +126,8 @@ namespace QueryGenerator
                     case 2:
                         daysOfMonth = 28;
                         if ((DateTime.Today.Year % 4 == 0 && DateTime.Today.Year % 100 != 0) || DateTime.Today.Year % 400 == 0)
-                        {
+                        { // leaf year
                             daysOfMonth++;
-                            leafYear = true;
                         }
                         month = "פבר-";
                         break;
@@ -183,9 +176,9 @@ namespace QueryGenerator
                 {
                     string s_date;
                     DateTime D_date;
-                   // if (i == 2 && j == 28 && !leafYear)
-                     //   continue; we're assuming the excel file is correct
-                    if (startMonth == 8 && i == 8 && j==1)
+
+                    //we're assuming the excel file is correct
+                    if (startMonth == 8 && i == 8 && j == 1)
                         j = 2; // reading dataBase2 from Aug 02
                     D_date = new DateTime(DateTime.Today.Year, i, j);
                     if (j < 10)
@@ -209,6 +202,5 @@ namespace QueryGenerator
                 }
             }
         }
-
     }
 }
