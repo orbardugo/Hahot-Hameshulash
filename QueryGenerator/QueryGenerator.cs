@@ -317,12 +317,16 @@ namespace QueryGenerator
             dt.Columns.Add("גיל", typeof(int));
             dt.Columns.Add("מין", typeof(string));
             dt.Columns.Add("עיר", typeof(string));
+            dt.Columns.Add("שימוש באלכוהול", typeof(string));
+            dt.Columns.Add("שימוש בסמים", typeof(string));
+            dt.Columns.Add("רקע", typeof(string));
+            dt.Columns.Add("קשר עם גורם נוסף", typeof(string));
             int sum = 0;
 
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
-                dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender, p.city);
+                dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender, p.city , p.UseAlcohol, p.UseDrug,p.Religion,p.ExternalContact);
                 sum++;
             }
             dataListGrid.DataSource = dt;
@@ -473,6 +477,11 @@ namespace QueryGenerator
         }
         private void generateChart_Click(object sender, EventArgs e)
         {
+            if (chartList.SelectedItem == null || cb_chartType.SelectedItem==null)
+            {
+                MessageBox.Show("יש לבחור שאילתה וסוג גרף");
+                return;
+            }
             string query = chartList.SelectedItem.ToString();
             string graphType = cb_chartType.SelectedItem.ToString();
             string[] titles = new string[0];
@@ -620,28 +629,6 @@ namespace QueryGenerator
                     box.Checked = false;
                 }
             }
-            /*
-            if (cb != cb_alcohol)
-                cb_alcohol.Checked = false;
-            if (cb != cb_attendance)
-                cb_attendance.Checked = false;
-            if (cb != cb_city)
-                cb_city.Checked = false;
-            if (cb != cb_gender)
-                cb_gender.Checked = false;
-            if (cb != cb_age)
-                cb_age.Checked = false;
-            if (cb != cb_useDrug)
-                cb_useDrug.Checked = false;
-            if (cb != cb_religion)
-                cb_religion.Checked = false;
-            if (cb != cb_occupation)
-                cb_occupation.Checked = false;
-            if (cb != cb_criminalRecord)
-                cb_criminalRecord.Checked = false;
-            if (cb != cb_externalContact)
-                cb_externalContact.Checked = false;
-                */
         }
         private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
@@ -662,7 +649,6 @@ namespace QueryGenerator
                 box.Location = new Point(panelExternalContact.Width / 2 - externalContactCB.Width / 2, label12.Height);
                 box.Font = new Font("Arial", 9, FontStyle.Regular);
             }
-
 
             label4.Font = new Font("Arial", 12, FontStyle.Bold);
             label5.Font = new Font("Arial", 12, FontStyle.Bold);
