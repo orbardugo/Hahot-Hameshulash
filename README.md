@@ -58,7 +58,7 @@ libs for XLSX reading and converting into the database.
     4. Form.cs represents the main form that contain a list of all queries available
     5. Report.cs represents the output of the queries on the main table of youthfuls 
 - Class Diagrams:
-![](http://i65.tinypic.com/2qvbdx0.png)
+![](http://i64.tinypic.com/16gjt04.jpg)
 - How to Compile: 
     1. clone & pull the latest version of the "Hahut-Hameshulash" project in to your eclipse.
     2. compile the entire project (all libraries needed are in External file) and run w\o errors.
