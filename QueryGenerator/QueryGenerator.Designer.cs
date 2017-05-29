@@ -86,7 +86,7 @@
             this.cb_occupation = new System.Windows.Forms.CheckBox();
             this.cb_religion = new System.Windows.Forms.CheckBox();
             this.cb_useDrug = new System.Windows.Forms.CheckBox();
-            this.cb_drug = new System.Windows.Forms.CheckBox();
+            this.cb_attendance = new System.Windows.Forms.CheckBox();
             this.cb_alcohol = new System.Windows.Forms.CheckBox();
             this.cb_city = new System.Windows.Forms.CheckBox();
             this.cb_age = new System.Windows.Forms.CheckBox();
@@ -734,12 +734,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 14);
+            this.label10.Font = new System.Drawing.Font("Arial", 12, System.Drawing.FontStyle.Bold);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label10.Size = new System.Drawing.Size(154, 27);
             this.label10.TabIndex = 12;
             this.label10.Text = ":בחר סוג שימוש ";
             // 
@@ -759,7 +757,7 @@
             this.panelQuery.Controls.Add(this.cb_occupation);
             this.panelQuery.Controls.Add(this.cb_religion);
             this.panelQuery.Controls.Add(this.cb_useDrug);
-            this.panelQuery.Controls.Add(this.cb_drug);
+            this.panelQuery.Controls.Add(this.cb_attendance);
             this.panelQuery.Controls.Add(this.cb_alcohol);
             this.panelQuery.Controls.Add(this.cb_city);
             this.panelQuery.Controls.Add(this.cb_age);
@@ -837,19 +835,19 @@
             this.cb_useDrug.UseVisualStyleBackColor = true;
             this.cb_useDrug.CheckedChanged += new System.EventHandler(this.cb_useDrug_CheckedChanged);
             // 
-            // cb_drug
+            // cb_attendance
             // 
-            this.cb_drug.AutoSize = true;
-            this.cb_drug.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_drug.Location = new System.Drawing.Point(69, 122);
-            this.cb_drug.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cb_drug.Name = "cb_drug";
-            this.cb_drug.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cb_drug.Size = new System.Drawing.Size(72, 26);
-            this.cb_drug.TabIndex = 4;
-            this.cb_drug.Text = "נוכחות";
-            this.cb_drug.UseVisualStyleBackColor = true;
-            this.cb_drug.CheckedChanged += new System.EventHandler(this.appearanceCB_CheckedChanged);
+            this.cb_attendance.AutoSize = true;
+            this.cb_attendance.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_attendance.Location = new System.Drawing.Point(69, 122);
+            this.cb_attendance.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cb_attendance.Name = "cb_attendance";
+            this.cb_attendance.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cb_attendance.Size = new System.Drawing.Size(72, 26);
+            this.cb_attendance.TabIndex = 4;
+            this.cb_attendance.Text = "נוכחות";
+            this.cb_attendance.UseVisualStyleBackColor = true;
+            this.cb_attendance.CheckedChanged += new System.EventHandler(this.cb_appearance_CheckedChanged);
             // 
             // cb_alcohol
             // 
@@ -1019,7 +1017,7 @@
         private System.Windows.Forms.CheckBox cb_occupation;
         private System.Windows.Forms.CheckBox cb_religion;
         private System.Windows.Forms.CheckBox cb_useDrug;
-        private System.Windows.Forms.CheckBox cb_drug;
+        private System.Windows.Forms.CheckBox cb_attendance;
         private System.Windows.Forms.CheckBox cb_alcohol;
         private System.Windows.Forms.CheckBox cb_city;
         private System.Windows.Forms.CheckBox cb_age;

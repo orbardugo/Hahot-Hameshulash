@@ -15,6 +15,7 @@ namespace QueryGenerator
     /// </summary>
     public partial class QueryGenerator : Form
     {
+        #region Private Lists
         private List<Person> listOPepoles;
         private HashSet<string> hashSetOfCities;
         private HashSet<string> hashSetCurrentOccupation;
@@ -25,10 +26,13 @@ namespace QueryGenerator
         private HashSet<string> hashSetlistOfCriminalRecord;
         private IEnumerable<Person> mainQuery;
         private IEnumerable<Person> listAfterQuery;
+        private List<Panel> allPanels;
+        private List<CheckBox> allCheckBoxes;
+        private List<ComboBox> allComboBoxes;
+        #endregion
 
-        //==================Queries Variables=========================
+        #region Private Query Parameters
         private string genderValue = null;
-
         private int fromAge = 0, toAge = 0;
         private string city = null;
         private string drug = null;
@@ -39,43 +43,19 @@ namespace QueryGenerator
         private string occupation = null;
         private string criminalRecord = null;
         private string externalContact = null;
-
+        #endregion
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
             , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion, HashSet<string> hashSetlistOfCriminalrecord)
         {
             InitializeComponent();
             try
             {
-                Rectangle rect = Screen.FromHandle(this.Handle).WorkingArea;
-                rect.Location = new Point(0, 0);
-                this.MaximizedBounds = rect;
-                this.WindowState = FormWindowState.Maximized;
-                panelResults.Width = (int)(this.Width * 0.7);
-                panelResults.Height = (int)(this.Height - panelGraph.Height);
-                panelResults.Location = new Point((int)(this.Width * 0.02), 0);
-                dataListGrid.Size = new Size(panelResults.Width - (int)(this.Width * 0.02), (int)(this.panelResults.Height - label1.Height - (int)(this.Height * 0.04)));
-                panelGraph.Location = new Point(panelResults.Width / 2 - panelGraph.Width / 2, this.Height - panelGraph.Height - (int)(this.Height * 0.02));
-                panelChooseQuery.Width = (int)(this.Width * 0.3);
-                panelChooseQuery.Height = (int)(label2.Height + panelQuery.Height + addQueryBtn.Height + (int)(this.Height * 0.02));
-                panelChooseQuery.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), 0);
-                panelChooseQuery.Paint += delegate (object o, PaintEventArgs p)
-                {
-                    p.Graphics.Clear(Color.FromArgb(255, 192, 128));
-                };
-
-                queryBox.Width = (int)(this.Width * 0.3);
-                queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), panelChooseQuery.Location.Y + panelChooseQuery.Height);
-                queryBox.Height = (int)(this.Height * 0.3);
-                QueryListBox.Size = new Size(queryBox.Width - (int)(queryBox.Width * 0.01), queryBox.Height - btnClear.Height);
-                QueryListBox.Location = new Point(0, 0);
-                remove.Location = new Point(QueryListBox.Width - remove.Width, QueryListBox.Height);
-                btnClear.Location = new Point(0, QueryListBox.Height);
-                label2.Location = new Point(queryBox.Width / 2 - label2.Width / 2, (int)(this.Height * 0.01));
-                addQueryBtn.Location = new Point(queryBox.Width / 2 - addQueryBtn.Width / 2, panelQuery.Height + label2.Height + (int)(this.Height * 0.01));
-                panelQuery.Location = new Point(panelChooseQuery.Width - panelQuery.Width, label2.Height);
-                createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
+                SetFormSize();
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
             hashSetCurrentOccupation = hashSetCurrentoccupation;
@@ -86,10 +66,15 @@ namespace QueryGenerator
             hashSetlistOfCriminalRecord = hashSetlistOfCriminalrecord;
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
+            allPanels = new List<Panel>() {
+                panelAge,panelGender, panelAlcohol, panelCity, panelCriminalRecord, panelDate, panelDrug, panelExternalContact, panelReligion,panelOccupation};
+            allCheckBoxes = new List<CheckBox>(){
+                cb_age, cb_gender,cb_alcohol,cb_city,cb_criminalRecord,cb_attendance, cb_useDrug, cb_externalContact,cb_religion,cb_occupation};
+            allComboBoxes = new List<ComboBox>(){
+                externalContactCB, cityCB, criminalRecordCB, occupationCB, religionCB, drugsCB, AlcoholCB};
         }
 
-        //==========================checked change=====================================
-        //========================choose query=========================================
+        #region CheckBox CheckedChanged functionality
         private void cb_gender_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_gender.Checked)
@@ -99,14 +84,12 @@ namespace QueryGenerator
                 cb_gender.Checked = true;
                 disableVisabilityPanels();
                 panelGender.Visible = true;
-
             }
             else
             {
                 panelGender.Visible = false;
             }
         }
-
         private void cb_age_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_age.Checked)
@@ -155,7 +138,6 @@ namespace QueryGenerator
             }
 
         }
-
         private void cb_religion_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_religion.Checked)
@@ -173,7 +155,6 @@ namespace QueryGenerator
             }
 
         }
-
         private void cb_occupation_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_occupation.Checked)
@@ -191,7 +172,6 @@ namespace QueryGenerator
             }
 
         }
-
         private void cb_criminalRecord_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_criminalRecord.Checked)
@@ -208,7 +188,6 @@ namespace QueryGenerator
                 panelCriminalRecord.Visible = false;
             }
         }
-
         private void cb_city_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_city.Checked)
@@ -225,7 +204,6 @@ namespace QueryGenerator
                 panelCity.Visible = false;
             }
         }
-
         private void cb_externalContact_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_externalContact.Checked)
@@ -242,101 +220,22 @@ namespace QueryGenerator
                 panelExternalContact.Visible = false;
             }
         }
-
-        private void unCheckAllCB()
+        private void cb_appearance_CheckedChanged(object sender, EventArgs e)
         {
-            cb_externalContact.Checked = false;
-            cb_city.Checked = false;
-            cb_criminalRecord.Checked = false;
-            cb_occupation.Checked = false;
-            cb_religion.Checked = false;
-            cb_useDrug.Checked = false;
-            cb_drug.Checked = false;
-            cb_alcohol.Checked = false;
-            cb_age.Checked = false;
-            cb_gender.Checked = false;
+            if (cb_attendance.Checked)
+            {
+                unCheckedAllBut(cb_attendance);
+                disableVisabilityPanels();
+                panelDate.Visible = true;
+            }
+            else
+            {
+                panelDate.Visible = false;
+            }
         }
-        private void disableVisabilityPanels()
-        {
-            panelCity.Visible = false;
-            panelGender.Visible = false;
-            panelAge.Visible = false;
-            panelAlcohol.Visible = false;
-            panelDate.Visible = false;
-            panelDrug.Visible = false;
-            panelReligion.Visible = false;
-            panelOccupation.Visible = false;
-            panelCriminalRecord.Visible = false;
-            panelExternalContact.Visible = false;
+        #endregion
 
-            panelCity.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelDrug.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelExternalContact.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelOccupation.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelCriminalRecord.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelReligion.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelAge.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelAlcohol.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-            panelDate.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
-
-            panelCity.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelDrug.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelExternalContact.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelOccupation.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelCriminalRecord.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelReligion.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelAge.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelAlcohol.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-            panelDate.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
-
-            externalContactCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            cityCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            criminalRecordCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            occupationCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            religionCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            drugsCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-            AlcoholCB.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
-
-            externalContactCB.Location = new Point(panelExternalContact.Width / 2 - externalContactCB.Width / 2, label12.Height);
-            cityCB.Location = new Point(panelCity.Width / 2 - cityCB.Width / 2, label12.Height);
-            criminalRecordCB.Location = new Point(panelCity.Width / 2 - criminalRecordCB.Width / 2, label12.Height);
-            occupationCB.Location = new Point(panelCity.Width / 2 - occupationCB.Width / 2, label12.Height);
-            religionCB.Location = new Point(panelCity.Width / 2 - religionCB.Width / 2, label12.Height);
-            drugsCB.Location = new Point(panelCity.Width / 2 - drugsCB.Width / 2, label12.Height);
-            AlcoholCB.Location = new Point(panelCity.Width / 2 - AlcoholCB.Width / 2, label12.Height);
-
-            label4.Font = new Font("Arial", 12, FontStyle.Bold);
-            label5.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label12.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label12.Location = new Point(panelCity.Width / 2 - label12.Width / 2, 0);
-            label12.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label7.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label7.Location = new Point(panelCity.Width / 2 - label7.Width / 2, 0);
-            label7.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label13.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label13.Location = new Point(panelCity.Width / 2 - label13.Width / 2, 0);
-            label13.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label10.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label10.Location = new Point(panelCity.Width / 2 - label10.Width / 2, 0);
-            label10.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label6.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label6.Location = new Point(panelCity.Width / 2 - label6.Width / 2, 0);
-            label6.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label11.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label11.Location = new Point(panelCity.Width / 2 - label11.Width / 2, 0);
-            label11.Font = new Font("Arial", 12, FontStyle.Bold);
-
-            label14.Size = new Size(panelCity.Width, panelCity.Height / 2);
-            label14.Location = new Point(panelCity.Width / 2 - label14.Width / 2, 0);
-            label14.Font = new Font("Arial", 12, FontStyle.Bold);
-        }
-
+        #region Buttons Click functionality
         private void createListFromQuery_Click(object sender, EventArgs e)
         {
             if (genderValue != null)
@@ -428,7 +327,6 @@ namespace QueryGenerator
             }
             dataListGrid.DataSource = dt;
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             //Clear Query
@@ -500,7 +398,7 @@ namespace QueryGenerator
             dataListGrid.DataSource = null;
 
             disableVisabilityPanels();
-            unCheckAllCB();
+            unCheckedAllBut(null);
         }
         private void removeBtn_Click(object sender, EventArgs e)
         {
@@ -573,45 +471,6 @@ namespace QueryGenerator
                 QueryListBox.Items.RemoveAt(QueryListBox.SelectedIndex);
             }
         }
-
-        private void appearanceCB_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cb_drug.Checked)
-            {
-                unCheckedAllBut(cb_drug);
-                disableVisabilityPanels();
-                panelDate.Visible = true;
-            }
-            else
-            {
-                panelDate.Visible = false;
-            }
-        }
-
-        private void unCheckedAllBut(CheckBox cb)
-        {
-            if (cb != cb_alcohol)
-                cb_alcohol.Checked = false;
-            if (cb != cb_drug)
-                cb_drug.Checked = false;
-            if (cb != cb_city)
-                cb_city.Checked = false;
-            if (cb != cb_gender)
-                cb_gender.Checked = false;
-            if (cb != cb_age)
-                cb_age.Checked = false;
-            if (cb != cb_useDrug)
-                cb_useDrug.Checked = false;
-            if (cb != cb_religion)
-                cb_religion.Checked = false;
-            if (cb != cb_occupation)
-                cb_occupation.Checked = false;
-            if (cb != cb_criminalRecord)
-                cb_criminalRecord.Checked = false;
-            if (cb != cb_externalContact)
-                cb_externalContact.Checked = false;
-        }
-
         private void generateChart_Click(object sender, EventArgs e)
         {
             string query = chartList.SelectedItem.ToString();
@@ -675,7 +534,6 @@ namespace QueryGenerator
             QueryGraph g = new QueryGraph(titles, counter, graphType);
             g.Visible = true;
         }
-
         private void addQueryBtn_Click(object sender, EventArgs e)
         {
             if (panelGender.Visible)
@@ -745,11 +603,130 @@ namespace QueryGenerator
                 QueryListBox.Items.Add(string.Format("From: {0} To: {1}", appStartDate.ToString("d"), appEndDate.ToString("d")));
             }
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Un Check all Check Box other than cb
+        /// To UnCheck all cb = null
+        /// </summary>
+        /// <param name="cb"></param>
+        private void unCheckedAllBut(CheckBox cb)
+        {
+            foreach (CheckBox box in allCheckBoxes)
+            {
+                if(box!= cb)
+                {
+                    box.Checked = false;
+                }
+            }
+            /*
+            if (cb != cb_alcohol)
+                cb_alcohol.Checked = false;
+            if (cb != cb_attendance)
+                cb_attendance.Checked = false;
+            if (cb != cb_city)
+                cb_city.Checked = false;
+            if (cb != cb_gender)
+                cb_gender.Checked = false;
+            if (cb != cb_age)
+                cb_age.Checked = false;
+            if (cb != cb_useDrug)
+                cb_useDrug.Checked = false;
+            if (cb != cb_religion)
+                cb_religion.Checked = false;
+            if (cb != cb_occupation)
+                cb_occupation.Checked = false;
+            if (cb != cb_criminalRecord)
+                cb_criminalRecord.Checked = false;
+            if (cb != cb_externalContact)
+                cb_externalContact.Checked = false;
+                */
+        }
         private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
         }
+        private void disableVisabilityPanels()
+        {
+            foreach (Panel p in allPanels)
+            {
+                p.Visible = false;
+                p.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
+                p.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
+            }
+            foreach (ComboBox box in allComboBoxes)
+            {
+                box.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
+                box.Location = new Point(panelExternalContact.Width / 2 - externalContactCB.Width / 2, label12.Height);
+                box.Font = new Font("Arial", 9, FontStyle.Regular);
+            }
+
+
+            label4.Font = new Font("Arial", 12, FontStyle.Bold);
+            label5.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label12.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label12.Location = new Point(panelCity.Width / 2 - label12.Width / 2, 0);
+            label12.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label7.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label7.Location = new Point(panelCity.Width / 2 - label7.Width / 2, 0);
+            label7.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label13.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label13.Location = new Point(panelCity.Width / 2 - label13.Width / 2, 0);
+            label13.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label10.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label10.Location = new Point(panelCity.Width / 2 - label10.Width / 2, 0);
+            label10.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label6.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label6.Location = new Point(panelCity.Width / 2 - label6.Width / 2, 0);
+            label6.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label11.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label11.Location = new Point(panelCity.Width / 2 - label11.Width / 2, 0);
+            label11.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label14.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label14.Location = new Point(panelCity.Width / 2 - label14.Width / 2, 0);
+            label14.Font = new Font("Arial", 12, FontStyle.Bold);
+        }
+        private void SetFormSize()
+        {
+            Rectangle rect = Screen.FromHandle(this.Handle).WorkingArea;
+            rect.Location = new Point(0, 0);
+            this.MaximizedBounds = rect;
+            this.WindowState = FormWindowState.Maximized;
+            panelResults.Width = (int)(this.Width * 0.7);
+            panelResults.Height = (int)(this.Height - panelGraph.Height);
+            panelResults.Location = new Point((int)(this.Width * 0.02), 0);
+            dataListGrid.Size = new Size(panelResults.Width - (int)(this.Width * 0.02), (int)(this.panelResults.Height - label1.Height - (int)(this.Height * 0.04)));
+            panelGraph.Location = new Point(panelResults.Width / 2 - panelGraph.Width / 2, this.Height - panelGraph.Height - (int)(this.Height * 0.02));
+            panelChooseQuery.Width = (int)(this.Width * 0.3);
+            panelChooseQuery.Height = (int)(label2.Height + panelQuery.Height + addQueryBtn.Height + (int)(this.Height * 0.02));
+            panelChooseQuery.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), 0);
+            panelChooseQuery.Paint += delegate (object o, PaintEventArgs p)
+            {
+                p.Graphics.Clear(Color.FromArgb(255, 192, 128));
+            };
+
+            queryBox.Width = (int)(this.Width * 0.3);
+            queryBox.Location = new Point(panelResults.Width + (int)(this.Width * 0.02), panelChooseQuery.Location.Y + panelChooseQuery.Height);
+            queryBox.Height = (int)(this.Height * 0.3);
+            QueryListBox.Size = new Size(queryBox.Width - (int)(queryBox.Width * 0.01), queryBox.Height - btnClear.Height);
+            QueryListBox.Location = new Point(0, 0);
+            remove.Location = new Point(QueryListBox.Width - remove.Width, QueryListBox.Height);
+            btnClear.Location = new Point(0, QueryListBox.Height);
+            label2.Location = new Point(queryBox.Width / 2 - label2.Width / 2, (int)(this.Height * 0.01));
+            addQueryBtn.Location = new Point(queryBox.Width / 2 - addQueryBtn.Width / 2, panelQuery.Height + label2.Height + (int)(this.Height * 0.01));
+            panelQuery.Location = new Point(panelChooseQuery.Width - panelQuery.Width, label2.Height);
+            createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
+        }
+        #endregion
     }
 }
 
