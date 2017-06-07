@@ -63,9 +63,29 @@ namespace QueryGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Iconshow_Hardware_Printer {
+            get {
+                object obj = ResourceManager.GetObject("Iconshow-Hardware-Printer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOGO {
             get {
                 object obj = ResourceManager.GetObject("LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap printer_icon__icon_search_engine_1 {
+            get {
+                object obj = ResourceManager.GetObject("printer-icon--icon-search-engine-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

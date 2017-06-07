@@ -84,6 +84,7 @@
     <Compile Include="ChooseFileForm.Designer.cs">
       <DependentUpon>ChooseFileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClsPrint.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="QueryGenerator.cs">
       <SubType>Form</SubType>
@@ -147,6 +148,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-icon--icon-search-engine-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Iconshow-Hardware-Printer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

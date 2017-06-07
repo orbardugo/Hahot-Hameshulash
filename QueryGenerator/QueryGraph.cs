@@ -17,6 +17,7 @@ namespace QueryGenerator
                 testChart.Height = (int)(Console.WindowHeight * 0.9);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
+            this.WindowState = FormWindowState.Maximized;
 
             InitializeComponent();
             var x = new System.Windows.Forms.DataVisualization.Charting.SeriesChartType();
@@ -101,6 +102,18 @@ namespace QueryGenerator
                 fs.Close();
             }
            
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            printDocument1.Print();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bm = new Bitmap(this.testChart.Width, this.testChart.Height);
+            testChart.DrawToBitmap(bm, new Rectangle(0, 0, this.testChart.Width, this.testChart.Height));
+            e.Graphics.DrawImage(bm, 0, 0);
         }
     }
 }

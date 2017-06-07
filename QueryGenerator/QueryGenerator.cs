@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinqToExcel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -238,6 +239,13 @@ namespace QueryGenerator
         #region Buttons Click functionality
         private void createListFromQuery_Click(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("שם פרטי", typeof(string));
+            dt.Columns.Add("שם משפחה", typeof(string));
+            dt.Columns.Add("גיל", typeof(int));
+            dt.Columns.Add("מין", typeof(string));
+            dt.Columns.Add("עיר", typeof(string));
+            int numOfColumns = 0;
             if (genderValue != null)
             {
                 listAfterQuery = from person in listAfterQuery
@@ -265,6 +273,8 @@ namespace QueryGenerator
                                  where person.UseDrug == drug
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("שימוש בסמים", typeof(string));
+                numOfColumns++;
             }
             if (alcohol != null)
             {
@@ -272,6 +282,8 @@ namespace QueryGenerator
                                  where person.UseAlcohol == alcohol
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("שימוש באלכוהול", typeof(string));
+                numOfColumns++;
             }
             if (religion != null)
             {
@@ -279,6 +291,8 @@ namespace QueryGenerator
                                  where person.Religion == religion
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("רקע", typeof(string));
+                numOfColumns++;
             }
             if (occupation != null)
             {
@@ -286,6 +300,8 @@ namespace QueryGenerator
                                  where person.CurrentOccupation == occupation
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("עיסוק נוכחי", typeof(string));
+                numOfColumns++;
             }
             if (criminalRecord != null)
             {
@@ -293,6 +309,8 @@ namespace QueryGenerator
                                  where person.CriminalRecord == criminalRecord
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("רישום פלילי", typeof(string));
+                numOfColumns++;
             }
             if (externalContact != null)
             {
@@ -300,6 +318,8 @@ namespace QueryGenerator
                                  where person.ExternalContact == externalContact
                                  orderby person.firstName ascending
                                  select person;
+                dt.Columns.Add("קשר עם גורם נוסף", typeof(string));
+                numOfColumns++;
             }
             if (FindAppearance)
             {
@@ -311,23 +331,45 @@ namespace QueryGenerator
                                      select person;
                 }
             }
-            DataTable dt = new DataTable();
-            dt.Columns.Add("שם פרטי", typeof(string));
-            dt.Columns.Add("שם משפחה", typeof(string));
-            dt.Columns.Add("גיל", typeof(int));
-            dt.Columns.Add("מין", typeof(string));
-            dt.Columns.Add("עיר", typeof(string));
-            dt.Columns.Add("שימוש באלכוהול", typeof(string));
-            dt.Columns.Add("שימוש בסמים", typeof(string));
-            dt.Columns.Add("רקע", typeof(string));
-            dt.Columns.Add("קשר עם גורם נוסף", typeof(string));
-            int sum = 0;
 
+ 
+            int sum = 0;
+            int temp = numOfColumns;
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
-                dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender, p.city , p.UseAlcohol, p.UseDrug,p.Religion,p.ExternalContact);
+                numOfColumns = temp;
+                DataRow r = dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender,p.city);
+                if (externalContact != null)
+                {
+                    r.SetField(numOfColumns + 4, p.ExternalContact);
+                    numOfColumns--;
+                }
+                if (criminalRecord != null)
+                {
+                    r.SetField(numOfColumns + 4, p.CriminalRecord);
+                    numOfColumns--;
+                }
+                if (religion != null)
+                {
+                    r.SetField(numOfColumns + 4, p.Religion);
+                    numOfColumns--;
+                }
+                if (alcohol != null)
+                {
+                    r.SetField(numOfColumns + 4, p.UseAlcohol);
+                    numOfColumns--;
+                }
+                if (drug != null) {
+                    r.SetField(numOfColumns + 4, p.UseDrug);
+                    numOfColumns--;
+                }
+
+
+            
+            
                 sum++;
+
             }
             dataListGrid.DataSource = dt;
         }
@@ -635,6 +677,12 @@ namespace QueryGenerator
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
         }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString());
+            _ClsPrint.PrintForm();
+        }
+
         private void disableVisabilityPanels()
         {
             foreach (Panel p in allPanels)
