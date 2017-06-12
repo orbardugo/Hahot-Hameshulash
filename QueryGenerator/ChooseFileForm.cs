@@ -59,6 +59,11 @@ namespace QueryGenerator
             HashSet<string> listOfuseDrug = new HashSet<string>();
             HashSet<string> listOfReligion = new HashSet<string>();
             HashSet<string> listOfCriminalRecord = new HashSet<string>();
+            HashSet<string> listOfInstitutions = new HashSet<string>();
+            HashSet<string> listOfProstitutions = new HashSet<string>();
+            HashSet<string> listOfShelter = new HashSet<string>();
+
+
 
             foreach (var a in dataBase1)
             {
@@ -66,7 +71,7 @@ namespace QueryGenerator
                 string privateName = a["שם "];
                 string lastName = a["משפחה"];
                 string gender = a["מין"];
-                string city = a["עיר מוצא"];
+                string city = a["איזור מוצא"];
                 string meetDate = a["תאריך היכרות"];
                 string currentOccupation = a["עיסוק נוכחי"];
                 string externalContact = a["קשר עם גורם נוסף"];
@@ -74,13 +79,18 @@ namespace QueryGenerator
                 string useDrug = a["שימוש בסמים"];
                 string religion = a["רקע"];
                 string criminalRecord = a["רישום פלילי"];
+                string numofinstitutions = a["מס' מוסדות"];
+                string postitutionsequence = a["רצף זנות"];
+                string sheltersequence = a["רצף קורת גג"];
+
 
                 if (String.IsNullOrEmpty(year))
                 {
                     year = UNKNOWN;
                 }
                 Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate,
-                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, new Dictionary<DateTime, bool>());
+                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, numofinstitutions,
+                  postitutionsequence, sheltersequence,new Dictionary<DateTime, bool>());
                 listOfPersons.Add(p);
                 listOfCities.Add(city);
                 listOfCurrentOccupation.Add(currentOccupation);
@@ -89,13 +99,17 @@ namespace QueryGenerator
                 listOfuseDrug.Add(useDrug);
                 listOfReligion.Add(religion);
                 listOfCriminalRecord.Add(criminalRecord);
+                listOfInstitutions.Add(numofinstitutions);
+                listOfProstitutions.Add(postitutionsequence);
+                listOfShelter.Add(sheltersequence);
             }
 
             getAttendance(dataBase2, dataBase4, listOfPersons); // get Attendence until July (include)
             getAttendance(dataBase3, dataBase5, listOfPersons, 8); // get Attendence from Aug 
 
             QueryGenerator f2 = new QueryGenerator(listOfPersons, listOfCities, listOfCurrentOccupation, listOfExternalContact,
-                listOfUseAlcohol, listOfuseDrug, listOfReligion, listOfCriminalRecord);
+                listOfUseAlcohol, listOfuseDrug, listOfReligion, listOfCriminalRecord,
+                listOfInstitutions, listOfProstitutions, listOfShelter);
             f2.Show();
             this.Hide();
         }

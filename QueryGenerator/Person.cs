@@ -21,12 +21,18 @@ namespace QueryGenerator
         public string UseDrug { get; set; }
         public string Religion { get; set; }
         public string CriminalRecord { get; set; }
+        public string NumOfInstitutions { get; set; }
+        public string PostitutionSequence { get; set; }
+
+        public string ShelterSequence { get; set; }
+
         public Dictionary<DateTime, bool> Presence { get; set; }
 
 
     public Person(int yearofbirth, string firstname, string lastname, string gender, string city,
          string meetDate, string currentOccupation, string externalContact, string useAlcohol, string useDrug,
-         string religion, string criminalRecord, Dictionary<DateTime,bool> presence)
+         string religion, string criminalRecord,string numofinstitutions,string postitutionsequence,
+         string sheltersequence, Dictionary<DateTime,bool> presence)
         {
             yearOfBirth = yearofbirth;
             age = DateTime.Today.Year - yearofbirth;
@@ -43,6 +49,10 @@ namespace QueryGenerator
             Religion = religion;
             CriminalRecord = criminalRecord;
             Presence = presence;
+            NumOfInstitutions = numofinstitutions;
+            PostitutionSequence = postitutionsequence;
+            ShelterSequence = sheltersequence;
+
         }
     }
 }

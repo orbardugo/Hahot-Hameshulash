@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryGenerator));
             this.panelResults = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.dataListGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.createListFromQuery = new System.Windows.Forms.Button();
@@ -81,6 +83,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.drugsCB = new System.Windows.Forms.ComboBox();
             this.panelQuery = new System.Windows.Forms.Panel();
+            this.cb_postitution = new System.Windows.Forms.CheckBox();
             this.cb_externalContact = new System.Windows.Forms.CheckBox();
             this.cb_criminalRecord = new System.Windows.Forms.CheckBox();
             this.cb_occupation = new System.Windows.Forms.CheckBox();
@@ -92,7 +95,17 @@
             this.cb_age = new System.Windows.Forms.CheckBox();
             this.cb_gender = new System.Windows.Forms.CheckBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.panelpostitution = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.postitutionCB = new System.Windows.Forms.ComboBox();
+            this.cb_shelder = new System.Windows.Forms.CheckBox();
+            this.panelshelder = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.shelderCB = new System.Windows.Forms.ComboBox();
+            this.cb_institution = new System.Windows.Forms.CheckBox();
+            this.panelinstitution = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.institutionCB = new System.Windows.Forms.ComboBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelGraph.SuspendLayout();
@@ -111,25 +124,39 @@
             this.panelDate.SuspendLayout();
             this.panelDrug.SuspendLayout();
             this.panelQuery.SuspendLayout();
+            this.panelpostitution.SuspendLayout();
+            this.panelshelder.SuspendLayout();
+            this.panelinstitution.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelResults
             // 
             this.panelResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.panelResults.Controls.Add(this.btnPrint);
             this.panelResults.Controls.Add(this.dataListGrid);
+            this.panelResults.Controls.Add(this.btnPrint);
             this.panelResults.Controls.Add(this.label1);
             this.panelResults.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelResults.Location = new System.Drawing.Point(14, 12);
+            this.panelResults.Location = new System.Drawing.Point(18, 6);
             this.panelResults.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelResults.Name = "panelResults";
-            this.panelResults.Size = new System.Drawing.Size(733, 569);
+            this.panelResults.Size = new System.Drawing.Size(736, 571);
             this.panelResults.TabIndex = 0;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrint.Location = new System.Drawing.Point(3, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(52, 37);
+            this.btnPrint.TabIndex = 6;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // dataListGrid
             // 
             this.dataListGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListGrid.Location = new System.Drawing.Point(2, 46);
+            this.dataListGrid.Location = new System.Drawing.Point(3, 46);
             this.dataListGrid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataListGrid.Name = "dataListGrid";
             this.dataListGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -144,7 +171,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(114, 37);
+            this.label1.Size = new System.Drawing.Size(129, 37);
             this.label1.TabIndex = 5;
             this.label1.Text = ":תוצאות";
             // 
@@ -287,24 +314,27 @@
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(50, 15);
+            this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 9;
             this.label3.Text = ":שאילתה";
             // 
             // panelChooseQuery
             // 
-            this.panelChooseQuery.Controls.Add(this.addQueryBtn);
-            this.panelChooseQuery.Controls.Add(this.panelAge);
-            this.panelChooseQuery.Controls.Add(this.panelAlcohol);
-            this.panelChooseQuery.Controls.Add(this.panelReligion);
+            this.panelChooseQuery.Controls.Add(this.panelinstitution);
+            this.panelChooseQuery.Controls.Add(this.panelDrug);
             this.panelChooseQuery.Controls.Add(this.panelCriminalRecord);
             this.panelChooseQuery.Controls.Add(this.panelCity);
+            this.panelChooseQuery.Controls.Add(this.panelOccupation);
+            this.panelChooseQuery.Controls.Add(this.panelshelder);
+            this.panelChooseQuery.Controls.Add(this.addQueryBtn);
+            this.panelChooseQuery.Controls.Add(this.panelExternalContact);
+            this.panelChooseQuery.Controls.Add(this.panelReligion);
+            this.panelChooseQuery.Controls.Add(this.panelAge);
             this.panelChooseQuery.Controls.Add(this.label2);
             this.panelChooseQuery.Controls.Add(this.panelGender);
-            this.panelChooseQuery.Controls.Add(this.panelOccupation);
-            this.panelChooseQuery.Controls.Add(this.panelExternalContact);
+            this.panelChooseQuery.Controls.Add(this.panelAlcohol);
+            this.panelChooseQuery.Controls.Add(this.panelpostitution);
             this.panelChooseQuery.Controls.Add(this.panelDate);
-            this.panelChooseQuery.Controls.Add(this.panelDrug);
             this.panelChooseQuery.Controls.Add(this.panelQuery);
             this.panelChooseQuery.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelChooseQuery.Location = new System.Drawing.Point(751, 12);
@@ -319,7 +349,7 @@
             // addQueryBtn
             // 
             this.addQueryBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addQueryBtn.Location = new System.Drawing.Point(112, 320);
+            this.addQueryBtn.Location = new System.Drawing.Point(109, 336);
             this.addQueryBtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.addQueryBtn.Name = "addQueryBtn";
             this.addQueryBtn.Size = new System.Drawing.Size(111, 30);
@@ -334,7 +364,7 @@
             this.panelAge.Controls.Add(this.ageFromNumeric);
             this.panelAge.Controls.Add(this.label5);
             this.panelAge.Controls.Add(this.label4);
-            this.panelAge.Location = new System.Drawing.Point(9, 132);
+            this.panelAge.Location = new System.Drawing.Point(120, 149);
             this.panelAge.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelAge.Name = "panelAge";
             this.panelAge.Size = new System.Drawing.Size(130, 61);
@@ -414,7 +444,7 @@
             this.panelAlcohol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.panelAlcohol.Controls.Add(this.label7);
             this.panelAlcohol.Controls.Add(this.AlcoholCB);
-            this.panelAlcohol.Location = new System.Drawing.Point(9, 23);
+            this.panelAlcohol.Location = new System.Drawing.Point(133, 281);
             this.panelAlcohol.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelAlcohol.Name = "panelAlcohol";
             this.panelAlcohol.Size = new System.Drawing.Size(118, 74);
@@ -429,7 +459,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label7.Size = new System.Drawing.Size(44, 20);
+            this.label7.Size = new System.Drawing.Size(45, 20);
             this.label7.TabIndex = 11;
             this.label7.Text = ":בחר ";
             // 
@@ -447,7 +477,7 @@
             // 
             this.panelReligion.Controls.Add(this.label11);
             this.panelReligion.Controls.Add(this.religionCB);
-            this.panelReligion.Location = new System.Drawing.Point(64, 217);
+            this.panelReligion.Location = new System.Drawing.Point(5, 139);
             this.panelReligion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelReligion.Name = "panelReligion";
             this.panelReligion.Size = new System.Drawing.Size(118, 74);
@@ -462,7 +492,7 @@
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label11.Size = new System.Drawing.Size(73, 20);
+            this.label11.Size = new System.Drawing.Size(75, 20);
             this.label11.TabIndex = 12;
             this.label11.Text = ":בחר רקע";
             // 
@@ -480,7 +510,7 @@
             // 
             this.panelCriminalRecord.Controls.Add(this.label13);
             this.panelCriminalRecord.Controls.Add(this.criminalRecordCB);
-            this.panelCriminalRecord.Location = new System.Drawing.Point(26, 26);
+            this.panelCriminalRecord.Location = new System.Drawing.Point(152, 279);
             this.panelCriminalRecord.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelCriminalRecord.Name = "panelCriminalRecord";
             this.panelCriminalRecord.Size = new System.Drawing.Size(137, 74);
@@ -513,7 +543,7 @@
             // 
             this.panelCity.Controls.Add(this.label6);
             this.panelCity.Controls.Add(this.cityCB);
-            this.panelCity.Location = new System.Drawing.Point(148, 150);
+            this.panelCity.Location = new System.Drawing.Point(132, 10);
             this.panelCity.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelCity.Name = "panelCity";
             this.panelCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -529,7 +559,7 @@
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(68, 20);
+            this.label6.Size = new System.Drawing.Size(70, 20);
             this.label6.TabIndex = 10;
             this.label6.Text = ":בחר עיר";
             // 
@@ -550,7 +580,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(186, 37);
+            this.label2.Size = new System.Drawing.Size(217, 37);
             this.label2.TabIndex = 6;
             this.label2.Text = ":בחר שאילתות";
             // 
@@ -559,7 +589,7 @@
             this.panelGender.Controls.Add(this.Radio_unknowGender);
             this.panelGender.Controls.Add(this.Radio_woman);
             this.panelGender.Controls.Add(this.Radio_men);
-            this.panelGender.Location = new System.Drawing.Point(12, 63);
+            this.panelGender.Location = new System.Drawing.Point(4, 68);
             this.panelGender.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelGender.Name = "panelGender";
             this.panelGender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -573,7 +603,7 @@
             this.Radio_unknowGender.Location = new System.Drawing.Point(65, 55);
             this.Radio_unknowGender.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Radio_unknowGender.Name = "Radio_unknowGender";
-            this.Radio_unknowGender.Size = new System.Drawing.Size(59, 19);
+            this.Radio_unknowGender.Size = new System.Drawing.Size(64, 19);
             this.Radio_unknowGender.TabIndex = 2;
             this.Radio_unknowGender.TabStop = true;
             this.Radio_unknowGender.Text = "לא ידוע";
@@ -585,7 +615,7 @@
             this.Radio_woman.Location = new System.Drawing.Point(75, 30);
             this.Radio_woman.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Radio_woman.Name = "Radio_woman";
-            this.Radio_woman.Size = new System.Drawing.Size(49, 19);
+            this.Radio_woman.Size = new System.Drawing.Size(52, 19);
             this.Radio_woman.TabIndex = 1;
             this.Radio_woman.TabStop = true;
             this.Radio_woman.Text = "נקבה";
@@ -597,7 +627,7 @@
             this.Radio_men.Location = new System.Drawing.Point(83, 5);
             this.Radio_men.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Radio_men.Name = "Radio_men";
-            this.Radio_men.Size = new System.Drawing.Size(41, 19);
+            this.Radio_men.Size = new System.Drawing.Size(43, 19);
             this.Radio_men.TabIndex = 0;
             this.Radio_men.TabStop = true;
             this.Radio_men.Text = "זכר";
@@ -608,7 +638,7 @@
             this.panelOccupation.Controls.Add(this.occupationCB);
             this.panelOccupation.Controls.Add(this.label12);
             this.panelOccupation.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
-            this.panelOccupation.Location = new System.Drawing.Point(146, 297);
+            this.panelOccupation.Location = new System.Drawing.Point(7, 10);
             this.panelOccupation.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelOccupation.Name = "panelOccupation";
             this.panelOccupation.Size = new System.Drawing.Size(118, 74);
@@ -641,7 +671,7 @@
             // 
             this.panelExternalContact.Controls.Add(this.label14);
             this.panelExternalContact.Controls.Add(this.externalContactCB);
-            this.panelExternalContact.Location = new System.Drawing.Point(7, 287);
+            this.panelExternalContact.Location = new System.Drawing.Point(205, 6);
             this.panelExternalContact.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelExternalContact.Name = "panelExternalContact";
             this.panelExternalContact.Size = new System.Drawing.Size(118, 74);
@@ -652,11 +682,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(18, 14);
+            this.label14.Location = new System.Drawing.Point(33, 9);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label14.Size = new System.Drawing.Size(76, 20);
+            this.label14.Size = new System.Drawing.Size(78, 20);
             this.label14.TabIndex = 12;
             this.label14.Text = ":בחר קשר";
             // 
@@ -727,7 +757,7 @@
             // 
             this.panelDrug.Controls.Add(this.label10);
             this.panelDrug.Controls.Add(this.drugsCB);
-            this.panelDrug.Location = new System.Drawing.Point(156, 61);
+            this.panelDrug.Location = new System.Drawing.Point(155, 227);
             this.panelDrug.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelDrug.Name = "panelDrug";
             this.panelDrug.Size = new System.Drawing.Size(128, 75);
@@ -738,7 +768,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Location = new System.Drawing.Point(11, 15);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -757,6 +787,9 @@
             // 
             // panelQuery
             // 
+            this.panelQuery.Controls.Add(this.cb_institution);
+            this.panelQuery.Controls.Add(this.cb_shelder);
+            this.panelQuery.Controls.Add(this.cb_postitution);
             this.panelQuery.Controls.Add(this.cb_externalContact);
             this.panelQuery.Controls.Add(this.cb_criminalRecord);
             this.panelQuery.Controls.Add(this.cb_occupation);
@@ -770,17 +803,30 @@
             this.panelQuery.Location = new System.Drawing.Point(191, 50);
             this.panelQuery.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panelQuery.Name = "panelQuery";
-            this.panelQuery.Size = new System.Drawing.Size(134, 229);
+            this.panelQuery.Size = new System.Drawing.Size(134, 300);
             this.panelQuery.TabIndex = 10;
+            // 
+            // cb_postitution
+            // 
+            this.cb_postitution.AutoSize = true;
+            this.cb_postitution.Location = new System.Drawing.Point(62, 229);
+            this.cb_postitution.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cb_postitution.Name = "cb_postitution";
+            this.cb_postitution.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cb_postitution.Size = new System.Drawing.Size(70, 19);
+            this.cb_postitution.TabIndex = 10;
+            this.cb_postitution.Text = "רצף זנות";
+            this.cb_postitution.UseVisualStyleBackColor = false;
+            this.cb_postitution.CheckedChanged += new System.EventHandler(this.cb_postitution_CheckedChanged);
             // 
             // cb_externalContact
             // 
             this.cb_externalContact.AutoSize = true;
-            this.cb_externalContact.Location = new System.Drawing.Point(11, 211);
+            this.cb_externalContact.Location = new System.Drawing.Point(12, 206);
             this.cb_externalContact.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_externalContact.Name = "cb_externalContact";
             this.cb_externalContact.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_externalContact.Size = new System.Drawing.Size(115, 19);
+            this.cb_externalContact.Size = new System.Drawing.Size(120, 19);
             this.cb_externalContact.TabIndex = 9;
             this.cb_externalContact.Text = "קשר עם גורם נוסף";
             this.cb_externalContact.UseVisualStyleBackColor = true;
@@ -789,11 +835,11 @@
             // cb_criminalRecord
             // 
             this.cb_criminalRecord.AutoSize = true;
-            this.cb_criminalRecord.Location = new System.Drawing.Point(43, 187);
+            this.cb_criminalRecord.Location = new System.Drawing.Point(46, 186);
             this.cb_criminalRecord.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_criminalRecord.Name = "cb_criminalRecord";
             this.cb_criminalRecord.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_criminalRecord.Size = new System.Drawing.Size(83, 19);
+            this.cb_criminalRecord.Size = new System.Drawing.Size(86, 19);
             this.cb_criminalRecord.TabIndex = 8;
             this.cb_criminalRecord.Text = "רישום פלילי";
             this.cb_criminalRecord.UseVisualStyleBackColor = true;
@@ -802,11 +848,11 @@
             // cb_occupation
             // 
             this.cb_occupation.AutoSize = true;
-            this.cb_occupation.Location = new System.Drawing.Point(47, 165);
+            this.cb_occupation.Location = new System.Drawing.Point(49, 165);
             this.cb_occupation.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_occupation.Name = "cb_occupation";
             this.cb_occupation.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_occupation.Size = new System.Drawing.Size(79, 19);
+            this.cb_occupation.Size = new System.Drawing.Size(83, 19);
             this.cb_occupation.TabIndex = 7;
             this.cb_occupation.Text = "עיסוק נוכחי";
             this.cb_occupation.UseVisualStyleBackColor = true;
@@ -815,11 +861,11 @@
             // cb_religion
             // 
             this.cb_religion.AutoSize = true;
-            this.cb_religion.Location = new System.Drawing.Point(80, 142);
+            this.cb_religion.Location = new System.Drawing.Point(85, 143);
             this.cb_religion.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_religion.Name = "cb_religion";
             this.cb_religion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_religion.Size = new System.Drawing.Size(46, 19);
+            this.cb_religion.Size = new System.Drawing.Size(47, 19);
             this.cb_religion.TabIndex = 6;
             this.cb_religion.Text = "רקע";
             this.cb_religion.UseVisualStyleBackColor = true;
@@ -833,7 +879,7 @@
             this.cb_useDrug.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_useDrug.Name = "cb_useDrug";
             this.cb_useDrug.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_useDrug.Size = new System.Drawing.Size(91, 19);
+            this.cb_useDrug.Size = new System.Drawing.Size(97, 19);
             this.cb_useDrug.TabIndex = 5;
             this.cb_useDrug.Text = "שימוש בסמים";
             this.cb_useDrug.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -844,11 +890,11 @@
             // 
             this.cb_attendance.AutoSize = true;
             this.cb_attendance.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_attendance.Location = new System.Drawing.Point(69, 122);
+            this.cb_attendance.Location = new System.Drawing.Point(72, 123);
             this.cb_attendance.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_attendance.Name = "cb_attendance";
             this.cb_attendance.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cb_attendance.Size = new System.Drawing.Size(57, 19);
+            this.cb_attendance.Size = new System.Drawing.Size(60, 19);
             this.cb_attendance.TabIndex = 4;
             this.cb_attendance.Text = "נוכחות";
             this.cb_attendance.UseVisualStyleBackColor = true;
@@ -858,11 +904,11 @@
             // 
             this.cb_alcohol.AutoSize = true;
             this.cb_alcohol.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cb_alcohol.Location = new System.Drawing.Point(22, 76);
+            this.cb_alcohol.Location = new System.Drawing.Point(19, 75);
             this.cb_alcohol.Margin = new System.Windows.Forms.Padding(2);
             this.cb_alcohol.Name = "cb_alcohol";
             this.cb_alcohol.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cb_alcohol.Size = new System.Drawing.Size(104, 19);
+            this.cb_alcohol.Size = new System.Drawing.Size(112, 19);
             this.cb_alcohol.TabIndex = 3;
             this.cb_alcohol.Text = "שימוש באלכוהול";
             this.cb_alcohol.UseVisualStyleBackColor = true;
@@ -875,7 +921,7 @@
             this.cb_city.Margin = new System.Windows.Forms.Padding(2);
             this.cb_city.Name = "cb_city";
             this.cb_city.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_city.Size = new System.Drawing.Size(68, 19);
+            this.cb_city.Size = new System.Drawing.Size(72, 19);
             this.cb_city.TabIndex = 2;
             this.cb_city.Text = "עיר מוצא";
             this.cb_city.UseVisualStyleBackColor = true;
@@ -888,7 +934,7 @@
             this.cb_age.Margin = new System.Windows.Forms.Padding(2);
             this.cb_age.Name = "cb_age";
             this.cb_age.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_age.Size = new System.Drawing.Size(40, 19);
+            this.cb_age.Size = new System.Drawing.Size(42, 19);
             this.cb_age.TabIndex = 1;
             this.cb_age.Text = "גיל";
             this.cb_age.UseVisualStyleBackColor = true;
@@ -901,22 +947,136 @@
             this.cb_gender.Margin = new System.Windows.Forms.Padding(2);
             this.cb_gender.Name = "cb_gender";
             this.cb_gender.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cb_gender.Size = new System.Drawing.Size(39, 19);
+            this.cb_gender.Size = new System.Drawing.Size(41, 19);
             this.cb_gender.TabIndex = 0;
             this.cb_gender.Text = "מין";
             this.cb_gender.UseVisualStyleBackColor = true;
             this.cb_gender.CheckedChanged += new System.EventHandler(this.cb_gender_CheckedChanged);
             // 
-            // btnPrint
+            // panelpostitution
             // 
-            this.btnPrint.BackgroundImage = global::QueryGenerator.Properties.Resources.printer_icon__icon_search_engine_1;
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPrint.Location = new System.Drawing.Point(3, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(52, 37);
-            this.btnPrint.TabIndex = 6;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.panelpostitution.Controls.Add(this.label16);
+            this.panelpostitution.Controls.Add(this.postitutionCB);
+            this.panelpostitution.Location = new System.Drawing.Point(13, 287);
+            this.panelpostitution.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelpostitution.Name = "panelpostitution";
+            this.panelpostitution.Size = new System.Drawing.Size(118, 74);
+            this.panelpostitution.TabIndex = 14;
+            this.panelpostitution.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(30, 14);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label16.Size = new System.Drawing.Size(76, 20);
+            this.label16.TabIndex = 12;
+            this.label16.Text = ":בחר זנות";
+            // 
+            // postitutionCB
+            // 
+            this.postitutionCB.FormattingEnabled = true;
+            this.postitutionCB.Location = new System.Drawing.Point(10, 37);
+            this.postitutionCB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.postitutionCB.Name = "postitutionCB";
+            this.postitutionCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.postitutionCB.Size = new System.Drawing.Size(106, 23);
+            this.postitutionCB.TabIndex = 11;
+            // 
+            // cb_shelder
+            // 
+            this.cb_shelder.AutoSize = true;
+            this.cb_shelder.Location = new System.Drawing.Point(41, 254);
+            this.cb_shelder.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cb_shelder.Name = "cb_shelder";
+            this.cb_shelder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cb_shelder.Size = new System.Drawing.Size(91, 19);
+            this.cb_shelder.TabIndex = 11;
+            this.cb_shelder.Text = "רצף קורת גג";
+            this.cb_shelder.UseVisualStyleBackColor = false;
+            this.cb_shelder.CheckedChanged += new System.EventHandler(this.cb_shelder_CheckedChanged);
+            // 
+            // panelshelder
+            // 
+            this.panelshelder.Controls.Add(this.label17);
+            this.panelshelder.Controls.Add(this.shelderCB);
+            this.panelshelder.Location = new System.Drawing.Point(142, 86);
+            this.panelshelder.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelshelder.Name = "panelshelder";
+            this.panelshelder.Size = new System.Drawing.Size(118, 74);
+            this.panelshelder.TabIndex = 14;
+            this.panelshelder.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(14, 14);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label17.Size = new System.Drawing.Size(102, 20);
+            this.label17.TabIndex = 12;
+            this.label17.Text = ":בחר קורת גג";
+            // 
+            // shelderCB
+            // 
+            this.shelderCB.FormattingEnabled = true;
+            this.shelderCB.Location = new System.Drawing.Point(10, 37);
+            this.shelderCB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.shelderCB.Name = "shelderCB";
+            this.shelderCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.shelderCB.Size = new System.Drawing.Size(106, 23);
+            this.shelderCB.TabIndex = 11;
+            // 
+            // cb_institution
+            // 
+            this.cb_institution.AutoSize = true;
+            this.cb_institution.Location = new System.Drawing.Point(48, 273);
+            this.cb_institution.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cb_institution.Name = "cb_institution";
+            this.cb_institution.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cb_institution.Size = new System.Drawing.Size(83, 19);
+            this.cb_institution.TabIndex = 12;
+            this.cb_institution.Text = "מס מסדות";
+            this.cb_institution.UseVisualStyleBackColor = false;
+            this.cb_institution.CheckedChanged += new System.EventHandler(this.cb_institution_CheckedChanged);
+            // 
+            // panelinstitution
+            // 
+            this.panelinstitution.Controls.Add(this.label18);
+            this.panelinstitution.Controls.Add(this.institutionCB);
+            this.panelinstitution.Location = new System.Drawing.Point(79, 9);
+            this.panelinstitution.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panelinstitution.Name = "panelinstitution";
+            this.panelinstitution.Size = new System.Drawing.Size(129, 81);
+            this.panelinstitution.TabIndex = 15;
+            this.panelinstitution.Visible = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(2, 14);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label18.Size = new System.Drawing.Size(121, 20);
+            this.label18.TabIndex = 12;
+            this.label18.Text = ":בחר מס מסדות";
+            // 
+            // institutionCB
+            // 
+            this.institutionCB.FormattingEnabled = true;
+            this.institutionCB.Location = new System.Drawing.Point(10, 37);
+            this.institutionCB.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.institutionCB.Name = "institutionCB";
+            this.institutionCB.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.institutionCB.Size = new System.Drawing.Size(106, 23);
+            this.institutionCB.TabIndex = 11;
             // 
             // QueryGenerator
             // 
@@ -969,6 +1129,12 @@
             this.panelDrug.PerformLayout();
             this.panelQuery.ResumeLayout(false);
             this.panelQuery.PerformLayout();
+            this.panelpostitution.ResumeLayout(false);
+            this.panelpostitution.PerformLayout();
+            this.panelshelder.ResumeLayout(false);
+            this.panelshelder.PerformLayout();
+            this.panelinstitution.ResumeLayout(false);
+            this.panelinstitution.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1027,7 +1193,10 @@
         private System.Windows.Forms.Panel panelReligion;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox religionCB;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Panel panelQuery;
+        private System.Windows.Forms.CheckBox cb_postitution;
         private System.Windows.Forms.CheckBox cb_externalContact;
         private System.Windows.Forms.CheckBox cb_criminalRecord;
         private System.Windows.Forms.CheckBox cb_occupation;
@@ -1038,8 +1207,17 @@
         private System.Windows.Forms.CheckBox cb_city;
         private System.Windows.Forms.CheckBox cb_age;
         private System.Windows.Forms.CheckBox cb_gender;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Panel panelpostitution;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox postitutionCB;
+        private System.Windows.Forms.Panel panelshelder;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox shelderCB;
+        private System.Windows.Forms.CheckBox cb_shelder;
+        private System.Windows.Forms.Panel panelinstitution;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox institutionCB;
+        private System.Windows.Forms.CheckBox cb_institution;
     }
 }
 

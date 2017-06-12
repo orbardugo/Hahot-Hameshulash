@@ -25,6 +25,9 @@ namespace QueryGenerator
         private HashSet<string> hashSetUseDrug;
         private HashSet<string> hashSetReligion;
         private HashSet<string> hashSetlistOfCriminalRecord;
+        private HashSet<string> hashSetlistOfInstitutions;
+        private HashSet<string> hashSetlistOfPostitutions;
+        private HashSet<string> hashSetlistOfShelter;
         private IEnumerable<Person> mainQuery;
         private IEnumerable<Person> listAfterQuery;
         private List<Panel> allPanels;
@@ -44,9 +47,14 @@ namespace QueryGenerator
         private string occupation = null;
         private string criminalRecord = null;
         private string externalContact = null;
+        private string postitution = null;
+        private string institution = null;
+        private string shelder = null;
         #endregion
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
-            , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion, HashSet<string> hashSetlistOfCriminalrecord)
+            , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion,
+            HashSet<string> hashSetlistOfCriminalrecord, HashSet<string> hashSetlistOfinstitutions,
+            HashSet<string> hashSetlistOfpostitutions, HashSet<string> hashSetlistOfshelter)
         {
             InitializeComponent();
             try
@@ -65,14 +73,20 @@ namespace QueryGenerator
             hashSetUseDrug = hashSetUsedrug;
             hashSetReligion = hashSetreligion;
             hashSetlistOfCriminalRecord = hashSetlistOfCriminalrecord;
+            hashSetlistOfInstitutions = hashSetlistOfinstitutions;
+            hashSetlistOfPostitutions = hashSetlistOfpostitutions;
+            hashSetlistOfShelter = hashSetlistOfshelter;
+
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
             allPanels = new List<Panel>() {
-                panelAge,panelGender, panelAlcohol, panelCity, panelCriminalRecord, panelDate, panelDrug, panelExternalContact, panelReligion,panelOccupation};
+                panelAge,panelGender, panelAlcohol, panelCity, panelCriminalRecord, panelDate, panelDrug, panelExternalContact, panelReligion,panelOccupation,
+                panelpostitution,panelshelder,panelinstitution };
             allCheckBoxes = new List<CheckBox>(){
-                cb_age, cb_gender,cb_alcohol,cb_city,cb_criminalRecord,cb_attendance, cb_useDrug, cb_externalContact,cb_religion,cb_occupation};
+                cb_age, cb_gender,cb_alcohol,cb_city,cb_criminalRecord,cb_attendance, cb_useDrug, cb_externalContact,cb_religion,
+                cb_occupation,cb_postitution,cb_shelder,cb_institution};
             allComboBoxes = new List<ComboBox>(){
-                externalContactCB, cityCB, criminalRecordCB, occupationCB, religionCB, drugsCB, AlcoholCB};
+                externalContactCB, cityCB, criminalRecordCB, occupationCB, religionCB, drugsCB, AlcoholCB,postitutionCB,shelderCB,institutionCB};
         }
 
         #region CheckBox CheckedChanged functionality
@@ -234,6 +248,52 @@ namespace QueryGenerator
                 panelDate.Visible = false;
             }
         }
+        private void cb_postitution_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_postitution.Checked)
+            {
+                unCheckedAllBut(cb_postitution);
+                disableVisabilityPanels();
+                postitutionCB.Items.Clear();
+                postitutionCB.Items.AddRange(hashSetlistOfPostitutions.ToArray());
+                panelpostitution.Visible = true;
+            }
+            else
+            {
+                panelpostitution.Visible = false;
+            }
+        }
+
+        private void cb_shelder_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_shelder.Checked)
+            {
+                unCheckedAllBut(cb_shelder);
+                disableVisabilityPanels();
+                shelderCB.Items.Clear();
+                shelderCB.Items.AddRange(hashSetlistOfShelter.ToArray());
+                panelshelder.Visible = true;
+            }
+            else
+            {
+                panelshelder.Visible = false;
+            }
+        }
+        private void cb_institution_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_institution.Checked)
+            {
+                unCheckedAllBut(cb_institution);
+                disableVisabilityPanels();
+                institutionCB.Items.Clear();
+                institutionCB.Items.AddRange(hashSetlistOfInstitutions.ToArray());
+                panelinstitution.Visible = true;
+            }
+            else
+            {
+                panelinstitution.Visible = false;
+            }
+        }
         #endregion
 
         #region Buttons Click functionality
@@ -321,6 +381,34 @@ namespace QueryGenerator
                 dt.Columns.Add("קשר עם גורם נוסף", typeof(string));
                 numOfColumns++;
             }
+            if (institution != null)
+            {
+                listAfterQuery = from person in listAfterQuery
+                                 where person.NumOfInstitutions == institution
+                                 orderby person.firstName ascending
+                                 select person;
+                dt.Columns.Add("מס מסדות", typeof(string));
+                numOfColumns++;
+            }
+            if (postitution != null)
+            {
+                listAfterQuery = from person in listAfterQuery
+                                 where person.PostitutionSequence == postitution
+                                 orderby person.firstName ascending
+                                 select person;
+                dt.Columns.Add("רצף זנות", typeof(string));
+                numOfColumns++;
+            }
+            if (shelder != null)
+            {
+                listAfterQuery = from person in listAfterQuery
+                                 where person.ShelterSequence == shelder
+                                 orderby person.firstName ascending
+                                 select person;
+                dt.Columns.Add("רצף קורת גג", typeof(string));
+                numOfColumns++;
+            }
+
             if (FindAppearance)
             {
                 foreach (DateTime day in EachDay(appStartDate, appEndDate))
@@ -340,6 +428,21 @@ namespace QueryGenerator
             {
                 numOfColumns = temp;
                 DataRow r = dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender,p.city);
+                if(institution != null)
+                {
+                    r.SetField(numOfColumns + 4, p.NumOfInstitutions);
+                    numOfColumns--;
+                }
+                if (shelder != null)
+                {
+                    r.SetField(numOfColumns + 4, p.ShelterSequence);
+                    numOfColumns--;
+                }
+                if (postitution != null)
+                {
+                    r.SetField(numOfColumns + 4, p.PostitutionSequence);
+                    numOfColumns--;
+                }
                 if (externalContact != null)
                 {
                     r.SetField(numOfColumns + 4, p.ExternalContact);
@@ -364,10 +467,6 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 4, p.UseDrug);
                     numOfColumns--;
                 }
-
-
-            
-            
                 sum++;
 
             }
@@ -431,6 +530,23 @@ namespace QueryGenerator
                 externalContactCB.SelectedIndex = 0;
                 externalContact = null;
             }
+            if(institution!=null)
+            {
+                institutionCB.SelectedIndex = 0;
+                institution= null;
+            }
+            if(postitution!=null)
+            {
+                postitutionCB.SelectedIndex = 0;
+                postitution = null;
+            }
+            if (shelder != null)
+            {
+                shelderCB.SelectedIndex = 0;
+                shelder = null;
+            }
+
+
             //clear Apperance
             dateStart.Refresh();
             dateEnd.Refresh();
@@ -495,6 +611,26 @@ namespace QueryGenerator
                     criminalRecordCB.SelectedIndex = 0;
                     criminalRecord = null;
                 }
+                else if (queryToRemove.Contains("קשר"))
+                {
+                    externalContactCB.SelectedIndex = 0;
+                    externalContact = null;
+                }
+                else if (queryToRemove.Contains("זנות"))
+                {
+                    postitutionCB.SelectedIndex = 0;
+                    postitution = null;
+                }
+                else if (queryToRemove.Contains("קורת גג"))
+                {
+                    shelderCB.SelectedIndex = 0;
+                    shelder = null;
+                }
+                else if (queryToRemove.Contains("מסדות"))
+                {
+                    institutionCB.SelectedIndex = 0;
+                    institution = null;
+                }
                 else if (queryToRemove.Contains("נוכחות"))
                 {
                     dateStart.Refresh();
@@ -549,6 +685,27 @@ namespace QueryGenerator
                 case "שימוש בסמים":
                     titles = hashSetUseDrug.ToArray();
                     break;
+                case "עיסוק נוכחי":
+                    titles = hashSetCurrentOccupation.ToArray();
+                    break;
+                case "רישום פלילי":
+                    titles =hashSetlistOfCriminalRecord.ToArray();
+                    break;
+                case "רצף זנות":
+                    titles = hashSetlistOfPostitutions.ToArray();
+                    break;
+                case "מס' מוסדות":
+                    titles = hashSetlistOfInstitutions.ToArray();
+                    break;
+                case "רצף קורת גג":
+                    titles = hashSetlistOfShelter.ToArray();
+                    break;
+                case "קשר עם גורם נוסף":
+                    titles = hashSetExternalContact.ToArray();
+                    break;
+
+
+
             }
             int[] counter = new int[titles.Length];
             foreach (var person in listAfterQuery)
@@ -580,6 +737,26 @@ namespace QueryGenerator
                     if (query == "שימוש בסמים")
                         if (person.UseDrug == titles[i])
                             counter[i]++;
+                    if(query== "רישום פלילי")
+                        if (person.CriminalRecord == titles[i])
+                            counter[i]++;
+                    if (query == "קשר עם גורם נוסף")
+                        if (person.ExternalContact == titles[i])
+                            counter[i]++;
+                    if (query == "מס' מוסדות")
+                        if (person.NumOfInstitutions == titles[i])
+                            counter[i]++;
+                    if (query == "רצף זנות")
+                        if (person.PostitutionSequence == titles[i])
+                            counter[i]++;
+                    if (query == "רצף קורת גג")
+                        if (person.ShelterSequence == titles[i])
+                            counter[i]++;
+                    if(query == "עיסוק נוכחי")
+                        if (person.CurrentOccupation == titles[i])
+                            counter[i]++;
+
+
                 }
             }
             QueryGraph g = new QueryGraph(titles, counter, graphType);
@@ -646,6 +823,21 @@ namespace QueryGenerator
                 externalContact = externalContactCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("קשר עם גורם נוסף: " + externalContact);
             }
+            if(panelinstitution.Visible && institutionCB.SelectedItem != null)
+            {
+                institution = institutionCB.SelectedItem.ToString();
+                QueryListBox.Items.Add("מס מסדות: " + institution);
+            }
+            if (panelpostitution.Visible && postitutionCB.SelectedItem != null)
+            {
+                postitution = postitutionCB.SelectedItem.ToString();
+                QueryListBox.Items.Add("רצף זנות: " + postitution);
+            }
+            if (panelshelder.Visible && shelderCB.SelectedItem != null)
+            {
+                shelder = shelderCB.SelectedItem.ToString();
+                QueryListBox.Items.Add("רצף קורת גג: " + shelder);
+            }
             if (panelDate.Visible)
             {
                 appStartDate = dateStart.Value.Date;
@@ -682,6 +874,8 @@ namespace QueryGenerator
             ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString());
             _ClsPrint.PrintForm();
         }
+
+      
 
         private void disableVisabilityPanels()
         {
@@ -728,6 +922,18 @@ namespace QueryGenerator
             label14.Size = new Size(panelCity.Width, panelCity.Height / 2);
             label14.Location = new Point(panelCity.Width / 2 - label14.Width / 2, 0);
             label14.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label16.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label16.Location = new Point(panelCity.Width / 2 - label16.Width / 2, 0);
+            label16.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label17.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label17.Location = new Point(panelCity.Width / 2 - label17.Width / 2, 0);
+            label17.Font = new Font("Arial", 12, FontStyle.Bold);
+
+            label18.Size = new Size(panelCity.Width, panelCity.Height / 2);
+            label18.Location = new Point(panelCity.Width / 2 - label18.Width / 2, 0);
+            label18.Font = new Font("Arial", 12, FontStyle.Bold);
         }
         private void SetFormSize()
         {
