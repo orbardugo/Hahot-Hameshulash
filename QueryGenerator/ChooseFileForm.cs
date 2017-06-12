@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LinqToExcel;
 
@@ -49,15 +44,14 @@ namespace QueryGenerator
             }
 
             XLSX_PATH = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
-
-
             var excelFile = new ExcelQueryFactory(XLSX_PATH);
-            List<Row> dataBase1 = excelFile.WorksheetRange("A1", "IU100000", SHEET_NAME).ToList();
-            List<Row> dataBase2 = excelFile.WorksheetRange("IV1", "ZZ100000", SHEET_NAME).ToList();
-            //List<Row> mainData = new List<Row>(700);
-            //CombineRows(dataBase1, dataBase2, mainData);
+            List<Row> dataBase1 = excelFile.WorksheetRange("A1", "AJ100000", SHEET_NAME).ToList(); // contains private information
 
-            // var dataBase = from name in excelFile.Worksheet(SHEET_NAME) select name;
+            List<RowNoHeader> dataBase2 = excelFile.WorksheetRangeNoHeader("AJ1", "IT1", SHEET_NAME).ToList();
+            List<RowNoHeader> dataBase3 = excelFile.WorksheetRangeNoHeader("IU1", "OV1", SHEET_NAME).ToList();
+            List<Row> dataBase4 = excelFile.WorksheetRange("AJ1", "IT100000", SHEET_NAME).ToList(); // content of dataBase2
+            List<Row> dataBase5 = excelFile.WorksheetRange("IU1", "OV100000", SHEET_NAME).ToList(); // content of dataBase3
+
             HashSet<string> listOfCities = new HashSet<string>();
             HashSet<string> listOfCurrentOccupation = new HashSet<string>();
             HashSet<string> listOfExternalContact = new HashSet<string>();
@@ -80,15 +74,13 @@ namespace QueryGenerator
                 string useDrug = a["שימוש בסמים"];
                 string religion = a["רקע"];
                 string criminalRecord = a["רישום פלילי"];
-                Dictionary<DateTime, bool> attendance = new Dictionary<DateTime, bool>(366);
-                getAttendance(a, attendance); // get Attendance until Aug-02
 
                 if (String.IsNullOrEmpty(year))
                 {
                     year = UNKNOWN;
                 }
                 Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate,
-                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, attendance);
+                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, new Dictionary<DateTime, bool>());
                 listOfPersons.Add(p);
                 listOfCities.Add(city);
                 listOfCurrentOccupation.Add(currentOccupation);
@@ -98,12 +90,9 @@ namespace QueryGenerator
                 listOfReligion.Add(religion);
                 listOfCriminalRecord.Add(criminalRecord);
             }
-            int i = 0;
-            foreach (var a in dataBase2)
-            {
-                getAttendance(a, listOfPersons[i].Presence, 8, 12);
-                i++;
-            }
+
+            getAttendance(dataBase2, dataBase4, listOfPersons); // get Attendence until July (include)
+            getAttendance(dataBase3, dataBase5, listOfPersons, 8); // get Attendence from Aug 
 
             QueryGenerator f2 = new QueryGenerator(listOfPersons, listOfCities, listOfCurrentOccupation, listOfExternalContact,
                 listOfUseAlcohol, listOfuseDrug, listOfReligion, listOfCriminalRecord);
@@ -111,96 +100,45 @@ namespace QueryGenerator
             this.Hide();
         }
 
-        private void getAttendance(Row a, Dictionary<DateTime, bool> attendance, int startMonth = 1, int endMonth = 8)
+        private void getAttendance(List<RowNoHeader> headerBase, List<Row> dataBase, List<Person> listOfPersons, int StartMonth = 1)
         {
-            string month = "ינו-";
-            int daysOfMonth = 31;
-            for (int i = startMonth; i <= endMonth; i++)
+            int personsCount = 0;
+            foreach (var a in dataBase)
             {
-                switch (i)
-                {
-                    case 1:
-                        daysOfMonth = 31;
-                        month = "ינו-";
-                        break;
-                    case 2:
-                        daysOfMonth = 28;
-                        if ((DateTime.Today.Year % 4 == 0 && DateTime.Today.Year % 100 != 0) || DateTime.Today.Year % 400 == 0)
-                        { // leaf year
-                            daysOfMonth++;
-                        }
-                        month = "פבר-";
-                        break;
-                    case 3:
-                        daysOfMonth = 31;
-                        month = "מרץ-";
-                        break;
-                    case 4:
-                        daysOfMonth = 30;
-                        month = "אפר-";
-                        break;
-                    case 5:
-                        daysOfMonth = 31;
-                        month = "מאי-";
-                        break;
-                    case 6:
-                        daysOfMonth = 30;
-                        month = "יונ-";
-                        break;
-                    case 7:
-                        daysOfMonth = 31;
-                        month = "יול-";
-                        break;
-                    case 8:
-                        daysOfMonth = 31;
-                        month = "אוג-";
-                        break;
-                    case 9:
-                        daysOfMonth = 30;
-                        month = "ספט-";
-                        break;
-                    case 10:
-                        daysOfMonth = 31;
-                        month = "אוק-";
-                        break;
-                    case 11:
-                        daysOfMonth = 30;
-                        month = "נוב-";
-                        break;
-                    case 12:
-                        daysOfMonth = 31;
-                        month = "דצמ-";
-                        break;
-                }
-                for (int j = 1; j <= daysOfMonth; j++)
-                {
-                    string s_date;
-                    DateTime D_date;
+                string header;
+                int months = StartMonth, days = 1;
+                DateTime date_Val;
+                bool bool_val = false;
 
-                    //we're assuming the excel file is correct
-                    if (startMonth == 8 && i == 8 && j == 1)
-                        j = 2; // reading dataBase2 from Aug 02
-                    D_date = new DateTime(DateTime.Today.Year, i, j);
-                    if (j < 10)
+                for (int i = 0; i < headerBase[0].Count; i++)
+                {
+                    header = headerBase[0].ElementAt(i);
+                    if (isContainNumbers(header))
                     {
-                        if (startMonth == 1 && i == 8 && j == 2)
-                            return; // end of reading dataBase1 - until Aug 02 (not included)
-                        s_date = month + "0" + j;
-                        if (a[s_date] == "1")
-                            attendance.Add(D_date, true);
+                        date_Val = new DateTime(DateTime.Today.Year, months, days);
+
+                        if (a[header] == "1")
+                            bool_val = true;
                         else
-                            attendance.Add(D_date, false);
+                            bool_val = false;
+
+                        listOfPersons[personsCount].Presence.Add(date_Val, bool_val);
+                        days++;
                     }
                     else
                     {
-                        s_date = month + j;
-                        if (a[s_date] == "1")
-                            attendance.Add(D_date, true);
-                        else
-                            attendance.Add(D_date, false);
+                        months++;
+                        days = 1;
                     }
                 }
+                personsCount++;
             }
+        }
+
+        private bool isContainNumbers(string str)
+        {
+            bool allCharactersInStringAreDigits = str.Any(char.IsDigit);
+            return allCharactersInStringAreDigits;
         }
     }
 }
