@@ -301,12 +301,14 @@ namespace QueryGenerator
         private void createListFromQuery_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("מס'", typeof(string));
             dt.Columns.Add("שם פרטי", typeof(string));
             dt.Columns.Add("שם משפחה", typeof(string));
             dt.Columns.Add("גיל", typeof(int));
             dt.Columns.Add("מין", typeof(string));
             dt.Columns.Add("עיר", typeof(string));
             int numOfColumns = 0;
+
             if (genderValue != null)
             {
                 listAfterQuery = from person in listAfterQuery
@@ -428,7 +430,7 @@ namespace QueryGenerator
             foreach (Person p in listAfterQuery)
             {
                 numOfColumns = temp;
-                DataRow r = dt.Rows.Add(p.firstName, p.lastName, p.age, p.gender,p.city);
+                DataRow r = dt.Rows.Add(sum+1, p.firstName, p.lastName, p.age, p.gender,p.city);
                 if(institution != null)
                 {
                     r.SetField(numOfColumns + 4, p.NumOfInstitutions);
@@ -475,8 +477,8 @@ namespace QueryGenerator
                     numOfColumns--;
                 }
                 sum++;
-
             }
+            SumLabel.Text = sum.ToString();     
             dataListGrid.DataSource = dt;
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -568,6 +570,7 @@ namespace QueryGenerator
             //ClearTable
             dataListGrid.DataSource = null;
 
+            SumLabel.Text = "0";
             disableVisabilityPanels();
             unCheckedAllBut(null);
         }

@@ -113,6 +113,9 @@
             this.dateFromNumeric = new System.Windows.Forms.NumericUpDown();
             this.dateToNumeric = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.SumLabel = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelGraph.SuspendLayout();
@@ -141,6 +144,9 @@
             // panelResults
             // 
             this.panelResults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.panelResults.Controls.Add(this.label24);
+            this.panelResults.Controls.Add(this.SumLabel);
+            this.panelResults.Controls.Add(this.label22);
             this.panelResults.Controls.Add(this.dataListGrid);
             this.panelResults.Controls.Add(this.btnPrint);
             this.panelResults.Controls.Add(this.label1);
@@ -1154,6 +1160,42 @@
             this.label21.TabIndex = 16;
             this.label21.Text = "הגעות";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(206, 16);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label22.Size = new System.Drawing.Size(40, 20);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "סה\"כ:";
+            // 
+            // SumLabel
+            // 
+            this.SumLabel.AutoSize = true;
+            this.SumLabel.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SumLabel.Location = new System.Drawing.Point(177, 16);
+            this.SumLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SumLabel.Name = "SumLabel";
+            this.SumLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SumLabel.Size = new System.Drawing.Size(16, 20);
+            this.SumLabel.TabIndex = 8;
+            this.SumLabel.Text = "0";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(109, 16);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label24.Size = new System.Drawing.Size(48, 20);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "תוצאות";
+            // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -1302,6 +1344,9 @@
         private System.Windows.Forms.NumericUpDown dateFromNumeric;
         private System.Windows.Forms.NumericUpDown dateToNumeric;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label SumLabel;
+        private System.Windows.Forms.Label label22;
     }
 }
 
