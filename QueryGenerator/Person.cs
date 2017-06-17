@@ -52,7 +52,21 @@ namespace QueryGenerator
             NumOfInstitutions = numofinstitutions;
             PostitutionSequence = postitutionsequence;
             ShelterSequence = sheltersequence;
-
+        }
+        public int numOfArrivalesInRange( DateTime startDate, DateTime endDate)
+        {
+            int count = 0;
+            foreach (DateTime day in EachDay(startDate, endDate))
+            {
+                if (Presence[day] == true)
+                    count++;
+            }
+            return count;
+        }
+        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
         }
     }
 }

@@ -42,6 +42,7 @@ namespace QueryGenerator
         private string drug = null;
         private bool FindAppearance;
         private DateTime appStartDate, appEndDate;
+        private int fromAppearance = 0, toAppearance = 0;
         private string alcohol = null;
         private string religion = null;
         private string occupation = null;
@@ -411,15 +412,15 @@ namespace QueryGenerator
 
             if (FindAppearance)
             {
-                foreach (DateTime day in EachDay(appStartDate, appEndDate))
-                {
-                    listAfterQuery = from person in listAfterQuery
-                                     where person.Presence[day] == true
-                                     orderby person.firstName ascending
-                                     select person;
-                }
-            }
+                listAfterQuery = from person in listAfterQuery
+                                 where person.numOfArrivalesInRange(appStartDate, appEndDate) >= fromAppearance && person.numOfArrivalesInRange(appStartDate, appEndDate) <= toAppearance
+                                 orderby person.numOfArrivalesInRange(appStartDate, appEndDate) descending
+                                 select person;
 
+                dt.Columns.Add("מס' הגעות", typeof(System.Int32));          
+                numOfColumns++;    
+            }
+            
  
             int sum = 0;
             int temp = numOfColumns;
@@ -463,8 +464,14 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 4, p.UseAlcohol);
                     numOfColumns--;
                 }
-                if (drug != null) {
+                if (drug != null)
+                {
                     r.SetField(numOfColumns + 4, p.UseDrug);
+                    numOfColumns--;
+                }
+                if (FindAppearance)
+                {
+                    r.SetField(numOfColumns + 4, p.numOfArrivalesInRange(appStartDate,appEndDate));
                     numOfColumns--;
                 }
                 sum++;
@@ -552,6 +559,8 @@ namespace QueryGenerator
             dateEnd.Refresh();
             appStartDate = dateStart.Value.Date;
             appEndDate = dateEnd.Value.Date;
+            fromAppearance = 0;
+            toAppearance = 0;
             FindAppearance = false;
             //ClearQueryPanel
             listAfterQuery = mainQuery;
@@ -637,6 +646,8 @@ namespace QueryGenerator
                     dateEnd.Refresh();
                     appStartDate = dateStart.Value.Date;
                     appEndDate = dateEnd.Value.Date;
+                    fromAppearance = 0;
+                    toAppearance = 0;
                     FindAppearance = false;
                 }
                 else if (queryToRemove.Contains("עיר"))
@@ -842,8 +853,10 @@ namespace QueryGenerator
             {
                 appStartDate = dateStart.Value.Date;
                 appEndDate = dateEnd.Value.Date;
+                fromAppearance =(int) dateFromNumeric.Value;
+                toAppearance = (int)dateToNumeric.Value;
                 FindAppearance = true;
-                QueryListBox.Items.Add(string.Format("From: {0} To: {1}", appStartDate.ToString("d"), appEndDate.ToString("d")));
+                QueryListBox.Items.Add(string.Format("From: {0} To: {1} arrived {2}-{3} times", appStartDate.ToString("d"), appEndDate.ToString("d"),fromAppearance,toAppearance));
             }
         }
         #endregion
@@ -885,6 +898,7 @@ namespace QueryGenerator
                 p.Location = new Point(0, label2.Height + (int)(this.Height * 0.06));
                 p.Size = new Size((int)(this.Height * 0.2), (int)(this.Width * 0.3));
             }
+
             foreach (ComboBox box in allComboBoxes)
             {
                 box.Size = new Size((int)(panelAge.Width), (int)(this.Height * 0.5));
@@ -967,6 +981,14 @@ namespace QueryGenerator
             createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
         }
         #endregion
+        private void Add_Extra_Column_To_DataTable(ref DataTable datatable, Type type, string ColumnName, string ColumnValue)
+        {
+            datatable.Columns.Add(ColumnName, type);
+
+            foreach (DataRow dr in datatable.Rows)
+                dr[ColumnName] = ColumnValue;
+        }
     }
+
 }
 
