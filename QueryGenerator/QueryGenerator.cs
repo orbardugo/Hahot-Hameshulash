@@ -419,46 +419,46 @@ namespace QueryGenerator
                                  orderby person.numOfArrivalesInRange(appStartDate, appEndDate) descending
                                  select person;
 
-                dt.Columns.Add("מס' הגעות", typeof(System.Int32));          
-                numOfColumns++;    
+                dt.Columns.Add("מס' הגעות", typeof(System.Int32));
+                numOfColumns++;
             }
-            
- 
+
+
             int sum = 0;
             int temp = numOfColumns;
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
                 numOfColumns = temp;
-                DataRow r = dt.Rows.Add(sum+1, p.firstName, p.lastName, p.age, p.gender,p.city);
-                if(institution != null)
+                DataRow r = dt.Rows.Add(sum + 1, p.firstName, p.lastName, p.age, p.gender, p.city);
+                if (institution != null)
                 {
-                    r.SetField(numOfColumns + 4, p.NumOfInstitutions);
+                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
                     numOfColumns--;
                 }
                 if (shelder != null)
                 {
-                    r.SetField(numOfColumns + 4, p.ShelterSequence);
+                    r.SetField(numOfColumns + 5, p.ShelterSequence);
                     numOfColumns--;
                 }
                 if (postitution != null)
                 {
-                    r.SetField(numOfColumns + 4, p.PostitutionSequence);
+                    r.SetField(numOfColumns + 5, p.PostitutionSequence);
                     numOfColumns--;
                 }
                 if (externalContact != null)
                 {
-                    r.SetField(numOfColumns + 4, p.ExternalContact);
+                    r.SetField(numOfColumns + 5, p.ExternalContact);
                     numOfColumns--;
                 }
                 if (criminalRecord != null)
                 {
-                    r.SetField(numOfColumns + 4, p.CriminalRecord);
+                    r.SetField(numOfColumns + 5, p.CriminalRecord);
                     numOfColumns--;
                 }
                 if (religion != null)
                 {
-                    r.SetField(numOfColumns + 4, p.Religion);
+                    r.SetField(numOfColumns + 5, p.Religion);
                     numOfColumns--;
                 }
                 if (alcohol != null)
@@ -468,17 +468,17 @@ namespace QueryGenerator
                 }
                 if (drug != null)
                 {
-                    r.SetField(numOfColumns + 4, p.UseDrug);
+                    r.SetField(numOfColumns + 5, p.UseDrug);
                     numOfColumns--;
                 }
                 if (FindAppearance)
                 {
-                    r.SetField(numOfColumns + 4, p.numOfArrivalesInRange(appStartDate,appEndDate));
+                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate));
                     numOfColumns--;
                 }
                 sum++;
             }
-            SumLabel.Text = sum.ToString();     
+            SumLabel.Text = sum.ToString();
             dataListGrid.DataSource = dt;
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -539,12 +539,12 @@ namespace QueryGenerator
                 externalContactCB.SelectedIndex = 0;
                 externalContact = null;
             }
-            if(institution!=null)
+            if (institution != null)
             {
                 institutionCB.SelectedIndex = 0;
-                institution= null;
+                institution = null;
             }
-            if(postitution!=null)
+            if (postitution != null)
             {
                 postitutionCB.SelectedIndex = 0;
                 postitution = null;
@@ -580,7 +580,7 @@ namespace QueryGenerator
             {
                 listAfterQuery = mainQuery;
                 string queryToRemove = QueryListBox.SelectedItem.ToString();
-                if(queryToRemove.Contains("מין"))
+                if (queryToRemove.Contains("מין"))
                 {
                     genderValue = null;
                     if (Radio_men.Checked)
@@ -669,7 +669,7 @@ namespace QueryGenerator
         }
         private void generateChart_Click(object sender, EventArgs e)
         {
-            if (chartList.SelectedItem == null || cb_chartType.SelectedItem==null)
+            if (chartList.SelectedItem == null || cb_chartType.SelectedItem == null)
             {
                 MessageBox.Show("יש לבחור שאילתה וסוג גרף");
                 return;
@@ -703,7 +703,7 @@ namespace QueryGenerator
                     titles = hashSetCurrentOccupation.ToArray();
                     break;
                 case "רישום פלילי":
-                    titles =hashSetlistOfCriminalRecord.ToArray();
+                    titles = hashSetlistOfCriminalRecord.ToArray();
                     break;
                 case "רצף זנות":
                     titles = hashSetlistOfPostitutions.ToArray();
@@ -751,7 +751,7 @@ namespace QueryGenerator
                     if (query == "שימוש בסמים")
                         if (person.UseDrug == titles[i])
                             counter[i]++;
-                    if(query== "רישום פלילי")
+                    if (query == "רישום פלילי")
                         if (person.CriminalRecord == titles[i])
                             counter[i]++;
                     if (query == "קשר עם גורם נוסף")
@@ -766,7 +766,7 @@ namespace QueryGenerator
                     if (query == "רצף קורת גג")
                         if (person.ShelterSequence == titles[i])
                             counter[i]++;
-                    if(query == "עיסוק נוכחי")
+                    if (query == "עיסוק נוכחי")
                         if (person.CurrentOccupation == titles[i])
                             counter[i]++;
 
@@ -837,7 +837,7 @@ namespace QueryGenerator
                 externalContact = externalContactCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("קשר עם גורם נוסף: " + externalContact);
             }
-            if(panelinstitution.Visible && institutionCB.SelectedItem != null)
+            if (panelinstitution.Visible && institutionCB.SelectedItem != null)
             {
                 institution = institutionCB.SelectedItem.ToString();
                 QueryListBox.Items.Add("מס מסדות: " + institution);
@@ -856,10 +856,10 @@ namespace QueryGenerator
             {
                 appStartDate = dateStart.Value.Date;
                 appEndDate = dateEnd.Value.Date;
-                fromAppearance =(int) dateFromNumeric.Value;
+                fromAppearance = (int)dateFromNumeric.Value;
                 toAppearance = (int)dateToNumeric.Value;
                 FindAppearance = true;
-                QueryListBox.Items.Add(string.Format("From: {0} To: {1} arrived {2}-{3} times", appStartDate.ToString("d"), appEndDate.ToString("d"),fromAppearance,toAppearance));
+                QueryListBox.Items.Add(string.Format("From: {0} To: {1} arrived {2}-{3} times", appStartDate.ToString("d"), appEndDate.ToString("d"), fromAppearance, toAppearance));
             }
         }
         #endregion
@@ -874,7 +874,7 @@ namespace QueryGenerator
         {
             foreach (CheckBox box in allCheckBoxes)
             {
-                if(box!= cb)
+                if (box != cb)
                 {
                     box.Checked = false;
                 }
@@ -890,8 +890,6 @@ namespace QueryGenerator
             ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString());
             _ClsPrint.PrintForm();
         }
-
-      
 
         private void disableVisabilityPanels()
         {
@@ -984,14 +982,7 @@ namespace QueryGenerator
             createListFromQuery.Location = new Point(queryBox.Location.X + (queryBox.Width / 2 - createListFromQuery.Width / 2), panelGraph.Location.Y);
         }
         #endregion
-        private void Add_Extra_Column_To_DataTable(ref DataTable datatable, Type type, string ColumnName, string ColumnValue)
-        {
-            datatable.Columns.Add(ColumnName, type);
-
-            foreach (DataRow dr in datatable.Rows)
-                dr[ColumnName] = ColumnValue;
-        }
     }
-
 }
+
 
