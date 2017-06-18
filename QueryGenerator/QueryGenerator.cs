@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -884,6 +885,20 @@ namespace QueryGenerator
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
+        }
+        private void btnExitProgram_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Process proc in Process.GetProcessesByName("QueryGenerator"))
+                {
+                    proc.Kill();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
