@@ -9,8 +9,14 @@ namespace QueryGenerator
 {
     public partial class QueryGraph : Form
     {
+        string[] typeCol;
+        int[] count;
+        string type;
         public QueryGraph(string[] typeCol, int[] count, string type)
         {
+            this.type = type;
+            this.typeCol = typeCol;
+            this.count = count;
             try
             {
                 testChart.Width = (int)(Console.WindowWidth * 0.9);
@@ -18,49 +24,10 @@ namespace QueryGenerator
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             this.WindowState = FormWindowState.Maximized;
-
+            
             InitializeComponent();
-            var x = new System.Windows.Forms.DataVisualization.Charting.SeriesChartType();
-            if (type == "עוגה")
-                x = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            else if (type == "עמודות")
-                x = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-            int index = 0;
-            var s = new System.Windows.Forms.DataVisualization.Charting.Series
-            {
-                Name = "A",
-                AxisLabel = "A",
-                Color = System.Drawing.Color.Blue,
-                IsVisibleInLegend = false,
-                IsXValueIndexed = true,
-                ChartType = x
-            };
-            testChart.Titles.Clear();   // Unnecessary if you have already clear
-            var yourTitle = new System.Windows.Forms.DataVisualization.Charting.Title("גרף מוצג לפי:", System.Windows.Forms.DataVisualization.Charting.Docking.Top, new Font("Verdana", 12), Color.Black);
-            testChart.Titles.Add(yourTitle);
-            testChart.Series.Add(s);
-            testChart.ChartAreas[0].Area3DStyle.Enable3D = true;
-            testChart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8);
-            testChart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
-            testChart.Series[0].IsValueShownAsLabel = true;
-            testChart.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
-            testChart.ChartAreas[0].AxisY.LabelStyle.Enabled = true;
-            foreach (var title in typeCol)
-            {
-                s.Points.AddXY(title, count[index]);
-                if (s.ChartType == System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie)
-                {
-                    s.Points[index].Label = "#VALY" + " " + title;
-                    s.Points[index].Font = new Font("Arial", 15);
-                }
-                index++;
-            }
-            Random random = new Random();
-            foreach (var item in testChart.Series[0].Points)
-            {
-                Color c = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
-                item.Color = c;
-            }
+            genChart(0);
+
         }
 
         private void exportImgBtn_Click(object sender, EventArgs e)
@@ -114,6 +81,75 @@ namespace QueryGenerator
             Bitmap bm = new Bitmap(this.testChart.Width, this.testChart.Height);
             testChart.DrawToBitmap(bm, new Rectangle(0, 0, this.testChart.Width, this.testChart.Height));
             e.Graphics.DrawImage(bm, 0, 0);
+        }
+
+        private void genChart(int valOrPer)
+        {
+            string output = null;
+            switch (valOrPer)
+            {
+                case 0:
+                    output = "#PERCENT";
+                    break;
+                case 1:
+                    output = "#VALY";
+                    break;                
+                case 2:
+                    output = "(" + "#VALY" + ") " + "#PERCENT";
+                    break;
+            }
+            var x = new System.Windows.Forms.DataVisualization.Charting.SeriesChartType();
+            if (type == "עוגה")
+            {
+                x = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                cmbValOrPer.Visible = true;
+            }
+            else if (type == "עמודות")
+            {
+                x = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                cmbValOrPer.Visible = false;
+            }
+            int index = 0;
+            var s = new System.Windows.Forms.DataVisualization.Charting.Series
+            {
+                Name = "A",
+                AxisLabel = "A",
+                Color = System.Drawing.Color.Blue,
+                IsVisibleInLegend = false,
+                IsXValueIndexed = true,
+                ChartType = x
+            };
+            testChart.Titles.Clear();  
+            testChart.Series.Clear();   
+            var yourTitle = new System.Windows.Forms.DataVisualization.Charting.Title("גרף מוצג לפי:", System.Windows.Forms.DataVisualization.Charting.Docking.Top, new Font("Verdana", 12), Color.Black);
+            testChart.Titles.Add(yourTitle);
+            testChart.Series.Add(s);
+            testChart.ChartAreas[0].Area3DStyle.Enable3D = true;
+            testChart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8);
+            testChart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+            testChart.Series[0].IsValueShownAsLabel = true;
+            testChart.ChartAreas[0].AxisX.LabelStyle.Angle = -90;
+            testChart.ChartAreas[0].AxisY.LabelStyle.Enabled = true;
+            foreach (var title in typeCol)
+            {
+                s.Points.AddXY(title, count[index]);
+                if (s.ChartType == System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie)
+                {
+                    s.Points[index].Label = output + " " + title;
+                    s.Points[index].Font = new Font("Arial", 15);
+                }
+                index++;
+            }
+            Random random = new Random();
+            foreach (var item in testChart.Series[0].Points)
+            {
+                Color c = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+                item.Color = c;
+            }
+        }
+        private void cmbValOrPer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            genChart(cmbValOrPer.SelectedIndex);
         }
     }
 }
