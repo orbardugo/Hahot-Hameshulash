@@ -79,10 +79,10 @@ libs for XLSX reading and converting into the database.
 
 ### Iteration Pages
 - [Iteration 0 - ZFR](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-0-ZFR)
-- [Iteration 1 - MVP](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-1)
-- [Iteration 2 - Feature X](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-2)
-- [Iteration 3 - Feature Y](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-3) 
-- [Iteration 4 - Feature Z](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-4)
+- [Iteration 1 - MVP](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-1--start-the-project-and-create-the-infrastructures-of-the-project)
+- [Iteration 2 - Feature X](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-2-------genrate-basic-queries)
+- [Iteration 3 - Feature Y](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-3---adding-more-queries-and-graphs) 
+- [Iteration 4 - Feature Z](https://github.com/orbardugo/Hahot-Hameshulash/wiki/Iteration-4---testing-and-complete-the-app)
 
 
 
