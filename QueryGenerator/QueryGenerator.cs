@@ -422,7 +422,7 @@ namespace QueryGenerator
                                  orderby person.numOfArrivalesInRange(appStartDate, appEndDate) descending
                                  select person;
 
-                dt.Columns.Add("מס' הגעות", typeof(string));
+                dt.Columns.Add("מס' הגעות", typeof(System.Int32));
                 numOfColumns++;
             }
 
@@ -434,9 +434,9 @@ namespace QueryGenerator
             {
                 numOfColumns = temp;
                 DataRow r = dt.Rows.Add(sum + 1, p.firstName, p.lastName, p.age, p.gender, p.city);
-                if (FindAppearance)
+                if (institution != null)
                 {
-                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate).ToString());
+                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
                     numOfColumns--;
                 }
                 if (shelder != null)
@@ -449,11 +449,6 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.PostitutionSequence);
                     numOfColumns--;
                 }
-                if (institution != null)
-                {
-                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
-                    numOfColumns--;
-                }   
                 if (externalContact != null)
                 {
                     r.SetField(numOfColumns + 5, p.ExternalContact);
@@ -462,11 +457,6 @@ namespace QueryGenerator
                 if (criminalRecord != null)
                 {
                     r.SetField(numOfColumns + 5, p.CriminalRecord);
-                    numOfColumns--;
-                }
-                if (occupation != null)
-                {
-                    r.SetField(numOfColumns + 5, p.CurrentOccupation);
                     numOfColumns--;
                 }
                 if (religion != null)
@@ -484,7 +474,11 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.UseDrug);
                     numOfColumns--;
                 }
-                
+                if (FindAppearance)
+                {
+                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate));
+                    numOfColumns--;
+                }
                 sum++;
             }
             SumLabel.Text = sum.ToString();
@@ -677,9 +671,61 @@ namespace QueryGenerator
         }
         private void generateChart_Click(object sender, EventArgs e)
         {
+            if (cbIgnoreEmpty.SelectedItem != null)
+                generateChartAndIgnore(cbIgnoreEmpty.SelectedIndex);
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Un Check all Check Box other than cb
+        /// To UnCheck all cb = null
+        /// </summary>
+        /// <param name="cb"></param>
+        private List<Person> fixList(IEnumerable<Person> list, string query)
+        {
+            List<Person> temp = new List<Person>();
+            foreach (var n in list)
+            {
+                if (query == "מין")
+                {
+                    if (n.gender == "זכר" || n.gender == "נקבה")
+                        temp.Add(n);
+                }
+                else if (query == "עיר")
+                {
+                    if (n.city != "")
+                        temp.Add(n);
+                }
+                else if (query == "גיל")
+                {
+                    if (n.age >= 14 && n.age <= 25)
+                        temp.Add(n);
+                }
+                else if (query == "רקע")
+                {
+                    if (n.Religion != "")
+                        temp.Add(n);
+                }
+                else if (query == "שימוש בסמים")
+                {
+                    if (n.UseDrug != "")
+                        temp.Add(n);
+                }
+                else if (query == "שימוש באלכוהול")
+                {
+                    if (n.UseAlcohol != "")
+                        temp.Add(n);
+                }
+
+            }
+            return temp;
+        }
+        private void generateChartAndIgnore(int ignore)
+        {
             if (chartList.SelectedItem == null || cb_chartType.SelectedItem == null)
             {
-                MessageBox.Show("יש לבחור שאילתה וסוג גרף","החוט המשולש" , MessageBoxButtons.OK , MessageBoxIcon.Error);
+                MessageBox.Show("יש לבחור שאילתה וסוג גרף", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             string query = chartList.SelectedItem.ToString();
@@ -687,28 +733,46 @@ namespace QueryGenerator
             string[] titles = new string[0];
             string[] genderArray = { "זכר", "נקבה", "אחר" };
             string[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
+            HashSet<string> temp;
             switch (query)
             {
                 case "מין":
                     titles = genderArray;
                     break;
                 case "עיר":
-                    titles = hashSetOfCities.ToArray();
+                    temp = hashSetOfCities;
+                    if (ignore == 0)
+                    {
+                        temp.Remove("");
+                    }
+                    titles = temp.ToArray();
                     break;
                 case "רקע":
-                    titles = hashSetReligion.ToArray();
+                    temp = hashSetReligion;
+                    if (ignore == 0)
+                        temp.Remove("");
+                    titles = temp.ToArray();
                     break;
                 case "גיל":
                     titles = ageArray;
                     break;
                 case "שימוש באלכוהול":
-                    titles = hashSetUseAlcohol.ToArray();
+                    temp = hashSetUseAlcohol;
+                    if (ignore == 0)
+                        temp.Remove("");
+                    titles = temp.ToArray();
                     break;
                 case "שימוש בסמים":
-                    titles = hashSetUseDrug.ToArray();
+                    temp = hashSetUseDrug;
+                    if (ignore == 0)
+                        temp.Remove("");
+                    titles = temp.ToArray();                   
                     break;
                 case "עיסוק נוכחי":
-                    titles = hashSetCurrentOccupation.ToArray();
+                    temp = hashSetCurrentOccupation;
+                    if (ignore == 0)
+                        temp.Remove("");
+                    titles = temp.ToArray();
                     break;
                 case "רישום פלילי":
                     titles = hashSetlistOfCriminalRecord.ToArray();
@@ -730,7 +794,15 @@ namespace QueryGenerator
 
             }
             int[] counter = new int[titles.Length];
-            foreach (var person in listAfterQuery)
+            IEnumerable<Person> p;
+            if (ignore == 0)
+            {
+                p = new List<Person>();
+                p = fixList(listAfterQuery, query);
+            }
+            else
+                p = listAfterQuery;
+            foreach (var person in p)
             {
                 for (int i = 0; i < titles.Length; i++)
                 {
@@ -739,7 +811,6 @@ namespace QueryGenerator
                         if (person.gender != "זכר" && person.gender != "נקבה")
                         {
                             counter[2]++;
-                            break;
                         }
                         else if (person.gender == titles[i])
                             counter[i]++;
@@ -870,14 +941,6 @@ namespace QueryGenerator
                 QueryListBox.Items.Add(string.Format("From: {0} To: {1} arrived {2}-{3} times", appStartDate.ToString("d"), appEndDate.ToString("d"), fromAppearance, toAppearance));
             }
         }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Un Check all Check Box other than cb
-        /// To UnCheck all cb = null
-        /// </summary>
-        /// <param name="cb"></param>
         private void unCheckedAllBut(CheckBox cb)
         {
             foreach (CheckBox box in allCheckBoxes)
@@ -894,9 +957,18 @@ namespace QueryGenerator
                 yield return day;
         }
         void QueryGenerator_FormClosing(object sender, FormClosingEventArgs e)
-        {           
-                    Application.Exit();
+        {
+            Application.Exit();
         }
+
+        private void cbIgnoreEmpty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbIgnoreEmpty.SelectedIndex == 0)
+            {
+
+            }
+        }
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
             ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString() + " מספר תוצאות: " + sum);

@@ -116,6 +116,7 @@
             this.cb_gender = new System.Windows.Forms.CheckBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cbIgnoreEmpty = new System.Windows.Forms.ComboBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelGraph.SuspendLayout();
@@ -337,6 +338,7 @@
             // 
             // panelGraph
             // 
+            this.panelGraph.Controls.Add(this.cbIgnoreEmpty);
             this.panelGraph.Controls.Add(this.cb_chartType);
             this.panelGraph.Controls.Add(this.generateChart);
             this.panelGraph.Controls.Add(this.label15);
@@ -1197,6 +1199,19 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // cbIgnoreEmpty
+            // 
+            this.cbIgnoreEmpty.FormattingEnabled = true;
+            this.cbIgnoreEmpty.Items.AddRange(new object[] {
+            "התעלם",
+            "אל תתעלם"});
+            this.cbIgnoreEmpty.Location = new System.Drawing.Point(143, 4);
+            this.cbIgnoreEmpty.Name = "cbIgnoreEmpty";
+            this.cbIgnoreEmpty.Size = new System.Drawing.Size(121, 23);
+            this.cbIgnoreEmpty.TabIndex = 20;
+            this.cbIgnoreEmpty.Text = "סטטיסטיקה";
+            this.cbIgnoreEmpty.SelectedIndexChanged += new System.EventHandler(this.cbIgnoreEmpty_SelectedIndexChanged);
+            // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -1349,6 +1364,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label SumLabel;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox cbIgnoreEmpty;
     }
 }
 
