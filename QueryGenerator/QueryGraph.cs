@@ -133,9 +133,10 @@ namespace QueryGenerator
             foreach (var title in typeCol)
             {
                 s.Points.AddXY(title, count[index]);
+                
                 if (s.ChartType == System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie)
                 {
-                    s.Points[index].Label = output + " " + title;
+                    s.Points[index].Label = string.Format("[{0}] {1}",output,title);
                     s.Points[index].Font = new Font("Arial", 15);
                 }
                 index++;
