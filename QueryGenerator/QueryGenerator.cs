@@ -422,7 +422,7 @@ namespace QueryGenerator
                                  orderby person.numOfArrivalesInRange(appStartDate, appEndDate) descending
                                  select person;
 
-                dt.Columns.Add("מס' הגעות", typeof(System.Int32));
+                dt.Columns.Add("מס' הגעות", typeof(string));
                 numOfColumns++;
             }
 
@@ -434,6 +434,11 @@ namespace QueryGenerator
             {
                 numOfColumns = temp;
                 DataRow r = dt.Rows.Add(sum + 1, p.firstName, p.lastName, p.age, p.gender, p.city);
+                if (FindAppearance)
+                {
+                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate).ToString());
+                    numOfColumns--;
+                }
                 if (institution != null)
                 {
                     r.SetField(numOfColumns + 5, p.NumOfInstitutions);
@@ -474,11 +479,7 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.UseDrug);
                     numOfColumns--;
                 }
-                if (FindAppearance)
-                {
-                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate));
-                    numOfColumns--;
-                }
+                
                 sum++;
             }
             SumLabel.Text = sum.ToString();
