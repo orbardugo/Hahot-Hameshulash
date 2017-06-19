@@ -35,7 +35,10 @@ We're trying to use the best tools and practices in order to produce a quality e
 | Project Course Status | ... |
 
 ## Application Screenshots
-
+First page: choose the xlsx file. <br>
+![project main page](http://i66.tinypic.com/o0rx4k.png)<br>
+Main page query generator: create queries and results. <br>
+![project main page](http://i67.tinypic.com/ri6rr4.png)<br>
 
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
