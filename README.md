@@ -34,8 +34,7 @@ We're trying to use the best tools and practices in order to produce a quality e
 | Documnetation | [![Inline docs](http://inch-ci.org/github/orbardugo/Hahot-Hameshulash.svg?branch=master)](http://inch-ci.org/github/orbardugo/Hahot-Hameshulash) |
 | Project Course Status | ... |
 
-## Please visit our [live application](https://demo.reactstarterkit.com/)
-- Alright, currently only a landing page...
+## Application Screenshots
 
 
 ## Disclaimer
