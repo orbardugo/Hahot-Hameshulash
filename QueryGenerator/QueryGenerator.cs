@@ -422,7 +422,7 @@ namespace QueryGenerator
                                  orderby person.numOfArrivalesInRange(appStartDate, appEndDate) descending
                                  select person;
 
-                dt.Columns.Add("מס' הגעות", typeof(System.Int32));
+                dt.Columns.Add("מס' הגעות", typeof(string));
                 numOfColumns++;
             }
 
@@ -434,9 +434,9 @@ namespace QueryGenerator
             {
                 numOfColumns = temp;
                 DataRow r = dt.Rows.Add(sum + 1, p.firstName, p.lastName, p.age, p.gender, p.city);
-                if (institution != null)
+                if (FindAppearance)
                 {
-                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
+                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate));
                     numOfColumns--;
                 }
                 if (shelder != null)
@@ -449,6 +449,11 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.PostitutionSequence);
                     numOfColumns--;
                 }
+                if (institution != null)
+                {
+                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
+                    numOfColumns--;
+                }  
                 if (externalContact != null)
                 {
                     r.SetField(numOfColumns + 5, p.ExternalContact);
@@ -457,6 +462,11 @@ namespace QueryGenerator
                 if (criminalRecord != null)
                 {
                     r.SetField(numOfColumns + 5, p.CriminalRecord);
+                    numOfColumns--;
+                }
+                if (occupation != null)
+                {
+                    r.SetField(numOfColumns + 5, p.CurrentOccupation);
                     numOfColumns--;
                 }
                 if (religion != null)
@@ -474,11 +484,7 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.UseDrug);
                     numOfColumns--;
                 }
-                if (FindAppearance)
-                {
-                    r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate));
-                    numOfColumns--;
-                }
+                
                 sum++;
             }
             SumLabel.Text = sum.ToString();
