@@ -34,6 +34,8 @@ namespace QueryGenerator
         private List<Panel> allPanels;
         private List<CheckBox> allCheckBoxes;
         private List<ComboBox> allComboBoxes;
+
+        int sum = 0;
         #endregion
 
         #region Private Query Parameters
@@ -425,7 +427,7 @@ namespace QueryGenerator
             }
 
 
-            int sum = 0;
+            sum = 0;
             int temp = numOfColumns;
             StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
@@ -464,7 +466,7 @@ namespace QueryGenerator
                 }
                 if (alcohol != null)
                 {
-                    r.SetField(numOfColumns + 4, p.UseAlcohol);
+                    r.SetField(numOfColumns + 5, p.UseAlcohol);
                     numOfColumns--;
                 }
                 if (drug != null)
@@ -672,7 +674,7 @@ namespace QueryGenerator
         {
             if (chartList.SelectedItem == null || cb_chartType.SelectedItem == null)
             {
-                MessageBox.Show("יש לבחור שאילתה וסוג גרף");
+                MessageBox.Show("יש לבחור שאילתה וסוג גרף","החוט המשולש" , MessageBoxButtons.OK , MessageBoxIcon.Error);
                 return;
             }
             string query = chartList.SelectedItem.ToString();
@@ -886,23 +888,13 @@ namespace QueryGenerator
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
         }
-        private void btnExitProgram_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (Process proc in Process.GetProcessesByName("QueryGenerator"))
-                {
-                    proc.Kill();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        void QueryGenerator_FormClosing(object sender, FormClosingEventArgs e)
+        {           
+                    Application.Exit();
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString());
+            ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString() + " מספר תוצאות: " + sum);
             _ClsPrint.PrintForm();
         }
 

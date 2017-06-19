@@ -1215,6 +1215,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "QueryGenerator";
             this.Text = "הפקת דוחות החוט המשולש";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QueryGenerator_FormClosing);
             this.panelResults.ResumeLayout(false);
             this.panelResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).EndInit();

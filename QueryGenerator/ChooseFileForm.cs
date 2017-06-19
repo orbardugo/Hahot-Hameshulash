@@ -42,67 +42,70 @@ namespace QueryGenerator
                 listOfPersons = null;
                 return;
             }
-
-            XLSX_PATH = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
-            var excelFile = new ExcelQueryFactory(XLSX_PATH);
-            List<Row> dataBase1 = excelFile.WorksheetRange("A1", "AJ100000", SHEET_NAME).ToList(); // contains private information
-
-            List<RowNoHeader> dataBase2 = excelFile.WorksheetRangeNoHeader("AJ1", "IT1", SHEET_NAME).ToList();
-            List<RowNoHeader> dataBase3 = excelFile.WorksheetRangeNoHeader("IU1", "OV1", SHEET_NAME).ToList();
-            List<Row> dataBase4 = excelFile.WorksheetRange("AJ1", "IT100000", SHEET_NAME).ToList(); // content of dataBase2
-            List<Row> dataBase5 = excelFile.WorksheetRange("IU1", "OV100000", SHEET_NAME).ToList(); // content of dataBase3
-
-            HashSet<string> listOfCities = new HashSet<string>();
-            HashSet<string> listOfCurrentOccupation = new HashSet<string>();
-            HashSet<string> listOfExternalContact = new HashSet<string>();
-            HashSet<string> listOfUseAlcohol = new HashSet<string>();
-            HashSet<string> listOfuseDrug = new HashSet<string>();
-            HashSet<string> listOfReligion = new HashSet<string>();
-            HashSet<string> listOfCriminalRecord = new HashSet<string>();
-            HashSet<string> listOfInstitutions = new HashSet<string>();
-            HashSet<string> listOfProstitutions = new HashSet<string>();
-            HashSet<string> listOfShelter = new HashSet<string>();
-
-
-
-            foreach (var a in dataBase1)
+            try
             {
-                string year = a["שנת לידה"];
-                string privateName = a["שם "];
-                string lastName = a["משפחה"];
-                string gender = a["מין"];
-                string city = a["איזור מוצא"];
-                string meetDate = a["תאריך היכרות"];
-                string currentOccupation = a["עיסוק נוכחי"];
-                string externalContact = a["קשר עם גורם נוסף"];
-                string useAlcohol = a["שימוש באלכוהול"];
-                string useDrug = a["שימוש בסמים"];
-                string religion = a["רקע"];
-                string criminalRecord = a["רישום פלילי"];
-                string numofinstitutions = a["מס' מוסדות"];
-                string postitutionsequence = a["רצף זנות"];
-                string sheltersequence = a["רצף קורת גג"];
+                XLSX_PATH = openFileDialog1.InitialDirectory + openFileDialog1.FileName;
+                var excelFile = new ExcelQueryFactory(XLSX_PATH);
+                List<Row> dataBase1 = excelFile.WorksheetRange("A1", "AJ100000", SHEET_NAME).ToList(); // contains private information
+
+                List<RowNoHeader> dataBase2 = excelFile.WorksheetRangeNoHeader("AJ1", "IT1", SHEET_NAME).ToList();
+                List<RowNoHeader> dataBase3 = excelFile.WorksheetRangeNoHeader("IU1", "OV1", SHEET_NAME).ToList();
+                List<Row> dataBase4 = excelFile.WorksheetRange("AJ1", "IT100000", SHEET_NAME).ToList(); // content of dataBase2
+                List<Row> dataBase5 = excelFile.WorksheetRange("IU1", "OV100000", SHEET_NAME).ToList(); // content of dataBase3
+
+                HashSet<string> listOfCities = new HashSet<string>();
+                HashSet<string> listOfCurrentOccupation = new HashSet<string>();
+                HashSet<string> listOfExternalContact = new HashSet<string>();
+                HashSet<string> listOfUseAlcohol = new HashSet<string>();
+                HashSet<string> listOfuseDrug = new HashSet<string>();
+                HashSet<string> listOfReligion = new HashSet<string>();
+                HashSet<string> listOfCriminalRecord = new HashSet<string>();
+                HashSet<string> listOfInstitutions = new HashSet<string>();
+                HashSet<string> listOfProstitutions = new HashSet<string>();
+                HashSet<string> listOfShelter = new HashSet<string>();
 
 
-                if (String.IsNullOrEmpty(year))
+
+                foreach (var a in dataBase1)
                 {
-                    year = UNKNOWN;
+                    string year = a["שנת לידה"];
+                    string privateName = a["שם "];
+                    string lastName = a["משפחה"];
+                    string gender = a["מין"];
+                    string city = a["איזור מוצא"];
+                    string meetDate = a["תאריך היכרות"];
+                    string currentOccupation = a["עיסוק נוכחי"];
+                    string externalContact = a["קשר עם גורם נוסף"];
+                    string useAlcohol = a["שימוש באלכוהול"];
+                    string useDrug = a["שימוש בסמים"];
+                    string religion = a["רקע"];
+                    string criminalRecord = a["רישום פלילי"];
+                    string numofinstitutions = a["מס' מוסדות"];
+                    string postitutionsequence = a["רצף זנות"];
+                    string sheltersequence = a["רצף קורת גג"];
+
+
+                    if (String.IsNullOrEmpty(year))
+                    {
+                        year = UNKNOWN;
+                    }
+                    Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate,
+                      currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, numofinstitutions,
+                      postitutionsequence, sheltersequence, new Dictionary<DateTime, bool>());
+                    listOfPersons.Add(p);
+                    listOfCities.Add(city);
+                    listOfCurrentOccupation.Add(currentOccupation);
+                    listOfExternalContact.Add(externalContact);
+                    listOfUseAlcohol.Add(useAlcohol);
+                    listOfuseDrug.Add(useDrug);
+                    listOfReligion.Add(religion);
+                    listOfCriminalRecord.Add(criminalRecord);
+                    listOfInstitutions.Add(numofinstitutions);
+                    listOfProstitutions.Add(postitutionsequence);
+                    listOfShelter.Add(sheltersequence);
                 }
-                Person p = new Person(Int32.Parse(year), privateName, lastName, gender, city, meetDate,
-                  currentOccupation, externalContact, useAlcohol, useDrug, religion, criminalRecord, numofinstitutions,
-                  postitutionsequence, sheltersequence,new Dictionary<DateTime, bool>());
-                listOfPersons.Add(p);
-                listOfCities.Add(city);
-                listOfCurrentOccupation.Add(currentOccupation);
-                listOfExternalContact.Add(externalContact);
-                listOfUseAlcohol.Add(useAlcohol);
-                listOfuseDrug.Add(useDrug);
-                listOfReligion.Add(religion);
-                listOfCriminalRecord.Add(criminalRecord);
-                listOfInstitutions.Add(numofinstitutions);
-                listOfProstitutions.Add(postitutionsequence);
-                listOfShelter.Add(sheltersequence);
-            }
+           
+            
 
             getAttendance(dataBase2, dataBase4, listOfPersons); // get Attendence until July (include)
             getAttendance(dataBase3, dataBase5, listOfPersons, 8); // get Attendence from Aug 
@@ -112,6 +115,11 @@ namespace QueryGenerator
                 listOfInstitutions, listOfProstitutions, listOfShelter);
             f2.Show();
             this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("טעינת הקובץ נכשלה, בחר קובץ תקין.", "החוט המשולש", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+            }
         }
 
         private void getAttendance(List<RowNoHeader> headerBase, List<Row> dataBase, List<Person> listOfPersons, int StartMonth = 1)
