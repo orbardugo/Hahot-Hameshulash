@@ -439,11 +439,6 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.numOfArrivalesInRange(appStartDate, appEndDate).ToString());
                     numOfColumns--;
                 }
-                if (institution != null)
-                {
-                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
-                    numOfColumns--;
-                }
                 if (shelder != null)
                 {
                     r.SetField(numOfColumns + 5, p.ShelterSequence);
@@ -454,6 +449,11 @@ namespace QueryGenerator
                     r.SetField(numOfColumns + 5, p.PostitutionSequence);
                     numOfColumns--;
                 }
+                if (institution != null)
+                {
+                    r.SetField(numOfColumns + 5, p.NumOfInstitutions);
+                    numOfColumns--;
+                }   
                 if (externalContact != null)
                 {
                     r.SetField(numOfColumns + 5, p.ExternalContact);
@@ -462,6 +462,11 @@ namespace QueryGenerator
                 if (criminalRecord != null)
                 {
                     r.SetField(numOfColumns + 5, p.CriminalRecord);
+                    numOfColumns--;
+                }
+                if (occupation != null)
+                {
+                    r.SetField(numOfColumns + 5, p.CurrentOccupation);
                     numOfColumns--;
                 }
                 if (religion != null)
