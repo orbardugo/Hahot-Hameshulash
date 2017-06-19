@@ -35,7 +35,7 @@ namespace QueryGenerator
          string sheltersequence, Dictionary<DateTime,bool> presence)
         {
             yearOfBirth = yearofbirth;
-            age = DateTime.Today.Year - yearofbirth;
+            if (yearofbirth != 0) { age = DateTime.Today.Year - yearofbirth; } else age = 0;
             firstName = firstname;
             lastName = lastname;
             this.city = city;

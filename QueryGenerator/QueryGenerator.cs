@@ -497,9 +497,9 @@ namespace QueryGenerator
             if (Radio_unknowGender.Checked)
                 Radio_unknowGender.Checked = !Radio_unknowGender.Checked;
             //ClearAgePanel
-            fromAge = 15;
+            fromAge = 0;
             ageFromNumeric.Value = 15;
-            toAge = 24;
+            toAge = 25;
             ageToNumeric.Value = 24;
             //ClearCityPanel
             if (city != null)
