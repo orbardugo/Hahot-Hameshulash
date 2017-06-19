@@ -121,8 +121,10 @@ namespace QueryGenerator
             };
             testChart.Titles.Clear();  
             testChart.Series.Clear();   
-            var yourTitle = new System.Windows.Forms.DataVisualization.Charting.Title("גרף מוצג לפי:", System.Windows.Forms.DataVisualization.Charting.Docking.Top, new Font("Verdana", 12), Color.Black);
+            var yourTitle = new System.Windows.Forms.DataVisualization.Charting.Title("החוט המשולש", System.Windows.Forms.DataVisualization.Charting.Docking.Top, new Font("Verdana", 12), Color.Black);
+            var yourTitle2 = new System.Windows.Forms.DataVisualization.Charting.Title(string.Format (" גרף מוצג לפי: {0}", QueryGenerator.chartList.SelectedItem.ToString()), System.Windows.Forms.DataVisualization.Charting.Docking.Top, new Font("Verdana", 12), Color.Black);
             testChart.Titles.Add(yourTitle);
+            testChart.Titles.Add(yourTitle2);
             testChart.Series.Add(s);
             testChart.ChartAreas[0].Area3DStyle.Enable3D = true;
             testChart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Arial", 8);

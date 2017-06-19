@@ -977,7 +977,12 @@ namespace QueryGenerator
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            ClsPrint _ClsPrint = new ClsPrint(dataListGrid, "החוט המשולש - " + DateTime.Today.ToShortDateString() + " מספר תוצאות: " + sum);
+            string text = "\n";
+            foreach (var item in QueryListBox.Items)
+            {
+                text += item.ToString() + "\n"; // /n to print each item on new line or you omit /n to print text on same line
+            }
+            ClsPrint _ClsPrint = new ClsPrint(dataListGrid,string.Format( "החוט המשולש -  {0} מספר תוצאות {1} \n לפי שאילתות:{2}", DateTime.Today.ToShortDateString() , sum, text));
             _ClsPrint.PrintForm();
         }
 
