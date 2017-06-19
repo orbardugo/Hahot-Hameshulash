@@ -666,7 +666,6 @@ namespace QueryGenerator
                     externalContactCB.SelectedIndex = 0;
                     externalContact = null;
                 }
-                MessageBox.Show(queryToRemove);
                 QueryListBox.Items.RemoveAt(QueryListBox.SelectedIndex);
             }
         }

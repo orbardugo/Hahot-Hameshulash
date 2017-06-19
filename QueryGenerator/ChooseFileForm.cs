@@ -118,7 +118,8 @@ namespace QueryGenerator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("טעינת הקובץ נכשלה, בחר קובץ תקין.", "החוט המשולש", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+                MessageBox.Show("טעינת הקובץ נכשלה, בחר קובץ תקין." + ex.Message.ToString(), "החוט המשולש", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+
             }
         }
 
