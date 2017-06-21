@@ -17,16 +17,7 @@ namespace QueryGenerator
             this.type = type;
             this.typeCol = typeCol;
             this.count = count;
-            try
-            {
-                testChart.Width = (int)(Console.WindowWidth * 0.9);
-                testChart.Height = (int)(Console.WindowHeight * 0.9);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("יש לבחור שאילתה וסוג גרף", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+            
             this.WindowState = FormWindowState.Maximized;
             
             InitializeComponent();

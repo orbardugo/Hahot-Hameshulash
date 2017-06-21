@@ -681,10 +681,12 @@ namespace QueryGenerator
         }
         private void generateChart_Click(object sender, EventArgs e)
         {
-            if (cbIgnoreEmpty.SelectedItem != null)
+            if (chartList.SelectedItem == null || cb_chartType.SelectedItem == null)
             {
-                generateChartAndIgnore(cbIgnoreEmpty.SelectedIndex);
-            }
+                MessageBox.Show("יש לבחור שאילתה וסוג גרף", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }         
+            generateChartAndIgnore(cbIgnoreEmpty.SelectedIndex);
         }
         #endregion
 
@@ -747,22 +749,14 @@ namespace QueryGenerator
         }
         private void generateChartAndIgnore(int ignore)
         {
-            if (chartList.SelectedItem == null || cb_chartType.SelectedItem == null)
-            {
-                MessageBox.Show("יש לבחור שאילתה וסוג גרף", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             string query = chartList.SelectedItem.ToString();
             string graphType = cb_chartType.SelectedItem.ToString();
-            string[] titles;
+            string[] titles=null;
             string[] genderArray = { "זכר", "נקבה", "אחר" };
             string[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
             HashSet<string> temp;
             switch (query)
             {
-                case "מין":
-                    titles = genderArray;
-                    break;
                 case "עיר":
                     temp = hashSetOfCities;
                     if (ignore == 0)
@@ -821,8 +815,8 @@ namespace QueryGenerator
                 case "קשר עם גורם נוסף":
                     titles = hashSetExternalContact.ToArray();
                     break;
-                default:
-                    titles = null;
+                case "מין":
+                    titles = genderArray;
                     break;
             }
             int[] counter = new int[titles.Length];
