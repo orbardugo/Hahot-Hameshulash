@@ -10,6 +10,11 @@
 
 ![project logo (this one for is taken from basecamp - a project management service)](http://meshulash.org/wp-content/uploads/2016/08/LOGO.png)
 
+###  press on the folowing image to Hahot-Hameshulash's activities:
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/kQSfcirTqqQ/0.jpg)](https://www.youtube.com/watch?v=kQSfcirTqqQ)
+### visit "Hahot-Hameshulash" website [here](http://meshulash.org/he/homepage/)
+
+
 ## Tools & Practices
 We're trying to use the best tools and practices in order to produce a quality enginneered product.
 (replace 'jce-il/project-template' with your 'username/repo' and register to the relevant services)
