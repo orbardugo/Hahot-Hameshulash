@@ -9,9 +9,9 @@ namespace QueryGenerator
 {
     public partial class QueryGraph : Form
     {
-        string[] typeCol;
-        int[] count;
-        string type;
+        readonly string[] typeCol;
+        readonly int[] count;
+        readonly string type;
         public QueryGraph(string[] typeCol, int[] count, string type)
         {
             this.type = type;

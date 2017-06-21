@@ -18,42 +18,42 @@ namespace QueryGenerator
     public partial class QueryGenerator : Form
     {
         #region Private Lists
-        private List<Person> listOPepoles;
-        private HashSet<string> hashSetOfCities;
-        private HashSet<string> hashSetCurrentOccupation;
+        readonly private List<Person> listOPepoles;
+        readonly private HashSet<string> hashSetOfCities;
+        readonly private HashSet<string> hashSetCurrentOccupation;
         private HashSet<string> hashSetExternalContact;
-        private HashSet<string> hashSetUseAlcohol;
-        private HashSet<string> hashSetUseDrug;
+        readonly private HashSet<string> hashSetUseAlcohol;
+        readonly private HashSet<string> hashSetUseDrug;
         private HashSet<string> hashSetReligion;
         private HashSet<string> hashSetlistOfCriminalRecord;
         private HashSet<string> hashSetlistOfInstitutions;
-        private HashSet<string> hashSetlistOfPostitutions;
-        private HashSet<string> hashSetlistOfShelter;
-        private IEnumerable<Person> mainQuery;
+        readonly private HashSet<string> hashSetlistOfPostitutions;
+        readonly private HashSet<string> hashSetlistOfShelter;
+        readonly private IEnumerable<Person> mainQuery;
         private IEnumerable<Person> listAfterQuery;
-        private List<Panel> allPanels;
-        private List<CheckBox> allCheckBoxes;
+        readonly private List<Panel> allPanels;
+        readonly private List<CheckBox> allCheckBoxes;
         private List<ComboBox> allComboBoxes;
 
-        int sum = 0;
+        int sum;
         #endregion
 
         #region Private Query Parameters
-        private string genderValue = null;
-        private int fromAge = 0, toAge = 0;
-        private string city = null;
-        private string drug = null;
+        private string genderValue;
+        private int fromAge, toAge;
+        private string city;
+        private string drug;
         private bool FindAppearance;
         private DateTime appStartDate, appEndDate;
-        private int fromAppearance = 0, toAppearance = 0;
-        private string alcohol = null;
-        private string religion = null;
-        private string occupation = null;
-        private string criminalRecord = null;
-        private string externalContact = null;
-        private string postitution = null;
-        private string institution = null;
-        private string shelder = null;
+        private int fromAppearance, toAppearance;
+        private string alcohol;
+        private string religion;
+        private string occupation;
+        private string criminalRecord;
+        private string externalContact;
+        private string postitution;
+        private string institution;
+        private string shelder;
         #endregion
         public QueryGenerator(List<Person> listOfPepoles, HashSet<string> hashSetOfcities, HashSet<string> hashSetCurrentoccupation, HashSet<string> hashSetExternalcontact
             , HashSet<string> hashSetUsealcohol, HashSet<string> hashSetUsedrug, HashSet<string> hashSetreligion,
@@ -83,7 +83,7 @@ namespace QueryGenerator
 
             mainQuery = from p in listOPepoles select p;
             listAfterQuery = mainQuery;
-            allPanels = new List<Panel>() {
+            allPanels = new List<Panel> {
                 panelAge,panelGender, panelAlcohol, panelCity, panelCriminalRecord, panelDate, panelDrug, panelExternalContact, panelReligion,panelOccupation,
                 panelpostitution,panelshelder,panelinstitution };
             allCheckBoxes = new List<CheckBox>(){
@@ -497,11 +497,17 @@ namespace QueryGenerator
             //ClearGenderPanel
             genderValue = null;
             if (Radio_men.Checked)
+            {
                 Radio_men.Checked = !Radio_men.Checked;
+            }
             if (Radio_woman.Checked)
+            {
                 Radio_woman.Checked = !Radio_woman.Checked;
+            }
             if (Radio_unknowGender.Checked)
+            {
                 Radio_unknowGender.Checked = !Radio_unknowGender.Checked;
+            }
             //ClearAgePanel
             fromAge = 0;
             ageFromNumeric.Value = 15;
@@ -678,7 +684,9 @@ namespace QueryGenerator
         private void generateChart_Click(object sender, EventArgs e)
         {
             if (cbIgnoreEmpty.SelectedItem != null)
+            {
                 generateChartAndIgnore(cbIgnoreEmpty.SelectedIndex);
+            }
         }
         #endregion
 
@@ -696,32 +704,44 @@ namespace QueryGenerator
                 if (query == "מין")
                 {
                     if (n.gender == "זכר" || n.gender == "נקבה")
+                    {
                         temp.Add(n);
+                    }
                 }
                 else if (query == "עיר")
                 {
                     if (n.city != "")
+                    {
                         temp.Add(n);
+                    }
                 }
                 else if (query == "גיל")
                 {
                     if (n.age >= 14 && n.age <= 25)
+                    {
                         temp.Add(n);
+                    }
                 }
                 else if (query == "רקע")
                 {
                     if (n.Religion != "")
+                    {
                         temp.Add(n);
+                    }
                 }
                 else if (query == "שימוש בסמים")
                 {
                     if (n.UseDrug != "")
+                    {
                         temp.Add(n);
+                    }
                 }
                 else if (query == "שימוש באלכוהול")
                 {
                     if (n.UseAlcohol != "")
+                    {
                         temp.Add(n);
+                    }
                 }
 
             }

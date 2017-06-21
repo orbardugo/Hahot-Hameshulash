@@ -35,13 +35,15 @@ namespace QueryGenerator
          string sheltersequence, Dictionary<DateTime,bool> presence)
         {
             yearOfBirth = yearofbirth;
-            if (yearofbirth != 0) { age = DateTime.Today.Year - yearofbirth; } else age = 0;
+            if (yearofbirth != 0) { age = DateTime.Today.Year - yearofbirth; } else { age = 0; }
             firstName = firstname;
             lastName = lastname;
             this.city = city;
             this.gender = gender;
             if (meetDate != "")
+            {
                 this.meetDate = meetDate.Substring(0, 8);
+            }
             CurrentOccupation = currentOccupation;
             ExternalContact = externalContact;
             UseAlcohol = useAlcohol;
@@ -59,14 +61,18 @@ namespace QueryGenerator
             foreach (DateTime day in EachDay(startDate, endDate))
             {
                 if (Presence[day] == true)
+                {
                     count++;
+                }
             }
             return count;
         }
         private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+            {
                 yield return day;
+            }
         }
     }
 }

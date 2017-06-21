@@ -118,7 +118,7 @@ namespace QueryGenerator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("טעינת הקובץ נכשלה, בחר קובץ תקין." + ex.Message.ToString(), "החוט המשולש", MessageBoxButtons.OK ,MessageBoxIcon.Error);
+                MessageBox.Show("טעינת הקובץ נכשלה, בחר קובץ תקין." + ex.Message, "החוט המשולש", MessageBoxButtons.OK ,MessageBoxIcon.Error);
 
             }
         }
@@ -141,9 +141,13 @@ namespace QueryGenerator
                         date_Val = new DateTime(DateTime.Today.Year, months, days);
 
                         if (a[header] == "1")
+                        {
                             bool_val = true;
+                        }
                         else
+                        {
                             bool_val = false;
+                        }
 
                         listOfPersons[personsCount].Presence.Add(date_Val, bool_val);
                         days++;

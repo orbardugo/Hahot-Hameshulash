@@ -46,6 +46,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.cb_chartType = new System.Windows.Forms.ComboBox();
             this.panelGraph = new System.Windows.Forms.Panel();
+            this.cbIgnoreEmpty = new System.Windows.Forms.ComboBox();
             this.queryBox = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panelChooseQuery = new System.Windows.Forms.GroupBox();
@@ -116,7 +117,6 @@
             this.cb_gender = new System.Windows.Forms.CheckBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cbIgnoreEmpty = new System.Windows.Forms.ComboBox();
             this.panelResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataListGrid)).BeginInit();
             this.panelGraph.SuspendLayout();
@@ -303,11 +303,11 @@
             "גיל",
             "שימוש באלכוהול",
             "שימוש בסמים"});
-            chartList.Location = new System.Drawing.Point(464, 4);
+            chartList.Location = new System.Drawing.Point(454, 4);
             chartList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             chartList.Name = "chartList";
             chartList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            chartList.Size = new System.Drawing.Size(117, 23);
+            chartList.Size = new System.Drawing.Size(127, 23);
             chartList.TabIndex = 17;
             chartList.Text = "הצג לפי";
             // 
@@ -328,7 +328,7 @@
             this.cb_chartType.Items.AddRange(new object[] {
             "עוגה",
             "עמודות"});
-            this.cb_chartType.Location = new System.Drawing.Point(283, 4);
+            this.cb_chartType.Location = new System.Drawing.Point(304, 4);
             this.cb_chartType.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cb_chartType.Name = "cb_chartType";
             this.cb_chartType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -347,6 +347,20 @@
             this.panelGraph.Name = "panelGraph";
             this.panelGraph.Size = new System.Drawing.Size(786, 30);
             this.panelGraph.TabIndex = 20;
+            // 
+            // cbIgnoreEmpty
+            // 
+            this.cbIgnoreEmpty.FormattingEnabled = true;
+            this.cbIgnoreEmpty.Items.AddRange(new object[] {
+            "התעלם",
+            "אל תתעלם"});
+            this.cbIgnoreEmpty.Location = new System.Drawing.Point(164, 4);
+            this.cbIgnoreEmpty.Name = "cbIgnoreEmpty";
+            this.cbIgnoreEmpty.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbIgnoreEmpty.Size = new System.Drawing.Size(135, 23);
+            this.cbIgnoreEmpty.TabIndex = 20;
+            this.cbIgnoreEmpty.Text = "סטטיסטיקה";
+            this.cbIgnoreEmpty.SelectedIndexChanged += new System.EventHandler(this.cbIgnoreEmpty_SelectedIndexChanged);
             // 
             // queryBox
             // 
@@ -1199,19 +1213,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // cbIgnoreEmpty
-            // 
-            this.cbIgnoreEmpty.FormattingEnabled = true;
-            this.cbIgnoreEmpty.Items.AddRange(new object[] {
-            "התעלם",
-            "אל תתעלם"});
-            this.cbIgnoreEmpty.Location = new System.Drawing.Point(143, 4);
-            this.cbIgnoreEmpty.Name = "cbIgnoreEmpty";
-            this.cbIgnoreEmpty.Size = new System.Drawing.Size(121, 23);
-            this.cbIgnoreEmpty.TabIndex = 20;
-            this.cbIgnoreEmpty.Text = "סטטיסטיקה";
-            this.cbIgnoreEmpty.SelectedIndexChanged += new System.EventHandler(this.cbIgnoreEmpty_SelectedIndexChanged);
-            // 
             // QueryGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -1286,7 +1287,6 @@
         private System.Windows.Forms.ListBox QueryListBox;
         private System.Windows.Forms.Button remove;
         private System.Windows.Forms.Button generateChart;
-        public static System.Windows.Forms.ComboBox chartList;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cb_chartType;
         private System.Windows.Forms.Panel panelGraph;
@@ -1365,6 +1365,7 @@
         private System.Windows.Forms.Label SumLabel;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cbIgnoreEmpty;
+        public static System.Windows.Forms.ComboBox chartList;
     }
 }
 

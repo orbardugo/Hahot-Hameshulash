@@ -14,18 +14,18 @@ namespace QueryGenerator
     {
         #region Variables
 
-        int iCellHeight = 0; //Used to get/set the datagridview cell height
-        int iTotalWidth = 0; //
-        int iRow = 0;//Used as counter
+        
+        int iTotalWidth; //
+        int iRow;//Used as counter
         bool bFirstPage = false; //Used to check whether we are printing first page
-        bool bNewPage = false;// Used to check whether we are printing a new page
-        int iHeaderHeight = 0; //Used for the header height
+        bool bNewPage;// Used to check whether we are printing a new page
+        int iHeaderHeight; //Used for the header height
         StringFormat strFormat; //Used to format the grid rows.
-        ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
-        ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
+        readonly ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
+        readonly ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
         private PrintDocument _printDocument = new PrintDocument();
-        private DataGridView gw = new DataGridView();
-        private string _ReportHeader;
+        readonly private DataGridView gw = new DataGridView();
+        readonly private string _ReportHeader;
 
         #endregion
 
@@ -59,6 +59,7 @@ namespace QueryGenerator
 
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            int iCellHeight; //Used to get/set the datagridview cell height
             //try
             //{
             //Set the left margin
@@ -189,9 +190,13 @@ namespace QueryGenerator
             }
             //If more lines exist, print another page.
             if (bMorePagesToPrint)
+            {
                 e.HasMorePages = true;
+            }
             else
+            {
                 e.HasMorePages = false;
+            }
             //}
             //catch (Exception exc)
             //{
@@ -208,10 +213,8 @@ namespace QueryGenerator
                 strFormat.Alignment = StringAlignment.Center;
                 strFormat.LineAlignment = StringAlignment.Center;
                 strFormat.Trimming = StringTrimming.EllipsisCharacter;
-
                 arrColumnLefts.Clear();
                 arrColumnWidths.Clear();
-                iCellHeight = 0;
                 iRow = 0;
                 bFirstPage = true;
                 bNewPage = true;
