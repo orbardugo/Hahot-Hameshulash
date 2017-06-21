@@ -67,7 +67,7 @@ namespace QueryGenerator
             }
             return count;
         }
-        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        private static IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
             {

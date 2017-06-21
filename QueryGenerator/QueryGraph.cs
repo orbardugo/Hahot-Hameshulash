@@ -22,7 +22,11 @@ namespace QueryGenerator
                 testChart.Width = (int)(Console.WindowWidth * 0.9);
                 testChart.Height = (int)(Console.WindowHeight * 0.9);
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("יש לבחור שאילתה וסוג גרף", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
             this.WindowState = FormWindowState.Maximized;
             
             InitializeComponent();
@@ -60,7 +64,7 @@ namespace QueryGenerator
                            System.Drawing.Imaging.ImageFormat.Bmp);
                         break;
 
-                    case 3:
+                    default:
                         testChart.SaveImage(fs,
                            System.Drawing.Imaging.ImageFormat.Gif);
                         break;
@@ -94,7 +98,7 @@ namespace QueryGenerator
                 case 1:
                     output = "#VALY";
                     break;                
-                case 2:
+                default:
                     output = "(" + "#VALY" + ") " + "#PERCENT";
                     break;
             }

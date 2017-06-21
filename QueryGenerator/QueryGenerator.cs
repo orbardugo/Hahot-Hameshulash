@@ -67,7 +67,8 @@ namespace QueryGenerator
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("תקלה בטעינת התוכנה, פתח מחדש", "החוט המשולש", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
             }
             listOPepoles = listOfPepoles;
             hashSetOfCities = hashSetOfcities;
@@ -481,9 +482,7 @@ namespace QueryGenerator
                 if (drug != null)
                 {
                     r.SetField(numOfColumns + 5, p.UseDrug);
-                    numOfColumns--;
                 }
-                
                 sum++;
             }
             SumLabel.Text = sum.ToString();
@@ -642,7 +641,7 @@ namespace QueryGenerator
                     criminalRecordCB.SelectedIndex = 0;
                     criminalRecord = null;
                 }
-                else if (queryToRemove.Contains("קשר"))
+                else if (queryToRemove.Contains("נוסף"))
                 {
                     externalContactCB.SelectedIndex = 0;
                     externalContact = null;
@@ -676,11 +675,6 @@ namespace QueryGenerator
                 {
                     cityCB.SelectedIndex = 0;
                     city = null;
-                }
-                else if (queryToRemove.Contains("נוסף"))
-                {
-                    externalContactCB.SelectedIndex = 0;
-                    externalContact = null;
                 }
                 QueryListBox.Items.RemoveAt(QueryListBox.SelectedIndex);
             }
@@ -760,7 +754,7 @@ namespace QueryGenerator
             }
             string query = chartList.SelectedItem.ToString();
             string graphType = cb_chartType.SelectedItem.ToString();
-            string[] titles = new string[0];
+            string[] titles;
             string[] genderArray = { "זכר", "נקבה", "אחר" };
             string[] ageArray = { "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" };
             HashSet<string> temp;
@@ -791,19 +785,25 @@ namespace QueryGenerator
                 case "שימוש באלכוהול":
                     temp = hashSetUseAlcohol;
                     if (ignore == 0)
+                    {
                         temp.Remove("");
+                    }
                     titles = temp.ToArray();
                     break;
                 case "שימוש בסמים":
                     temp = hashSetUseDrug;
                     if (ignore == 0)
+                    {
                         temp.Remove("");
+                    }
                     titles = temp.ToArray();                   
                     break;
                 case "עיסוק נוכחי":
                     temp = hashSetCurrentOccupation;
                     if (ignore == 0)
+                    {
                         temp.Remove("");
+                    }
                     titles = temp.ToArray();
                     break;
                 case "רישום פלילי":
@@ -822,14 +822,13 @@ namespace QueryGenerator
                     titles = hashSetExternalContact.ToArray();
                     break;
                 default:
-                    titles = genderArray;
+                    titles = null;
                     break;
             }
             int[] counter = new int[titles.Length];
             IEnumerable<Person> p;
             if (ignore == 0)
             {
-                p = new List<Person>();
                 p = fixList(listAfterQuery, query);
             }
             else
@@ -847,7 +846,9 @@ namespace QueryGenerator
                             counter[2]++;
                         }
                         else if (person.gender == titles[i])
+                        {
                             counter[i]++;
+                        }
                     }
                     if (query == "עיר")
                     {
@@ -1027,25 +1028,18 @@ namespace QueryGenerator
                 }
             }
         }
-        void QueryGenerator_FormClosing(object sender, FormClosingEventArgs e)
+        private void QueryGenerator_FormClosing(object sender,FormClosingEventArgs e)
         {
             Application.Exit();
         }
 
-        private void cbIgnoreEmpty_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbIgnoreEmpty.SelectedIndex == 0)
-            {
-
-            }
-        }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            string text = "\n";
+            StringBuilder text = new StringBuilder("\n");
             foreach (var item in QueryListBox.Items)
             {
-                text += item.ToString() + "\n"; // /n to print each item on new line or you omit /n to print text on same line
+                text.Append(item.ToString() + "\n"); // /n to print each item on new line or you omit /n to print text on same line
             }
             ClsPrint _ClsPrint = new ClsPrint(dataListGrid,string.Format( "החוט המשולש -  {0} מספר תוצאות {1} \n לפי שאילתות:{2}", DateTime.Today.ToShortDateString() , sum, text));
             _ClsPrint.PrintForm();

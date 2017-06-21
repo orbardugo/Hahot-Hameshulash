@@ -23,7 +23,7 @@ namespace QueryGenerator
         StringFormat strFormat; //Used to format the grid rows.
         readonly ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
         readonly ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
-        private PrintDocument _printDocument = new PrintDocument();
+        readonly private PrintDocument _printDocument = new PrintDocument();
         readonly private DataGridView gw = new DataGridView();
         readonly private string _ReportHeader;
 
@@ -39,18 +39,6 @@ namespace QueryGenerator
 
         public void PrintForm()
         {
-            ////Open the print dialog
-            //PrintDialog printDialog = new PrintDialog();
-            //printDialog.Document = _printDocument;
-            //printDialog.UseEXDialog = true;
-
-            ////Get the document
-            //if (DialogResult.OK == printDialog.ShowDialog())
-            //{
-            //    _printDocument.DocumentName = "Test Page Print";
-            //    _printDocument.Print();
-            //}
-
             //Open the print preview dialog
             PrintPreviewDialog objPPdialog = new PrintPreviewDialog();
             objPPdialog.Document = _printDocument;
@@ -60,8 +48,8 @@ namespace QueryGenerator
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             int iCellHeight; //Used to get/set the datagridview cell height
-            //try
-            //{
+            try
+            {
             //Set the left margin
             int iLeftMargin = e.MarginBounds.Left;
             //Set the top margin
@@ -197,12 +185,12 @@ namespace QueryGenerator
             {
                 e.HasMorePages = false;
             }
-            //}
-            //catch (Exception exc)
-            //{
-            //    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
-            //       MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+            }
         }
 
         private void _printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)

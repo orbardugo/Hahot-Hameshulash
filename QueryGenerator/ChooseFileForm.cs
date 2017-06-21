@@ -123,7 +123,7 @@ namespace QueryGenerator
             }
         }
 
-        private void getAttendance(List<RowNoHeader> headerBase, List<Row> dataBase, List<Person> listOfPersons, int StartMonth = 1)
+        private static void getAttendance(List<RowNoHeader> headerBase, List<Row> dataBase, List<Person> listOfPersons, int StartMonth = 1)
         {
             int personsCount = 0;
             foreach (var a in dataBase)

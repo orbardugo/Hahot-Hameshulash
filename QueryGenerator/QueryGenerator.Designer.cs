@@ -360,7 +360,6 @@
             this.cbIgnoreEmpty.Size = new System.Drawing.Size(135, 23);
             this.cbIgnoreEmpty.TabIndex = 20;
             this.cbIgnoreEmpty.Text = "סטטיסטיקה";
-            this.cbIgnoreEmpty.SelectedIndexChanged += new System.EventHandler(this.cbIgnoreEmpty_SelectedIndexChanged);
             // 
             // queryBox
             // 
