@@ -90,6 +90,7 @@
             "שניהם"});
             this.cmbValOrPer.Location = new System.Drawing.Point(13, 25);
             this.cmbValOrPer.Name = "cmbValOrPer";
+            this.cmbValOrPer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbValOrPer.Size = new System.Drawing.Size(121, 21);
             this.cmbValOrPer.TabIndex = 3;
             this.cmbValOrPer.Text = "הצג לפי";

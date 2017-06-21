@@ -21,19 +21,19 @@ namespace QueryGenerator
         readonly private List<Person> listOPepoles;
         readonly private HashSet<string> hashSetOfCities;
         readonly private HashSet<string> hashSetCurrentOccupation;
-        private HashSet<string> hashSetExternalContact;
+        readonly private HashSet<string> hashSetExternalContact;
         readonly private HashSet<string> hashSetUseAlcohol;
         readonly private HashSet<string> hashSetUseDrug;
-        private HashSet<string> hashSetReligion;
-        private HashSet<string> hashSetlistOfCriminalRecord;
-        private HashSet<string> hashSetlistOfInstitutions;
+        readonly private HashSet<string> hashSetReligion;
+        readonly private HashSet<string> hashSetlistOfCriminalRecord;
+        readonly private HashSet<string> hashSetlistOfInstitutions;
         readonly private HashSet<string> hashSetlistOfPostitutions;
         readonly private HashSet<string> hashSetlistOfShelter;
         readonly private IEnumerable<Person> mainQuery;
         private IEnumerable<Person> listAfterQuery;
         readonly private List<Panel> allPanels;
         readonly private List<CheckBox> allCheckBoxes;
-        private List<ComboBox> allComboBoxes;
+        readonly private List<ComboBox> allComboBoxes;
 
         int sum;
         #endregion
@@ -86,10 +86,10 @@ namespace QueryGenerator
             allPanels = new List<Panel> {
                 panelAge,panelGender, panelAlcohol, panelCity, panelCriminalRecord, panelDate, panelDrug, panelExternalContact, panelReligion,panelOccupation,
                 panelpostitution,panelshelder,panelinstitution };
-            allCheckBoxes = new List<CheckBox>(){
+            allCheckBoxes = new List<CheckBox>{
                 cb_age, cb_gender,cb_alcohol,cb_city,cb_criminalRecord,cb_attendance, cb_useDrug, cb_externalContact,cb_religion,
                 cb_occupation,cb_postitution,cb_shelder,cb_institution};
-            allComboBoxes = new List<ComboBox>(){
+            allComboBoxes = new List<ComboBox>{
                 externalContactCB, cityCB, criminalRecordCB, occupationCB, religionCB, drugsCB, AlcoholCB,postitutionCB,shelderCB,institutionCB};
         }
 
@@ -429,7 +429,6 @@ namespace QueryGenerator
 
             sum = 0;
             int temp = numOfColumns;
-            StringBuilder str = new StringBuilder();
             foreach (Person p in listAfterQuery)
             {
                 numOfColumns = temp;
@@ -599,12 +598,17 @@ namespace QueryGenerator
                 {
                     genderValue = null;
                     if (Radio_men.Checked)
+                    {
                         Radio_men.Checked = !Radio_men.Checked;
+                    }
                     if (Radio_woman.Checked)
+                    {
                         Radio_woman.Checked = !Radio_woman.Checked;
+                    }
                     if (Radio_unknowGender.Checked)
+                    {
                         Radio_unknowGender.Checked = !Radio_unknowGender.Checked;
-
+                    }
                 }
                 else if (queryToRemove.Contains("גיל"))
                 {
@@ -696,7 +700,7 @@ namespace QueryGenerator
         /// To UnCheck all cb = null
         /// </summary>
         /// <param name="cb"></param>
-        private List<Person> fixList(IEnumerable<Person> list, string query)
+        private static List<Person> fixList(IEnumerable<Person> list, string query)
         {
             List<Person> temp = new List<Person>();
             foreach (var n in list)
@@ -776,7 +780,9 @@ namespace QueryGenerator
                 case "רקע":
                     temp = hashSetReligion;
                     if (ignore == 0)
+                    {
                         temp.Remove("");
+                    }
                     titles = temp.ToArray();
                     break;
                 case "גיל":
@@ -815,9 +821,9 @@ namespace QueryGenerator
                 case "קשר עם גורם נוסף":
                     titles = hashSetExternalContact.ToArray();
                     break;
-
-
-
+                default:
+                    titles = genderArray;
+                    break;
             }
             int[] counter = new int[titles.Length];
             IEnumerable<Person> p;
@@ -827,7 +833,9 @@ namespace QueryGenerator
                 p = fixList(listAfterQuery, query);
             }
             else
+            {
                 p = listAfterQuery;
+            }
             foreach (var person in p)
             {
                 for (int i = 0; i < titles.Length; i++)
@@ -842,38 +850,82 @@ namespace QueryGenerator
                             counter[i]++;
                     }
                     if (query == "עיר")
+                    {
                         if (person.city == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "רקע")
+                    {
                         if (person.Religion == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "גיל")
+                    {
                         if (person.age == int.Parse(titles[i]))
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "שימוש באלכוהול")
+                    {
                         if (person.UseAlcohol == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "שימוש בסמים")
+                    {
                         if (person.UseDrug == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "רישום פלילי")
+                    {
                         if (person.CriminalRecord == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "קשר עם גורם נוסף")
+                    {
                         if (person.ExternalContact == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "מס' מוסדות")
+                    {
                         if (person.NumOfInstitutions == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "רצף זנות")
+                    {
                         if (person.PostitutionSequence == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "רצף קורת גג")
+                    {
                         if (person.ShelterSequence == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
                     if (query == "עיסוק נוכחי")
+                    {
                         if (person.CurrentOccupation == titles[i])
+                        {
                             counter[i]++;
+                        }
+                    }
 
 
                 }
@@ -885,7 +937,6 @@ namespace QueryGenerator
         {
             if (panelGender.Visible)
             {
-                //string genderValue;
                 if (Radio_men.Checked)
                 {
                     genderValue = "זכר";
@@ -898,7 +949,6 @@ namespace QueryGenerator
                 {
                     genderValue = "";
                 }
-
                 QueryListBox.Items.Add("לפי מין: " + genderValue);
             }
             if (panelAge.Visible)
@@ -976,11 +1026,6 @@ namespace QueryGenerator
                     box.Checked = false;
                 }
             }
-        }
-        private IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
-        {
-            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
-                yield return day;
         }
         void QueryGenerator_FormClosing(object sender, FormClosingEventArgs e)
         {

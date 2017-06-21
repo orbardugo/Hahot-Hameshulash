@@ -17,7 +17,7 @@ namespace QueryGenerator
         
         int iTotalWidth; //
         int iRow;//Used as counter
-        bool bFirstPage = false; //Used to check whether we are printing first page
+        bool bFirstPage; //Used to check whether we are printing first page
         bool bNewPage;// Used to check whether we are printing a new page
         int iHeaderHeight; //Used for the header height
         StringFormat strFormat; //Used to format the grid rows.

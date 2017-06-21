@@ -162,7 +162,7 @@ namespace QueryGenerator
             }
         }
 
-        private bool isContainNumbers(string str)
+        private static bool isContainNumbers(string str)
         {
             bool allCharactersInStringAreDigits = str.Any(char.IsDigit);
             return allCharactersInStringAreDigits;
