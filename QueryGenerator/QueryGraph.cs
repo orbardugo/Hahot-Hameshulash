@@ -102,7 +102,7 @@ namespace QueryGenerator
             else if (type == "עמודות")
             {
                 x = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-                cmbValOrPer.Visible = false;
+                cmbValOrPer.Visible = true;
             }
             int index = 0;
             var s = new System.Windows.Forms.DataVisualization.Charting.Series
@@ -133,6 +133,11 @@ namespace QueryGenerator
                 if (s.ChartType == System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie)
                 {
                     s.Points[index].Label = string.Format("[{0}] {1}",output,title);
+                    s.Points[index].Font = new Font("Arial", 15);
+                }
+                else if (s.ChartType == System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column)
+                {
+                    s.Points[index].Label = string.Format("{0}", output);
                     s.Points[index].Font = new Font("Arial", 15);
                 }
                 index++;

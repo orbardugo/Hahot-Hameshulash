@@ -104,6 +104,7 @@ namespace QueryGenerator
                 cb_gender.Checked = true;
                 disableVisabilityPanels();
                 panelGender.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -119,6 +120,7 @@ namespace QueryGenerator
                 cb_age.Checked = true;
                 disableVisabilityPanels();
                 panelAge.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -135,6 +137,7 @@ namespace QueryGenerator
                 AlcoholCB.Items.Clear();
                 AlcoholCB.Items.AddRange(hashSetUseAlcohol.ToArray());
                 panelAlcohol.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -151,6 +154,7 @@ namespace QueryGenerator
                 drugsCB.Items.Clear();
                 drugsCB.Items.AddRange(hashSetUseDrug.ToArray());
                 panelDrug.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -168,6 +172,7 @@ namespace QueryGenerator
                 religionCB.Items.Clear();
                 religionCB.Items.AddRange(hashSetReligion.ToArray());
                 panelReligion.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -185,6 +190,7 @@ namespace QueryGenerator
                 occupationCB.Items.Clear();
                 occupationCB.Items.AddRange(hashSetCurrentOccupation.ToArray());
                 panelOccupation.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -202,6 +208,7 @@ namespace QueryGenerator
                 criminalRecordCB.Items.Clear();
                 criminalRecordCB.Items.AddRange(hashSetlistOfCriminalRecord.ToArray());
                 panelCriminalRecord.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -218,6 +225,7 @@ namespace QueryGenerator
                 cityCB.Items.Clear();
                 cityCB.Items.AddRange(hashSetOfCities.ToArray());
                 panelCity.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -234,6 +242,7 @@ namespace QueryGenerator
                 externalContactCB.Items.Clear();
                 externalContactCB.Items.AddRange(hashSetExternalContact.ToArray());
                 panelExternalContact.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -247,6 +256,7 @@ namespace QueryGenerator
                 unCheckedAllBut(cb_attendance);
                 disableVisabilityPanels();
                 panelDate.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -262,6 +272,7 @@ namespace QueryGenerator
                 postitutionCB.Items.Clear();
                 postitutionCB.Items.AddRange(hashSetlistOfPostitutions.ToArray());
                 panelpostitution.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -278,6 +289,7 @@ namespace QueryGenerator
                 shelderCB.Items.Clear();
                 shelderCB.Items.AddRange(hashSetlistOfShelter.ToArray());
                 panelshelder.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {
@@ -293,6 +305,7 @@ namespace QueryGenerator
                 institutionCB.Items.Clear();
                 institutionCB.Items.AddRange(hashSetlistOfInstitutions.ToArray());
                 panelinstitution.Visible = true;
+                addQueryBtn.BringToFront();
             }
             else
             {

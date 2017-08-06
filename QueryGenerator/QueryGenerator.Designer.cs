@@ -42,7 +42,7 @@
             this.QueryListBox = new System.Windows.Forms.ListBox();
             this.remove = new System.Windows.Forms.Button();
             this.generateChart = new System.Windows.Forms.Button();
-            chartList = new System.Windows.Forms.ComboBox();
+            QueryGenerator.chartList = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cb_chartType = new System.Windows.Forms.ComboBox();
             this.panelGraph = new System.Windows.Forms.Panel();
@@ -288,28 +288,28 @@
             // 
             // chartList
             // 
-            chartList.AutoCompleteCustomSource.AddRange(new string[] {
+            QueryGenerator.chartList.AutoCompleteCustomSource.AddRange(new string[] {
             "מין",
             "עיר",
             "רקע",
             "שימוש בסמים",
             "שימוש באלכוהול",
             "גיל"});
-            chartList.FormattingEnabled = true;
-            chartList.Items.AddRange(new object[] {
+            QueryGenerator.chartList.FormattingEnabled = true;
+            QueryGenerator.chartList.Items.AddRange(new object[] {
             "מין",
             "עיר",
             "רקע",
             "גיל",
             "שימוש באלכוהול",
             "שימוש בסמים"});
-            chartList.Location = new System.Drawing.Point(454, 4);
-            chartList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            chartList.Name = "chartList";
-            chartList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            chartList.Size = new System.Drawing.Size(127, 23);
-            chartList.TabIndex = 17;
-            chartList.Text = "הצג לפי";
+            QueryGenerator.chartList.Location = new System.Drawing.Point(454, 4);
+            QueryGenerator.chartList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            QueryGenerator.chartList.Name = "chartList";
+            QueryGenerator.chartList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            QueryGenerator.chartList.Size = new System.Drawing.Size(127, 23);
+            QueryGenerator.chartList.TabIndex = 17;
+            QueryGenerator.chartList.Text = "הצג לפי";
             // 
             // label15
             // 
@@ -342,7 +342,7 @@
             this.panelGraph.Controls.Add(this.cb_chartType);
             this.panelGraph.Controls.Add(this.generateChart);
             this.panelGraph.Controls.Add(this.label15);
-            this.panelGraph.Controls.Add(chartList);
+            this.panelGraph.Controls.Add(QueryGenerator.chartList);
             this.panelGraph.Location = new System.Drawing.Point(12, 602);
             this.panelGraph.Name = "panelGraph";
             this.panelGraph.Size = new System.Drawing.Size(786, 30);
